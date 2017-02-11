@@ -1,0 +1,6 @@
+framework module Pods_UpsalesTestApp {
+  umbrella header "Pods-UpsalesTestApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

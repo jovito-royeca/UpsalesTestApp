@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.3.0)
+  - DATAStack (7.0.1)
+  - MBProgressHUD (1.0.0)
+  - Sync (2.7.0):
+    - DATAStack (~> 7.0.1)
+    - SYNCPropertyMapper (~> 5.2.0)
+  - SYNCPropertyMapper (5.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.3)
+  - MBProgressHUD
+  - Sync
+
+SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  DATAStack: 9ca4ba8e8e4f389f1593ad3178d7a4d4df69d648
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  Sync: b02ce41aa8080049a2932fd7342fe189edb2298a
+  SYNCPropertyMapper: b3157f5183285c8a25ba23877b95a06ec2547e73
+
+PODFILE CHECKSUM: 0a0e827885cfbda4232fd91bed5e0f1fbbfadfe7
+
+COCOAPODS: 1.1.1
