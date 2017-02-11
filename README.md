@@ -1,5 +1,6 @@
 # UpsalesTestApp
-An iOS app for testing the Upsales API.
+
+An iOS app for testing the [Upsales API](https://api-docs.upsales.com/#)
 
 ## Objectives
 
