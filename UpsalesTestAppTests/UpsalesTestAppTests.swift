@@ -33,4 +33,14 @@ class UpsalesTestAppTests: XCTestCase {
         }
     }
     
+    func testFetchClients() {
+        let expectation = self.expectation(description: "fetch clients")
+        
+        UpsalesAPI.sharedInstance.fetchAccounts(completion: { (error: NSError?) in
+            XCTAssert(error != nil)
+            expectation.fulfill()
+        })
+        
+        waitForExpectations(timeout: 5.0, handler: nil)
+    }
 }
