@@ -3,6 +3,18 @@ PODS:
   - DATASource (6.1.5)
   - DATAStack (7.0.1)
   - MBProgressHUD (1.0.0)
+  - MMDrawerController (0.5.7):
+    - MMDrawerController/Core (= 0.5.7)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
+    - MMDrawerController/MMDrawerVisualStates (= 0.5.7)
+    - MMDrawerController/Subclass (= 0.5.7)
+  - MMDrawerController/Core (0.5.7)
+  - MMDrawerController/MMDrawerBarButtonItem (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.5.7):
+    - MMDrawerController/Core
   - Sync (2.7.0):
     - DATAStack (~> 7.0.1)
     - SYNCPropertyMapper (~> 5.2.0)
@@ -12,6 +24,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.3)
   - DATASource
   - MBProgressHUD
+  - MMDrawerController (~> 0.5.7)
   - Sync
 
 SPEC CHECKSUMS:
@@ -19,9 +32,10 @@ SPEC CHECKSUMS:
   DATASource: 52b86cfff6c7ac3db45192c01f7839c7473576c3
   DATAStack: 9ca4ba8e8e4f389f1593ad3178d7a4d4df69d648
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   Sync: b02ce41aa8080049a2932fd7342fe189edb2298a
   SYNCPropertyMapper: b3157f5183285c8a25ba23877b95a06ec2547e73
 
-PODFILE CHECKSUM: 7e259eec48e8d804e6df0119cfc7e619bbf0d3a1
+PODFILE CHECKSUM: 9917843cbefcaabeff1f3f50f1e903c157302750
 
 COCOAPODS: 1.2.0

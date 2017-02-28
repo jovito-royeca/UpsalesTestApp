@@ -6,6 +6,7 @@ target 'UpsalesTestApp' do
     pod 'Alamofire', '~> 4.3'
     pod 'DATASource'
     pod 'MBProgressHUD'
+    pod 'MMDrawerController', '~> 0.5.7'
     pod 'Sync'
 end
 
@@ -13,6 +14,7 @@ target 'UpsalesTestAppTests' do
     pod 'Alamofire', '~> 4.3'
     pod 'DATASource'
     pod 'MBProgressHUD'
+    pod 'MMDrawerController', '~> 0.5.7'
     pod 'Sync'
 end
 
@@ -20,6 +22,7 @@ target 'UpsalesTestAppUITests' do
     pod 'Alamofire', '~> 4.3'
     pod 'DATASource'
     pod 'MBProgressHUD'
+    pod 'MMDrawerController', '~> 0.5.7'
     pod 'Sync'
 end
 
