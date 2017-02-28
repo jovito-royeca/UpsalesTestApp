@@ -31,6 +31,7 @@
         <attribute name="regDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="scoreUpdateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sectionIndex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="soliditet" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="userEditable" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userRemovable" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -38,6 +39,6 @@
         <attribute name="webpage" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Client" positionX="-63" positionY="-18" width="128" height="510"/>
+        <element name="Client" positionX="-63" positionY="-18" width="128" height="525"/>
     </elements>
 </model>

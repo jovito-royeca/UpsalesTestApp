@@ -42,6 +42,7 @@ extension Client {
     @NSManaged public var regDate: NSDate?
     @NSManaged public var score: Int32
     @NSManaged public var scoreUpdateDate: NSDate?
+    @NSManaged public var sectionIndex: String?
     @NSManaged public var soliditet: NSData?
     @NSManaged public var userEditable: Bool
     @NSManaged public var userRemovable: Bool

@@ -14,6 +14,7 @@ import MBProgressHUD
 class AccountsViewController: UIViewController {
     // MARK: Variables
     var dataSource: DATASource?
+    var indexTitles = [String]()
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -29,6 +30,13 @@ class AccountsViewController: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.dataSource = self.getDataSource(nil)
                 self.tableView.reloadData()
+                
+                if let error = error {
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
         })
     }
@@ -56,7 +64,7 @@ class AccountsViewController: UIViewController {
             request!.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         }
         
-        let dataSource = DATASource(tableView: tableView, cellIdentifier: "Cell", fetchRequest: request!, mainContext: UpsalesAPI.sharedInstance.dataStack.mainContext, sectionName: nil, configuration: { cell, item, indexPath in
+        let dataSource = DATASource(tableView: tableView, cellIdentifier: "Cell", fetchRequest: request!, mainContext: UpsalesAPI.sharedInstance.dataStack.mainContext, sectionName: "sectionIndex", configuration: { cell, item, indexPath in
             if let account = item as? Client {
                 
                 self.configureCell(cell, withAccount: account)
@@ -77,8 +85,38 @@ class AccountsViewController: UIViewController {
 // MARK: DATASourceDelegate
 extension AccountsViewController: DATASourceDelegate {
     func sectionIndexTitlesForDataSource(_ dataSource: DATASource, tableView: UITableView) -> [String] {
-        // return an empty String array to remove the section indexes
-        return [String]()
+        if indexTitles.count == 0 {
+            if let accounts = dataSource.all() as? [Client] {
+                for account in accounts {
+                    if let name = account.name {
+                        if name.characters.count > 0 {
+                            let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
+                            let substring = name[range]
+                            
+                            if !indexTitles.contains(substring) {
+                                indexTitles.append(substring)
+                            }
+                        } else {
+                            indexTitles.append("#")
+                        }
+                    }
+                }
+            }
+        }
+        
+        return indexTitles
+    }
+    
+    func dataSource(_ dataSource: DATASource, tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        if let indexOfTitle = indexTitles.index(of: title) {
+            return indexOfTitle
+        } else {
+            return index
+        }
+    }
+    
+    func dataSource(_ dataSource: DATASource, tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return dataSource.titleForHeader(section)
     }
 }
 
@@ -86,8 +124,7 @@ extension AccountsViewController: DATASourceDelegate {
 // MARK: UITableViewDelegate
 extension AccountsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let accounts = dataSource!.all()
-        let account = accounts[indexPath.row]
+        let account = dataSource!.object(indexPath)
         performSegue(withIdentifier: "showAccountLocation", sender: account)
     }
 }

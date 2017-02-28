@@ -21,31 +21,61 @@ class UpsalesAPI: NSObject {
     // MARK: Variables
     let dataStack: DATAStack = DATAStack(modelName: "Upsales")
     
-    func fetchAccounts(completion: @escaping (NSError?) -> Void) {
+    func fetchAccounts(completion: @escaping (Error?) -> Void) {
         let urlString = "https://integration.upsales.com/api/v2/accounts/?token=\(kAPIToken)&limit=\(kFetchLimit)"
         
         Alamofire.request(urlString).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                if let data = json["data"] as? [[String: Any]] {
-                    let notifName = NSNotification.Name.NSManagedObjectContextObjectsDidChange
-                    
-                    self.dataStack.performInNewBackgroundContext { backgroundContext in
-                        NotificationCenter.default.addObserver(self, selector: #selector(UpsalesAPI.changeNotification(_:)), name: notifName, object: backgroundContext)
-                        Sync.changes(data,
-                                     inEntityNamed: "Client",
-                                     predicate: nil,
-                                     parent: nil,
-                                     parentRelationship: nil,
-                                     inContext: backgroundContext,
-                                     operations: .All,
-                                     completion:  { error in
-                                        NotificationCenter.default.removeObserver(self, name:notifName, object: nil)
-                                        completion(nil)
-                        })
-                    }
-                }
+            if let error = response.error {
+                completion(error)
             } else {
-                completion(nil)
+                if let json = response.result.value as? [String: Any] {
+                    if let data = json["data"] as? [[String: Any]] {
+                        let notifName = NSNotification.Name.NSManagedObjectContextObjectsDidChange
+                        
+                        // let us insert sectionIndex
+                        var newData = [[String: Any]]()
+                        for d in data {
+                            var nd = [String: Any]()
+                            
+                            for (key,value) in d {
+                                nd[key] = value
+                                
+                                if key == "name" {
+                                    if let name = value as? String {
+                                        if name.characters.count > 0 {
+                                            let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
+                                            let substring = name[range]
+                                            // to do: must be alpha only
+                                            nd["sectionIndex"] = substring
+                                            
+                                        } else {
+                                            nd["sectionIndex"] = "#"
+                                        }
+                                    }
+                                }
+                            }
+                            newData.append(nd)
+                        }
+                        
+                        
+                        self.dataStack.performInNewBackgroundContext { backgroundContext in
+                            NotificationCenter.default.addObserver(self, selector: #selector(UpsalesAPI.changeNotification(_:)), name: notifName, object: backgroundContext)
+                            Sync.changes(newData,
+                                         inEntityNamed: "Client",
+                                         predicate: nil,
+                                         parent: nil,
+                                         parentRelationship: nil,
+                                         inContext: backgroundContext,
+                                         operations: .All,
+                                         completion:  { error in
+                                            NotificationCenter.default.removeObserver(self, name:notifName, object: nil)
+                                            completion(nil)
+                            })
+                        }
+                    }
+                } else {
+                    completion(nil)
+                }
             }
         }
     }
