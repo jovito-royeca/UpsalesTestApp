@@ -4,18 +4,21 @@ use_frameworks!
 
 target 'UpsalesTestApp' do
     pod 'Alamofire', '~> 4.3'
+    pod 'DATASource'
     pod 'MBProgressHUD'
     pod 'Sync'
 end
 
 target 'UpsalesTestAppTests' do
     pod 'Alamofire', '~> 4.3'
+    pod 'DATASource'
     pod 'MBProgressHUD'
     pod 'Sync'
 end
 
 target 'UpsalesTestAppUITests' do
     pod 'Alamofire', '~> 4.3'
+    pod 'DATASource'
     pod 'MBProgressHUD'
     pod 'Sync'
 end

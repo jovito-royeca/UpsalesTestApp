@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.4.0)
+  - DATASource (6.1.5)
   - DATAStack (7.0.1)
   - MBProgressHUD (1.0.0)
   - Sync (2.7.0):
@@ -9,16 +10,18 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - DATASource
   - MBProgressHUD
   - Sync
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  DATASource: 52b86cfff6c7ac3db45192c01f7839c7473576c3
   DATAStack: 9ca4ba8e8e4f389f1593ad3178d7a4d4df69d648
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Sync: b02ce41aa8080049a2932fd7342fe189edb2298a
   SYNCPropertyMapper: b3157f5183285c8a25ba23877b95a06ec2547e73
 
-PODFILE CHECKSUM: 0a0e827885cfbda4232fd91bed5e0f1fbbfadfe7
+PODFILE CHECKSUM: 7e259eec48e8d804e6df0119cfc7e619bbf0d3a1
 
 COCOAPODS: 1.2.0
