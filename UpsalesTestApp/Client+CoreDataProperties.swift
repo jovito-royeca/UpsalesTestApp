@@ -46,7 +46,24 @@ extension Client {
     @NSManaged public var soliditet: NSData?
     @NSManaged public var userEditable: Bool
     @NSManaged public var userRemovable: Bool
-    @NSManaged public var users: NSData?
     @NSManaged public var webpage: String?
 
+    @NSManaged public var users: NSSet?
 }
+
+// MARK: Generated accessors for users
+//extension Client {
+//    
+//    @objc(addUsersObject:)
+//    @NSManaged public func addToUsers(_ value: User)
+//    
+//    @objc(removeUsersObject:)
+//    @NSManaged public func removeFromUsers(_ value: User)
+//    
+//    @objc(addUsers:)
+//    @NSManaged public func addToUsers(_ values: NSSet)
+//    
+//    @objc(removeUsers:)
+//    @NSManaged public func removeFromUsers(_ values: NSSet)
+//    
+//}

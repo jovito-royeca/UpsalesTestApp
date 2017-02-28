@@ -90,16 +90,4 @@ public class Client: NSManagedObject {
         
         return nil
     }
-    
-    func accountManagers() -> [[String: Any]] {
-        var array = [[String: Any]]()
-        
-        if let users = users {
-            if let ams = NSKeyedUnarchiver.unarchiveObject(with: users as Data) as? [[String: Any]] {
-                array = ams
-            }
-        }
-        
-        return array
-    }
 }

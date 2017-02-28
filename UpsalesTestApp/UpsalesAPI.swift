@@ -21,8 +21,12 @@ class UpsalesAPI: NSObject {
     // MARK: Variables
     let dataStack: DATAStack = DATAStack(modelName: "Upsales")
     
-    func fetchAccounts(completion: @escaping (Error?) -> Void) {
-        let urlString = "https://integration.upsales.com/api/v2/accounts/?token=\(kAPIToken)&limit=\(kFetchLimit)"
+    func fetchAccounts(ofUser userId: NSNumber?, completion: @escaping (Error?) -> Void) {
+        var urlString = "https://integration.upsales.com/api/v2/accounts/?token=\(kAPIToken)&limit=\(kFetchLimit)"
+        
+        if let userId = userId {
+            urlString += "&user.id=\(userId)"
+        }
         
         Alamofire.request(urlString).responseJSON { response in
             if let error = response.error {
@@ -86,43 +90,31 @@ class UpsalesAPI: NSObject {
         }
     }
     
-    func fetchLocalManagers() -> [[String: Any]] {
-        var localManagers = [[String: Any]]()
+    func fetchLocalManagers() -> [User] {
+        var localManagers = [User]()
         
-        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Client")
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
-        if let accounts = try! self.dataStack.mainContext.fetch(request) as? [Client] {
-            for account in accounts {
-                for manager in account.accountManagers() {
-                    var existing = false
-                    
-                    for lm in localManagers {
-                        if let mid = manager["id"] as? NSNumber,
-                            let lmid = lm["id"] as? NSNumber {
-                            
-                            if mid.intValue == lmid.intValue {
-                                existing = true
-                                break
-                            }
-                        }
-                    }
-                    
-                    if !existing {
-                        localManagers.append(manager)
-                    }
-                }
-            }
+        if let users = try! self.dataStack.mainContext.fetch(request) as? [User] {
+            localManagers = users
         }
 
-        // sort by name
-        localManagers.sort{
-            (($0 as Dictionary<String, AnyObject>)["name"] as! String) < (($1 as Dictionary<String, AnyObject>)["name"] as! String)
+        return localManagers
+    }
+    
+    func fetchLocalManager(withID id: NSNumber) -> User? {
+        var localManager:User?
+        
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+        request.predicate = NSPredicate(format: "name = %@", id)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        if let users = try! self.dataStack.mainContext.fetch(request) as? [User] {
+            localManager = users.first
         }
         
-        // insert the default All filter
-        localManagers.insert(["name": "All"], at: 0)
-        
-        return localManagers
+        return localManager
     }
     
     func changeNotification(_ notification: Notification) {

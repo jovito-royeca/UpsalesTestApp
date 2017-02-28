@@ -30,8 +30,13 @@ class AccountsViewController: UIViewController {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         
+        var userId:NSNumber?
+        if let id = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? NSNumber {
+            userId = id
+        }
+        
         MBProgressHUD.showAdded(to: view, animated: true)
-        UpsalesAPI.sharedInstance.fetchAccounts(completion: { error in
+        UpsalesAPI.sharedInstance.fetchAccounts(ofUser: userId, completion: { error in
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.dataSource = self.getDataSource(nil)
@@ -74,6 +79,11 @@ class AccountsViewController: UIViewController {
         } else {
             request = NSFetchRequest(entityName: "Client")
             request!.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            
+            var userId:NSNumber?
+            if let fm = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? [String: Any] {
+                // TODO: filter on users here... might need to create a relationship to user
+            }
         }
         
         let dataSource = DATASource(tableView: tableView, cellIdentifier: "Cell", fetchRequest: request!, mainContext: UpsalesAPI.sharedInstance.dataStack.mainContext, sectionName: "sectionIndex", configuration: { cell, item, indexPath in

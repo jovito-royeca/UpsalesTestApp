@@ -8,11 +8,13 @@
 
 import UIKit
 
+let kUserDefaultFilterManagerID = "filterManagerID"
+
 class FilterViewController: UIViewController {
 
     // MARK: Variables
-    var managers:[[String: Any]]?
-    var selectedIndex = 0
+    var managers:[User]?
+    var manager:User?
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -32,9 +34,10 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let id = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? NSNumber {
+            manager = UpsalesAPI.sharedInstance.fetchLocalManager(withID: id)
+        }
     }
-
-
 }
 
 // MARK: UITableViewDataSource
@@ -53,17 +56,20 @@ extension FilterViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
+        cell.accessoryType = .none
+        
         if let managers = managers {
-            let manager = managers[indexPath.row]
+            let m = managers[indexPath.row]
             
-            if let name = manager["name"] as? String {
-                cell.textLabel?.text = name
-            } else {
-                cell.textLabel?.text = nil
+            cell.textLabel?.text = m.name
+            
+            if let manager = manager {
+                if m.id == manager.id {
+                    cell.accessoryType = .checkmark
+                }
             }
         }
-
-        cell.accessoryType = selectedIndex == indexPath.row ? .checkmark : .none
+        
         return cell
     }
     
@@ -76,7 +82,9 @@ extension FilterViewController : UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension FilterViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndex = indexPath.row
+        if let managers = managers {
+            manager = managers[indexPath.row]
+        }
         tableView.reloadData()
     }
 }

@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 
+let kUserDefaultLastLocation = "lastLocation"
+
 class AccountLocationViewController: UIViewController {
     // MARK: Variables
     var account:Client?
@@ -24,7 +26,7 @@ class AccountLocationViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // let us reload the last saved location
-        if let lastLocation = UserDefaults.standard.object(forKey: "lastLocation") as? [String: Any] {
+        if let lastLocation = UserDefaults.standard.object(forKey: kUserDefaultLastLocation) as? [String: Any] {
             let center = CLLocationCoordinate2D(latitude: lastLocation["lat"] as! CLLocationDegrees, longitude: lastLocation["lng"] as! CLLocationDegrees)
             let span = MKCoordinateSpan(latitudeDelta: center.latitude / 10, longitudeDelta: center.longitude / 10)
             let region = MKCoordinateRegion(center: center, span: span)
@@ -54,7 +56,7 @@ class AccountLocationViewController: UIViewController {
         let center = mapView.region.center
         let dictionary = ["lat": center.latitude,
                           "lng": center.longitude]
-        UserDefaults.standard.set(dictionary, forKey: "lastLocation")
+        UserDefaults.standard.set(dictionary, forKey: kUserDefaultLastLocation)
         UserDefaults.standard.synchronize()
     }
     
