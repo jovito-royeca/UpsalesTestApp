@@ -86,39 +86,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuX-I7-fkW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuX-I7-fkW">
                                 <rect key="frame" x="16" y="72" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oG-Vb-XJw">
-                                <rect key="frame" x="16" y="101" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="A6C-Tz-TDN">
-                                <rect key="frame" x="0.0" y="130" width="375" height="537"/>
+                                <rect key="frame" x="0.0" y="101" width="375" height="566"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5oG-Vb-XJw" firstAttribute="leading" secondItem="8KL-dc-pOG" secondAttribute="leadingMargin" id="0mb-lF-xuD"/>
-                            <constraint firstItem="SuX-I7-fkW" firstAttribute="top" secondItem="79e-k7-WZc" secondAttribute="bottom" constant="8" id="6Vm-8G-HKz"/>
-                            <constraint firstItem="A6C-Tz-TDN" firstAttribute="leading" secondItem="8KL-dc-pOG" secondAttribute="leading" id="DAG-X8-o7W"/>
-                            <constraint firstItem="SuX-I7-fkW" firstAttribute="leading" secondItem="8KL-dc-pOG" secondAttribute="leadingMargin" id="GNy-PJ-kke"/>
-                            <constraint firstAttribute="trailing" secondItem="A6C-Tz-TDN" secondAttribute="trailing" id="L3K-Xg-2PO"/>
-                            <constraint firstItem="5oG-Vb-XJw" firstAttribute="trailing" secondItem="8KL-dc-pOG" secondAttribute="trailingMargin" id="OAa-kU-ou0"/>
-                            <constraint firstItem="A6C-Tz-TDN" firstAttribute="top" secondItem="5oG-Vb-XJw" secondAttribute="bottom" constant="8" id="SnJ-iq-v25"/>
-                            <constraint firstItem="AYK-uF-Knh" firstAttribute="top" secondItem="A6C-Tz-TDN" secondAttribute="bottom" id="j40-IR-EAI"/>
-                            <constraint firstItem="5oG-Vb-XJw" firstAttribute="top" secondItem="SuX-I7-fkW" secondAttribute="bottom" constant="8" id="jXf-ed-sgr"/>
-                            <constraint firstItem="SuX-I7-fkW" firstAttribute="trailing" secondItem="8KL-dc-pOG" secondAttribute="trailingMargin" id="qr3-QN-AIK"/>
+                            <constraint firstItem="SuX-I7-fkW" firstAttribute="trailing" secondItem="8KL-dc-pOG" secondAttribute="trailingMargin" id="6N7-bF-dwN"/>
+                            <constraint firstItem="AYK-uF-Knh" firstAttribute="top" secondItem="A6C-Tz-TDN" secondAttribute="bottom" id="Jja-La-gEm"/>
+                            <constraint firstItem="A6C-Tz-TDN" firstAttribute="leading" secondItem="8KL-dc-pOG" secondAttribute="leading" id="Xzt-ne-VFf"/>
+                            <constraint firstItem="SuX-I7-fkW" firstAttribute="top" secondItem="79e-k7-WZc" secondAttribute="bottom" constant="8" id="aei-gX-DLu"/>
+                            <constraint firstAttribute="trailing" secondItem="A6C-Tz-TDN" secondAttribute="trailing" id="fBH-z6-c0Z"/>
+                            <constraint firstItem="A6C-Tz-TDN" firstAttribute="top" secondItem="SuX-I7-fkW" secondAttribute="bottom" constant="8" id="gO3-6c-84r"/>
+                            <constraint firstItem="SuX-I7-fkW" firstAttribute="leading" secondItem="8KL-dc-pOG" secondAttribute="leadingMargin" id="m73-kP-vE3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Account Location" id="TcN-dP-aOO"/>
                     <connections>
-                        <outlet property="addressLabel" destination="5oG-Vb-XJw" id="bcs-uY-rau"/>
                         <outlet property="mapView" destination="A6C-Tz-TDN" id="rJ6-5B-nJX"/>
                         <outlet property="nameLabel" destination="SuX-I7-fkW" id="QUP-lZ-SwS"/>
                     </connections>
