@@ -55,6 +55,12 @@ class AccountsViewController: UIViewController {
                 
                 dest.account = account
             }
+        case "showFilter"?:
+            if let dest = segue.destination as? UINavigationController {
+                if let filterVC = dest.childViewControllers.first as? FilterViewController {
+                    filterVC.managers = UpsalesAPI.sharedInstance.fetchLocalManagers()
+                }
+            }
         default:
             ()
         }

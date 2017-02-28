@@ -42,6 +42,7 @@ class UpsalesAPI: NSObject {
                                 
                                 if key == "name" {
                                     if let name = value as? String {
+                                        // add the First letter if alphabetic, else '#' for all other characters
                                         if name.characters.count > 0 {
                                             let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
                                             let substring = name[range]
@@ -84,7 +85,46 @@ class UpsalesAPI: NSObject {
             }
         }
     }
+    
+    func fetchLocalManagers() -> [[String: Any]] {
+        var localManagers = [[String: Any]]()
         
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Client")
+        
+        if let accounts = try! self.dataStack.mainContext.fetch(request) as? [Client] {
+            for account in accounts {
+                for manager in account.accountManagers() {
+                    var existing = false
+                    
+                    for lm in localManagers {
+                        if let mid = manager["id"] as? NSNumber,
+                            let lmid = lm["id"] as? NSNumber {
+                            
+                            if mid.intValue == lmid.intValue {
+                                existing = true
+                                break
+                            }
+                        }
+                    }
+                    
+                    if !existing {
+                        localManagers.append(manager)
+                    }
+                }
+            }
+        }
+
+        // sort by name
+        localManagers.sort{
+            (($0 as Dictionary<String, AnyObject>)["name"] as! String) < (($1 as Dictionary<String, AnyObject>)["name"] as! String)
+        }
+        
+        // insert the default All filter
+        localManagers.insert(["name": "All"], at: 0)
+        
+        return localManagers
+    }
+    
     func changeNotification(_ notification: Notification) {
         if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] {
             print("updatedObjects: \((updatedObjects as AnyObject).count!)")

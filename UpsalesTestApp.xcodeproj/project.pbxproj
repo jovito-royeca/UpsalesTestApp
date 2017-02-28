@@ -28,6 +28,9 @@
 		1137E51B1E4EEB8500DEFE4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1137E5191E4EEB8500DEFE4F /* LaunchScreen.storyboard */; };
 		1137E5261E4EEB8500DEFE4F /* UpsalesTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137E5251E4EEB8500DEFE4F /* UpsalesTestAppTests.swift */; };
 		1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137E5301E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift */; };
+		114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
+		114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
+		114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
 		322F59F5D856A7AC7FE75304 /* Pods_UpsalesTestAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B39B147DD1031371F2C4D4 /* Pods_UpsalesTestAppUITests.framework */; };
 		3EAD3EB25ED1DF44463CE600 /* Pods_UpsalesTestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823C3B9CF4BD92D24900C5FC /* Pods_UpsalesTestAppTests.framework */; };
 		4635B4C045040C57166F7167 /* Pods_UpsalesTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AF93EBED51B74A67FA0F23 /* Pods_UpsalesTestApp.framework */; };
@@ -71,6 +74,7 @@
 		1137E52C1E4EEB8500DEFE4F /* UpsalesTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UpsalesTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137E5301E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpsalesTestAppUITests.swift; sourceTree = "<group>"; };
 		1137E5321E4EEB8500DEFE4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		114282801E65A98F000A2FFF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		26AF93EBED51B74A67FA0F23 /* Pods_UpsalesTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpsalesTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DD70A3E8564D1DEE0AFA546 /* Pods-UpsalesTestAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpsalesTestAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpsalesTestAppUITests/Pods-UpsalesTestAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		39A85006BC88EE2E14571145 /* Pods-UpsalesTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpsalesTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpsalesTestApp/Pods-UpsalesTestApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			children = (
 				1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */,
 				1118E4B31E649E9900092828 /* AccountsViewController.swift */,
+				114282801E65A98F000A2FFF /* FilterViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				1137E5131E4EEB8500DEFE4F /* ViewController.swift in Sources */,
 				110274851E64FBB1000BC522 /* Client+CoreDataClass.swift in Sources */,
 				1118E4B91E64A30100092828 /* Upsales.xcdatamodeld in Sources */,
+				114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				1118E4AC1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				110274861E64FBB1000BC522 /* Client+CoreDataProperties.swift in Sources */,
 				1118E4B41E649E9900092828 /* AccountsViewController.swift in Sources */,
@@ -519,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				1118E4AD1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1137E5261E4EEB8500DEFE4F /* UpsalesTestAppTests.swift in Sources */,
 				1118E4CC1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,
@@ -531,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				1118E4AE1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */,
 				1118E4CD1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,

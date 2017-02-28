@@ -64,7 +64,13 @@
                             <constraint firstItem="IuI-35-52q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yvN-br-275"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Upsales Accounts" id="9S0-9v-BJe"/>
+                    <navigationItem key="navigationItem" title="Upsales Accounts" id="9S0-9v-BJe">
+                        <barButtonItem key="rightBarButtonItem" image="filter" id="eeY-kq-27N">
+                            <connections>
+                                <segue destination="dNu-QQ-NXo" kind="presentation" identifier="showFilter" id="6XN-o9-yuQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="IuI-35-52q" id="Ax5-jv-xoi"/>
                         <segue destination="bWc-qq-u8Z" kind="show" identifier="showAccountLocation" id="zNP-gl-lSu"/>
@@ -135,5 +141,89 @@
             </objects>
             <point key="canvasLocation" x="413.60000000000002" y="-575.26236881559225"/>
         </scene>
+        <!--Filter-->
+        <scene sceneID="YeE-FS-acY">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="I1O-ZH-zfV" customClass="FilterViewController" customModule="UpsalesTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4xD-N5-spJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wd3-nA-kHg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yBE-r0-SwJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iar-gI-QQO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="XGG-LT-6Cz" style="IBUITableViewCellStyleDefault" id="OSu-Hu-uIS">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OSu-Hu-uIS" id="Bp1-24-KR3">
+                                            <rect key="frame" x="0.0" y="0.0" width="336" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XGG-LT-6Cz">
+                                                    <rect key="frame" x="15" y="0.0" width="321" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="I1O-ZH-zfV" id="uDN-WS-iOP"/>
+                                    <outlet property="delegate" destination="I1O-ZH-zfV" id="IeA-FU-1b8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Filter" id="50F-DP-lH5">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PGp-ZJ-fdr">
+                            <connections>
+                                <action selector="cancelAction:" destination="I1O-ZH-zfV" id="YcT-9I-xMd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="8H5-rf-6iL">
+                            <connections>
+                                <action selector="saveAction:" destination="I1O-ZH-zfV" id="T8Y-hU-jPD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="iar-gI-QQO" id="IoL-d7-BCW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxI-KH-HXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2416.8000000000002" y="257.72113943028489"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aJD-0V-rNr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dNu-QQ-NXo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kEz-z3-rnC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="I1O-ZH-zfV" kind="relationship" relationship="rootViewController" id="L38-lV-hmi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DEo-HI-5Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1397.5999999999999" y="257.72113943028489"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="filter" width="25" height="25"/>
+    </resources>
 </document>
