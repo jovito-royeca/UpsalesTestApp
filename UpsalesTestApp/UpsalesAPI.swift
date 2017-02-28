@@ -45,8 +45,13 @@ class UpsalesAPI: NSObject {
                                         if name.characters.count > 0 {
                                             let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
                                             let substring = name[range]
-                                            // to do: must be alpha only
-                                            nd["sectionIndex"] = substring
+                                            
+                                            let letters = NSCharacterSet.letters
+                                            if let _ = substring.rangeOfCharacter(from: letters) {
+                                                nd["sectionIndex"] = substring
+                                            } else {
+                                                nd["sectionIndex"] = "#"
+                                            }
                                             
                                         } else {
                                             nd["sectionIndex"] = "#"

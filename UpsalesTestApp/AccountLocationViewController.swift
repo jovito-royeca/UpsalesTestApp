@@ -35,7 +35,7 @@ class AccountLocationViewController: UIViewController {
         if let account = account {
             nameLabel.text = account.name
             
-            if let address = addressOf(account) {
+            if let address = account.completeAddress() {
                 setMapLocationForAddress(address: address)
             } else {
                 let message = "No address found"
@@ -59,59 +59,6 @@ class AccountLocationViewController: UIViewController {
     }
     
     // MARK: Custom methods
-    
-    /*
-     * Get the address of client
-     */
-    func addressOf(_ account: Client) -> String? {
-        if let addresses = account.addresses {
-            if let addressArray = NSKeyedUnarchiver.unarchiveObject(with: addresses as Data) as? [[String: Any]] {
-                for a in addressArray {
-                    if let type = a["type"] as? String {
-                        if type == "Visit" || type == "Mail" {
-                            var addressString = ""
-                            
-                            if let address = a["address"] as? String {
-                                addressString += "\(address)"
-                            }
-                            if let city = a["city"] as? String {
-                                if addressString.characters.count > 0 {
-                                    addressString += ", "
-                                }
-                                addressString += "\(city)"
-                            }
-                            if let state = a["state"] as? String {
-                                if addressString.characters.count > 0 {
-                                    addressString += ", "
-                                }
-                                addressString += "\(state)"
-                            }
-                            if let country = a["country"] as? String {
-                                if let countryName = Locale.current.localizedString(forRegionCode: country) {
-                                    if addressString.characters.count > 0 {
-                                        addressString += ", "
-                                    }
-                                    addressString += "\(countryName)"
-                                }
-                            }
-                            if let zipcode = a["zipcode"] as? String {
-                                if addressString.characters.count > 0 {
-                                    addressString += " "
-                                }
-                                addressString += "\(zipcode)"
-                            }
-                            
-                            return addressString
-                        }
-                    }
-                }
-            }
-            
-        }
-        
-        return nil
-    }
-    
     /*
      * Geocode the address string and put it into the map
      */

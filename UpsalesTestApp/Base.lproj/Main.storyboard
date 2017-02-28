@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Accounts View Controller-->
+        <!--Upsales Accounts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="AccountsViewController" customModule="UpsalesTestApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             <constraint firstItem="IuI-35-52q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yvN-br-275"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9S0-9v-BJe"/>
+                    <navigationItem key="navigationItem" title="Upsales Accounts" id="9S0-9v-BJe"/>
                     <connections>
                         <outlet property="tableView" destination="IuI-35-52q" id="Ax5-jv-xoi"/>
                         <segue destination="bWc-qq-u8Z" kind="show" identifier="showAccountLocation" id="zNP-gl-lSu"/>

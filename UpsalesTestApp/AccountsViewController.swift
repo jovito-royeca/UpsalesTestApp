@@ -13,6 +13,7 @@ import MBProgressHUD
 
 class AccountsViewController: UIViewController {
     // MARK: Variables
+    let searchController = UISearchController(searchResultsController: nil)
     var dataSource: DATASource?
     var indexTitles = [String]()
     
@@ -24,6 +25,11 @@ class AccountsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
         MBProgressHUD.showAdded(to: view, animated: true)
         UpsalesAPI.sharedInstance.fetchAccounts(completion: { error in
             DispatchQueue.main.async {
@@ -78,31 +84,61 @@ class AccountsViewController: UIViewController {
     
     func configureCell(_ cell: UITableViewCell, withAccount account: Client) {
         cell.textLabel?.text = account.name
-        cell.detailTextLabel?.text = account.webpage
+        cell.detailTextLabel?.text = account.shortAddress()
+    }
+    
+    func filterAccounts(for searchText: String) {
+        var request:NSFetchRequest<NSFetchRequestResult>?
+        let count = searchText.characters.count
+        
+        if count > 0 {
+            request = NSFetchRequest(entityName: "Client")
+            request!.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            var predicate:NSPredicate?
+            
+            if count == 1 {
+                predicate = NSPredicate(format: "name BEGINSWITH[cd] %@", searchText)
+            } else {
+                predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+            }
+            request!.predicate = predicate
+            
+        }
+            
+        dataSource = getDataSource(request)
+        tableView.reloadData()
     }
 }
 
 // MARK: DATASourceDelegate
 extension AccountsViewController: DATASourceDelegate {
     func sectionIndexTitlesForDataSource(_ dataSource: DATASource, tableView: UITableView) -> [String] {
-        if indexTitles.count == 0 {
-            if let accounts = dataSource.all() as? [Client] {
-                for account in accounts {
-                    if let name = account.name {
-                        if name.characters.count > 0 {
-                            let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
-                            let substring = name[range]
+        indexTitles = [String]()
+        
+        if let accounts = dataSource.all() as? [Client] {
+            for account in accounts {
+                // add the First letter if alphabetic, else '#' for all other characters
+                if let name = account.name {
+                    if name.characters.count > 0 {
+                        let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
+                        let substring = name[range]
+                        
+                        if !indexTitles.contains(substring) {
+                            let letters = NSCharacterSet.letters
                             
-                            if !indexTitles.contains(substring) {
+                            if let _ = substring.rangeOfCharacter(from: letters) {
                                 indexTitles.append(substring)
+                            } else {
+                                indexTitles.append("#")
                             }
-                        } else {
-                            indexTitles.append("#")
                         }
+                    } else {
+                        indexTitles.append("#")
                     }
                 }
             }
         }
+
         
         return indexTitles
     }
@@ -126,5 +162,12 @@ extension AccountsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let account = dataSource!.object(indexPath)
         performSegue(withIdentifier: "showAccountLocation", sender: account)
+    }
+}
+
+// UISearchResultsUpdating
+extension AccountsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterAccounts(for: searchController.searchBar.text!)
     }
 }
