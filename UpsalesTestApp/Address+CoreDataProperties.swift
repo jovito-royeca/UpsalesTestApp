@@ -16,6 +16,7 @@ extension Address {
         return NSFetchRequest<Address>(entityName: "Address");
     }
 
+    @NSManaged public var id: Int64
     @NSManaged public var city: String?
     @NSManaged public var state: String?
     @NSManaged public var type: String?
@@ -25,5 +26,6 @@ extension Address {
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
     @NSManaged public var geocodedAddress: String?
+    @NSManaged public var client: Client?
 
 }

@@ -112,7 +112,11 @@ class AccountsViewController: UIViewController {
     
     func configureCell(_ cell: UITableViewCell, withAccount account: Client) {
         cell.textLabel?.text = account.name
-        cell.detailTextLabel?.text = account.shortAddress()
+        if let address = account.findAddress() {
+            cell.detailTextLabel?.text = address.shortAddress()
+        } else {
+            cell.detailTextLabel?.text = ""
+        }
     }
     
     func filterAccounts(for searchText: String) {

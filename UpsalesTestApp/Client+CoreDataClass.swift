@@ -11,83 +11,31 @@ import CoreData
 
 @objc(Client)
 public class Client: NSManagedObject {
-    func shortAddress() -> String? {
+    func findAddress() -> Address? {
+        var address:Address?
+        
         if let addresses = addresses {
-            if let addressArray = NSKeyedUnarchiver.unarchiveObject(with: addresses as Data) as? [[String: Any]] {
-                for a in addressArray {
-                    if let type = a["type"] as? String {
-                        if type == "Visit" || type == "Mail" {
-                            var addressString = ""
-                            
-                            if let city = a["city"] as? String {
-                                addressString += "\(city)"
-                            }
-                            if let country = a["country"] as? String {
-                                if let countryName = Locale.current.localizedString(forRegionCode: country) {
-                                    if addressString.characters.count > 0 {
-                                        addressString += ", "
-                                    }
-                                    addressString += "\(countryName)"
-                                }
-                            }
-                            
-                            return addressString
-                        }
+            for a in addresses.allObjects {
+                if let aa = a as? Address {
+                    if aa.type == "Visit" {
+                        address = aa
+                        break
                     }
                 }
             }
             
-        }
-        
-        return nil
-    }
-    
-    func completeAddress() -> String? {
-        if let addresses = addresses {
-            if let addressArray = NSKeyedUnarchiver.unarchiveObject(with: addresses as Data) as? [[String: Any]] {
-                for a in addressArray {
-                    if let type = a["type"] as? String {
-                        if type == "Visit" || type == "Mail" {
-                            var addressString = ""
-                            
-                            if let address = a["address"] as? String {
-                                addressString += "\(address)"
-                            }
-                            if let city = a["city"] as? String {
-                                if addressString.characters.count > 0 {
-                                    addressString += ", "
-                                }
-                                addressString += "\(city)"
-                            }
-                            if let state = a["state"] as? String {
-                                if addressString.characters.count > 0 {
-                                    addressString += ", "
-                                }
-                                addressString += "\(state)"
-                            }
-                            if let country = a["country"] as? String {
-                                if let countryName = Locale.current.localizedString(forRegionCode: country) {
-                                    if addressString.characters.count > 0 {
-                                        addressString += ", "
-                                    }
-                                    addressString += "\(countryName)"
-                                }
-                            }
-                            if let zipcode = a["zipcode"] as? String {
-                                if addressString.characters.count > 0 {
-                                    addressString += " "
-                                }
-                                addressString += "\(zipcode)"
-                            }
-                            
-                            return addressString
+            if address == nil {
+                for a in addresses.allObjects {
+                    if let aa = a as? Address {
+                        if aa.type == "Mail" {
+                            address = aa
+                            break
                         }
                     }
                 }
             }
-            
         }
         
-        return nil
+        return address
     }
 }

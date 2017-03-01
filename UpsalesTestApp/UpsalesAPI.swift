@@ -36,17 +36,18 @@ class UpsalesAPI: NSObject {
                     if let data = json["data"] as? [[String: Any]] {
                         let notifName = NSNotification.Name.NSManagedObjectContextObjectsDidChange
                         
-                        // let us insert sectionIndex
                         var newData = [[String: Any]]()
                         for d in data {
                             var nd = [String: Any]()
+                            var addressId = 1
                             
                             for (key,value) in d {
-                                nd[key] = value
                                 
+                                
+                                // let us insert sectionIndex
+                                // add the First letter if alphabetic, else '#' for all other characters
                                 if key == "name" {
                                     if let name = value as? String {
-                                        // add the First letter if alphabetic, else '#' for all other characters
                                         if name.characters.count > 0 {
                                             let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
                                             let substring = name[range]
@@ -62,11 +63,30 @@ class UpsalesAPI: NSObject {
                                             nd["sectionIndex"] = "#"
                                         }
                                     }
+                                    nd[key] = value
+                                    
+                                } else if key == "addresses" {
+                                    // create address id
+                                    var array = [[String: Any]]()
+                                    if let addresses = value as? [[String: Any]] {
+                                        for a in addresses {
+                                            var aa = [String: Any]()
+                                            for (key2,value2) in a {
+                                                aa[key2] = value2
+                                            }
+                                            aa["id"] = Date().hashValue
+                                            array.append(aa)
+                                        }
+                                    }
+                                    
+                                    nd[key] = array
+                                    
+                                } else {
+                                    nd[key] = value
                                 }
                             }
                             newData.append(nd)
                         }
-                        
                         
                         self.dataStack.performInNewBackgroundContext { backgroundContext in
                             NotificationCenter.default.addObserver(self, selector: #selector(UpsalesAPI.changeNotification(_:)), name: notifName, object: backgroundContext)

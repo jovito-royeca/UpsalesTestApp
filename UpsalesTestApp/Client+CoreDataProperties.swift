@@ -16,7 +16,6 @@ extension Client {
         return NSFetchRequest<Client>(entityName: "Client");
     }
 
-    @NSManaged public var addresses: NSData?
     @NSManaged public var assigned: NSData?
     @NSManaged public var categories: NSData?
     @NSManaged public var connectedClients: NSData?
@@ -48,6 +47,7 @@ extension Client {
     @NSManaged public var userRemovable: Bool
     @NSManaged public var webpage: String?
 
+    @NSManaged public var addresses: NSSet?
     @NSManaged public var users: NSSet?
 }
 
@@ -65,5 +65,22 @@ extension Client {
     
     @objc(removeUsers:)
     @NSManaged public func removeFromUsers(_ values: NSSet)
+    
+}
+
+// MARK: Generated accessors for addresses
+extension Client {
+    
+    @objc(addAddressesObject:)
+    @NSManaged public func addToAddresses(_ value: Address)
+    
+    @objc(removeAddressesObject:)
+    @NSManaged public func removeFromAddresses(_ value: Address)
+    
+    @objc(addAddresses:)
+    @NSManaged public func addToAddresses(_ values: NSSet)
+    
+    @objc(removeAddresses:)
+    @NSManaged public func removeFromAddresses(_ values: NSSet)
     
 }
