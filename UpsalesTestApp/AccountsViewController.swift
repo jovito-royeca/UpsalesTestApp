@@ -11,6 +11,8 @@ import DATAStack
 import DATASource
 import MBProgressHUD
 
+let kNotificationAccountsFiltered = "kNotificationAccountsFiltered"
+
 class AccountsViewController: UIViewController {
     // MARK: Variables
     let searchController = UISearchController(searchResultsController: nil)
@@ -18,6 +20,7 @@ class AccountsViewController: UIViewController {
     var indexTitles = [String]()
     
     // MARK: Outlets
+    @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Overrides
@@ -27,14 +30,17 @@ class AccountsViewController: UIViewController {
         // Do any additional setup after loading the view.
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
+        definesPresentationContext = false
         tableView.tableHeaderView = searchController.searchBar
         
-        var userId:NSNumber?
-        if let id = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? NSNumber {
-            userId = id
-        }
+//        let searchBar = searchController.searchBar
+//        searchBar.frame = CGRect(x: 0, y: 0, width: placeholderView.frame.size.width, height: placeholderView.frame.size.height)
+//        placeholderView.addSubview(searchBar)
         
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kNotificationAccountsFiltered), object:nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AccountsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationAccountsFiltered), object: nil)
+        
+        let userId = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? Int
         MBProgressHUD.showAdded(to: view, animated: true)
         UpsalesAPI.sharedInstance.fetchAccounts(ofUser: userId, completion: { error in
             DispatchQueue.main.async {
@@ -79,10 +85,16 @@ class AccountsViewController: UIViewController {
         } else {
             request = NSFetchRequest(entityName: "Client")
             request!.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        }
+
+        // add predicate for account manager filter
+        if let id = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? Int {
+            let predicate = NSPredicate(format: "ANY users.id == \(id)")
             
-            var userId:NSNumber?
-            if let fm = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? [String: Any] {
-                // TODO: filter on users here... might need to create a relationship to user
+            if let p = request!.predicate {
+                request!.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [p, predicate])
+            } else {
+                request!.predicate = predicate
             }
         }
         
@@ -112,6 +124,7 @@ class AccountsViewController: UIViewController {
             request!.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
             var predicate:NSPredicate?
             
+            // TODO: set <emp> tag in uilabel
             if count == 1 {
                 predicate = NSPredicate(format: "name BEGINSWITH[cd] %@", searchText)
             } else {
@@ -124,6 +137,11 @@ class AccountsViewController: UIViewController {
         dataSource = getDataSource(request)
         tableView.reloadData()
     }
+    
+    func updateData(_ notification: Notification) {
+        dataSource = getDataSource(nil)
+        tableView.reloadData()
+    }
 }
 
 // MARK: DATASourceDelegate
@@ -131,31 +149,33 @@ extension AccountsViewController: DATASourceDelegate {
     func sectionIndexTitlesForDataSource(_ dataSource: DATASource, tableView: UITableView) -> [String] {
         indexTitles = [String]()
         
-        if let accounts = dataSource.all() as? [Client] {
-            for account in accounts {
-                // add the First letter if alphabetic, else '#' for all other characters
-                if let name = account.name {
-                    if name.characters.count > 0 {
-                        let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
-                        let substring = name[range]
+        var hasAlphanumeric = false
+        let accounts = dataSource.all() as [Client]
+        for account in accounts {
+            // add the First letter if alphabetic, else '#' for all other characters
+            if let name = account.name {
+                if name.characters.count > 0 {
+                    let range = name.startIndex..<name.index(name.startIndex, offsetBy: 1)
+                    let substring = name[range]
+                    
+                    if !indexTitles.contains(substring) {
+                        let letters = NSCharacterSet.letters
                         
-                        if !indexTitles.contains(substring) {
-                            let letters = NSCharacterSet.letters
-                            
-                            if let _ = substring.rangeOfCharacter(from: letters) {
-                                indexTitles.append(substring)
-                            } else {
-                                indexTitles.append("#")
-                            }
+                        if let _ = substring.rangeOfCharacter(from: letters) {
+                            indexTitles.append(substring)
+                        } else {
+                            hasAlphanumeric = true
                         }
-                    } else {
-                        indexTitles.append("#")
                     }
+                } else {
+                    hasAlphanumeric = true
                 }
             }
         }
-
         
+        if hasAlphanumeric {
+            indexTitles.insert("#", at: 0)
+        }
         return indexTitles
     }
     

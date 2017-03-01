@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 let kUserDefaultFilterManagerID = "filterManagerID"
 
@@ -26,7 +27,32 @@ class FilterViewController: UIViewController {
 
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
+        var userId:Int?
+        if let manager = manager {
+            userId = Int(manager.id)
+            UserDefaults.standard.set(userId, forKey: kUserDefaultFilterManagerID)
+        } else {
+            UserDefaults.standard.removeObject(forKey: kUserDefaultFilterManagerID)
+        }
+        UserDefaults.standard.synchronize()
         
+        MBProgressHUD.showAdded(to: view, animated: true)
+        UpsalesAPI.sharedInstance.disassociateAccountManagers()
+        UpsalesAPI.sharedInstance.fetchAccounts(ofUser: userId, completion: { error in
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                if let error = error {
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationAccountsFiltered), object: nil, userInfo: nil)
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        })
     }
     
     // MARK: Overrides
@@ -34,7 +60,7 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let id = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? NSNumber {
+        if let id = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? Int {
             manager = UpsalesAPI.sharedInstance.fetchLocalManager(withID: id)
         }
     }
@@ -46,7 +72,7 @@ extension FilterViewController : UITableViewDataSource {
         var rows = 0
         
         if let managers = managers {
-            rows = managers.count
+            rows = managers.count + 1
         }
         
         return rows
@@ -56,16 +82,24 @@ extension FilterViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.accessoryType = .none
-        
-        if let managers = managers {
-            let m = managers[indexPath.row]
-            
-            cell.textLabel?.text = m.name
-            
-            if let manager = manager {
-                if m.id == manager.id {
-                    cell.accessoryType = .checkmark
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "None"
+            cell.accessoryType = manager == nil ? .checkmark : .none
+        } else {
+            if let managers = managers {
+                let m = managers[indexPath.row - 1]
+                
+                cell.textLabel?.text = m.name
+//                print("\(m.id): \(m.name!)")
+                
+                if let manager = manager {
+                    if m.id == manager.id {
+                        cell.accessoryType = .checkmark
+                    } else {
+                        cell.accessoryType = .none
+                    }
+                } else {
+                    cell.accessoryType = .none
                 }
             }
         }
@@ -82,9 +116,14 @@ extension FilterViewController : UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension FilterViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let managers = managers {
-            manager = managers[indexPath.row]
+        if indexPath.row == 0 {
+            manager = nil
+        } else {
+            if let managers = managers {
+                manager = managers[indexPath.row - 1]
+            }
         }
+        
         tableView.reloadData()
     }
 }

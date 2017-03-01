@@ -21,7 +21,7 @@ class UpsalesAPI: NSObject {
     // MARK: Variables
     let dataStack: DATAStack = DATAStack(modelName: "Upsales")
     
-    func fetchAccounts(ofUser userId: NSNumber?, completion: @escaping (Error?) -> Void) {
+    func fetchAccounts(ofUser userId: Int?, completion: @escaping (Error?) -> Void) {
         var urlString = "https://integration.upsales.com/api/v2/accounts/?token=\(kAPIToken)&limit=\(kFetchLimit)"
         
         if let userId = userId {
@@ -76,7 +76,7 @@ class UpsalesAPI: NSObject {
                                          parent: nil,
                                          parentRelationship: nil,
                                          inContext: backgroundContext,
-                                         operations: .All,
+                                         operations: [.Insert, .Update],
                                          completion:  { error in
                                             NotificationCenter.default.removeObserver(self, name:notifName, object: nil)
                                             completion(nil)
@@ -103,11 +103,11 @@ class UpsalesAPI: NSObject {
         return localManagers
     }
     
-    func fetchLocalManager(withID id: NSNumber) -> User? {
+    func fetchLocalManager(withID id: Int) -> User? {
         var localManager:User?
         
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
-        request.predicate = NSPredicate(format: "name = %@", id)
+        request.predicate = NSPredicate(format: "id = \(id)")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
         if let users = try! self.dataStack.mainContext.fetch(request) as? [User] {
@@ -115,6 +115,23 @@ class UpsalesAPI: NSObject {
         }
         
         return localManager
+    }
+    
+    func disassociateAccountManagers() {
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Client")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        if let accounts = try! self.dataStack.mainContext.fetch(request) as? [Client] {
+            for account in accounts {
+                let users = account.mutableSetValue(forKey: "users")
+                users.removeAllObjects()
+            }
+            do {
+                try self.dataStack.mainContext.save()
+            } catch let error {
+                print("\(error)")
+            }
+        }
     }
     
     func changeNotification(_ notification: Notification) {

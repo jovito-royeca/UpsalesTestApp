@@ -52,18 +52,18 @@ extension Client {
 }
 
 // MARK: Generated accessors for users
-//extension Client {
-//    
-//    @objc(addUsersObject:)
-//    @NSManaged public func addToUsers(_ value: User)
-//    
-//    @objc(removeUsersObject:)
-//    @NSManaged public func removeFromUsers(_ value: User)
-//    
-//    @objc(addUsers:)
-//    @NSManaged public func addToUsers(_ values: NSSet)
-//    
-//    @objc(removeUsers:)
-//    @NSManaged public func removeFromUsers(_ values: NSSet)
-//    
-//}
+extension Client {
+    
+    @objc(addUsersObject:)
+    @NSManaged public func addToUsers(_ value: User)
+    
+    @objc(removeUsersObject:)
+    @NSManaged public func removeFromUsers(_ value: User)
+    
+    @objc(addUsers:)
+    @NSManaged public func addToUsers(_ values: NSSet)
+    
+    @objc(removeUsers:)
+    @NSManaged public func removeFromUsers(_ values: NSSet)
+    
+}
