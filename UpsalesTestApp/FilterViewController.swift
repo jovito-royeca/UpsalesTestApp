@@ -61,7 +61,7 @@ class FilterViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if let id = UserDefaults.standard.object(forKey: kUserDefaultFilterManagerID) as? Int {
-            manager = UpsalesAPI.sharedInstance.fetchLocalManager(withID: id)
+            manager = UpsalesAPI.sharedInstance.fetchLocalManager(withId: id)
         }
     }
 }

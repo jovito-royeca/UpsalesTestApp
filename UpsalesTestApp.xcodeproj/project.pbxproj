@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		110274851E64FBB1000BC522 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110274831E64FBB1000BC522 /* Client+CoreDataClass.swift */; };
-		110274861E64FBB1000BC522 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110274841E64FBB1000BC522 /* Client+CoreDataProperties.swift */; };
 		1118E4AC1E64941E00092828 /* UpsalesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1118E4AB1E64941E00092828 /* UpsalesAPI.swift */; };
 		1118E4AD1E64941E00092828 /* UpsalesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1118E4AB1E64941E00092828 /* UpsalesAPI.swift */; };
 		1118E4AE1E64941E00092828 /* UpsalesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1118E4AB1E64941E00092828 /* UpsalesAPI.swift */; };
@@ -31,18 +29,24 @@
 		114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
 		114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
 		114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
-		114282871E65BD86000A2FFF /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282851E65BD86000A2FFF /* User+CoreDataClass.swift */; };
-		114282881E65BD86000A2FFF /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282851E65BD86000A2FFF /* User+CoreDataClass.swift */; };
-		114282891E65BD86000A2FFF /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282851E65BD86000A2FFF /* User+CoreDataClass.swift */; };
-		1142828A1E65BD86000A2FFF /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282861E65BD86000A2FFF /* User+CoreDataProperties.swift */; };
-		1142828B1E65BD86000A2FFF /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282861E65BD86000A2FFF /* User+CoreDataProperties.swift */; };
-		1142828C1E65BD86000A2FFF /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282861E65BD86000A2FFF /* User+CoreDataProperties.swift */; };
-		11A50E331E665F440087A50A /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50E311E665F440087A50A /* Address+CoreDataClass.swift */; };
-		11A50E341E665F440087A50A /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50E311E665F440087A50A /* Address+CoreDataClass.swift */; };
-		11A50E351E665F440087A50A /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50E311E665F440087A50A /* Address+CoreDataClass.swift */; };
-		11A50E361E665F440087A50A /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50E321E665F440087A50A /* Address+CoreDataProperties.swift */; };
-		11A50E371E665F440087A50A /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50E321E665F440087A50A /* Address+CoreDataProperties.swift */; };
-		11A50E381E665F440087A50A /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A50E321E665F440087A50A /* Address+CoreDataProperties.swift */; };
+		117017DE1E66B60F003D09D0 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */; };
+		117017DF1E66B60F003D09D0 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */; };
+		117017E01E66B60F003D09D0 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */; };
+		117017E11E66B60F003D09D0 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */; };
+		117017E21E66B60F003D09D0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */; };
+		117017E31E66B60F003D09D0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */; };
+		117017E41E66BE8B003D09D0 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */; };
+		117017E51E66BE8B003D09D0 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */; };
+		117017E61E66BE8B003D09D0 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */; };
+		117017E71E66BE8B003D09D0 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */; };
+		117017E81E66BE8B003D09D0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */; };
+		117017E91E66BE8B003D09D0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */; };
+		117017EA1E66BE91003D09D0 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */; };
+		117017EB1E66BE91003D09D0 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */; };
+		117017EC1E66BE91003D09D0 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */; };
+		117017ED1E66BE91003D09D0 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */; };
+		117017EE1E66BE91003D09D0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */; };
+		117017EF1E66BE91003D09D0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */; };
 		322F59F5D856A7AC7FE75304 /* Pods_UpsalesTestAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B39B147DD1031371F2C4D4 /* Pods_UpsalesTestAppUITests.framework */; };
 		3EAD3EB25ED1DF44463CE600 /* Pods_UpsalesTestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823C3B9CF4BD92D24900C5FC /* Pods_UpsalesTestAppTests.framework */; };
 		4635B4C045040C57166F7167 /* Pods_UpsalesTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AF93EBED51B74A67FA0F23 /* Pods_UpsalesTestApp.framework */; };
@@ -67,8 +71,6 @@
 
 /* Begin PBXFileReference section */
 		0A87CF2D2605D9DB3FEA2DC4 /* Pods-UpsalesTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpsalesTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UpsalesTestApp/Pods-UpsalesTestApp.debug.xcconfig"; sourceTree = "<group>"; };
-		110274831E64FBB1000BC522 /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
-		110274841E64FBB1000BC522 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1118E4AB1E64941E00092828 /* UpsalesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpsalesAPI.swift; sourceTree = "<group>"; };
 		1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLocationViewController.swift; sourceTree = "<group>"; };
 		1118E4B31E649E9900092828 /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
@@ -88,11 +90,13 @@
 		1137E5321E4EEB8500DEFE4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		114282801E65A98F000A2FFF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		114282841E65BBB5000A2FFF /* Upsales Feb-28-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Feb-28-2017.xcdatamodel"; sourceTree = "<group>"; };
-		114282851E65BD86000A2FFF /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		114282861E65BD86000A2FFF /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
+		117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
+		117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		11A50E301E665CD70087A50A /* Upsales Mar-01-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Mar-01-2017.xcdatamodel"; sourceTree = "<group>"; };
-		11A50E311E665F440087A50A /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
-		11A50E321E665F440087A50A /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		26AF93EBED51B74A67FA0F23 /* Pods_UpsalesTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpsalesTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DD70A3E8564D1DEE0AFA546 /* Pods-UpsalesTestAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpsalesTestAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpsalesTestAppUITests/Pods-UpsalesTestAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		39A85006BC88EE2E14571145 /* Pods-UpsalesTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpsalesTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpsalesTestApp/Pods-UpsalesTestApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,12 +138,12 @@
 		1118E4A71E6493DC00092828 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				11A50E311E665F440087A50A /* Address+CoreDataClass.swift */,
-				11A50E321E665F440087A50A /* Address+CoreDataProperties.swift */,
-				114282851E65BD86000A2FFF /* User+CoreDataClass.swift */,
-				114282861E65BD86000A2FFF /* User+CoreDataProperties.swift */,
-				110274831E64FBB1000BC522 /* Client+CoreDataClass.swift */,
-				110274841E64FBB1000BC522 /* Client+CoreDataProperties.swift */,
+				117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */,
+				117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */,
+				117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */,
+				117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */,
+				117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */,
+				117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */,
 				1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */,
 			);
 			name = Model;
@@ -531,19 +535,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117017DE1E66B60F003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				1137E5131E4EEB8500DEFE4F /* ViewController.swift in Sources */,
-				110274851E64FBB1000BC522 /* Client+CoreDataClass.swift in Sources */,
+				117017E21E66B60F003D09D0 /* User+CoreDataClass.swift in Sources */,
 				1118E4B91E64A30100092828 /* Upsales.xcdatamodeld in Sources */,
 				114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */,
-				11A50E331E665F440087A50A /* Address+CoreDataClass.swift in Sources */,
-				114282871E65BD86000A2FFF /* User+CoreDataClass.swift in Sources */,
+				117017E01E66B60F003D09D0 /* Client+CoreDataClass.swift in Sources */,
 				1118E4AC1E64941E00092828 /* UpsalesAPI.swift in Sources */,
-				110274861E64FBB1000BC522 /* Client+CoreDataProperties.swift in Sources */,
-				1142828A1E65BD86000A2FFF /* User+CoreDataProperties.swift in Sources */,
-				11A50E361E665F440087A50A /* Address+CoreDataProperties.swift in Sources */,
 				1118E4B41E649E9900092828 /* AccountsViewController.swift in Sources */,
+				117017E11E66B60F003D09D0 /* Client+CoreDataProperties.swift in Sources */,
 				1137E5111E4EEB8500DEFE4F /* AppDelegate.swift in Sources */,
+				117017E31E66B60F003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				1118E4B01E649DE100092828 /* AccountLocationViewController.swift in Sources */,
+				117017DF1E66B60F003D09D0 /* Address+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,16 +555,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117017E41E66BE8B003D09D0 /* Address+CoreDataClass.swift in Sources */,
+				117017E51E66BE8B003D09D0 /* Address+CoreDataProperties.swift in Sources */,
+				117017E61E66BE8B003D09D0 /* Client+CoreDataClass.swift in Sources */,
+				117017E71E66BE8B003D09D0 /* Client+CoreDataProperties.swift in Sources */,
+				117017E81E66BE8B003D09D0 /* User+CoreDataClass.swift in Sources */,
+				117017E91E66BE8B003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */,
-				11A50E341E665F440087A50A /* Address+CoreDataClass.swift in Sources */,
-				11A50E371E665F440087A50A /* Address+CoreDataProperties.swift in Sources */,
 				1118E4AD1E64941E00092828 /* UpsalesAPI.swift in Sources */,
-				1142828B1E65BD86000A2FFF /* User+CoreDataProperties.swift in Sources */,
 				1137E5261E4EEB8500DEFE4F /* UpsalesTestAppTests.swift in Sources */,
 				1118E4CC1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,
 				1118E4B51E649E9900092828 /* AccountsViewController.swift in Sources */,
 				1118E4B11E649DE100092828 /* AccountLocationViewController.swift in Sources */,
-				114282881E65BD86000A2FFF /* User+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,16 +574,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117017EA1E66BE91003D09D0 /* Address+CoreDataClass.swift in Sources */,
+				117017EB1E66BE91003D09D0 /* Address+CoreDataProperties.swift in Sources */,
+				117017EC1E66BE91003D09D0 /* Client+CoreDataClass.swift in Sources */,
+				117017ED1E66BE91003D09D0 /* Client+CoreDataProperties.swift in Sources */,
+				117017EE1E66BE91003D09D0 /* User+CoreDataClass.swift in Sources */,
+				117017EF1E66BE91003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */,
-				11A50E351E665F440087A50A /* Address+CoreDataClass.swift in Sources */,
-				11A50E381E665F440087A50A /* Address+CoreDataProperties.swift in Sources */,
 				1118E4AE1E64941E00092828 /* UpsalesAPI.swift in Sources */,
-				1142828C1E65BD86000A2FFF /* User+CoreDataProperties.swift in Sources */,
 				1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */,
 				1118E4CD1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,
 				1118E4B61E649E9900092828 /* AccountsViewController.swift in Sources */,
 				1118E4B21E649DE100092828 /* AccountLocationViewController.swift in Sources */,
-				114282891E65BD86000A2FFF /* User+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import UpsalesTestApp
 
 class UpsalesTestAppTests: XCTestCase {
@@ -36,11 +37,11 @@ class UpsalesTestAppTests: XCTestCase {
     func testFetchClients() {
         let expectation = self.expectation(description: "fetch clients")
         
-        UpsalesAPI.sharedInstance.fetchAccounts(completion: { (error: NSError?) in
+        UpsalesAPI.sharedInstance.fetchAccounts(ofUser: 1, completion: { error in
             XCTAssert(error != nil)
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 5.0, handler: nil)
+        waitForExpectations(timeout: 10.0, handler: nil)
     }
 }

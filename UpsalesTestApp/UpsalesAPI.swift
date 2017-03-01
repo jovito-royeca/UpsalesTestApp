@@ -39,11 +39,8 @@ class UpsalesAPI: NSObject {
                         var newData = [[String: Any]]()
                         for d in data {
                             var nd = [String: Any]()
-                            var addressId = 1
                             
                             for (key,value) in d {
-                                
-                                
                                 // let us insert sectionIndex
                                 // add the First letter if alphabetic, else '#' for all other characters
                                 if key == "name" {
@@ -123,7 +120,7 @@ class UpsalesAPI: NSObject {
         return localManagers
     }
     
-    func fetchLocalManager(withID id: Int) -> User? {
+    func fetchLocalManager(withId id: Int) -> User? {
         var localManager:User?
         
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")

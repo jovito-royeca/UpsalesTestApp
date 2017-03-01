@@ -33,10 +33,6 @@ class AccountsViewController: UIViewController {
         definesPresentationContext = false
         tableView.tableHeaderView = searchController.searchBar
         
-//        let searchBar = searchController.searchBar
-//        searchBar.frame = CGRect(x: 0, y: 0, width: placeholderView.frame.size.width, height: placeholderView.frame.size.height)
-//        placeholderView.addSubview(searchBar)
-        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kNotificationAccountsFiltered), object:nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AccountsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationAccountsFiltered), object: nil)
         
@@ -75,6 +71,8 @@ class AccountsViewController: UIViewController {
         default:
             ()
         }
+        
+        searchController.isActive = false
     }
     
     // MARK: CUstom methods
