@@ -49,6 +49,7 @@ extension Client {
 
     @NSManaged public var addresses: NSSet?
     @NSManaged public var users: NSSet?
+    @NSManaged public var esigns: NSSet?
 }
 
 // MARK: Generated accessors for users
@@ -82,5 +83,22 @@ extension Client {
     
     @objc(removeAddresses:)
     @NSManaged public func removeFromAddresses(_ values: NSSet)
+    
+}
+
+// MARK: Generated accessors for esigns
+extension Client {
+    
+    @objc(addEsignsObject:)
+    @NSManaged public func addToEsigns(_ value: Esign)
+    
+    @objc(removeEsignsObject:)
+    @NSManaged public func removeFromEsigns(_ value: Esign)
+    
+    @objc(addEsigns:)
+    @NSManaged public func addToEsigns(_ values: NSSet)
+    
+    @objc(removeEsigns:)
+    @NSManaged public func removeFromEsigns(_ values: NSSet)
     
 }

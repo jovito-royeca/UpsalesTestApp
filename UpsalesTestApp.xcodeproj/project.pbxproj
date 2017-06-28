@@ -47,6 +47,14 @@
 		117017ED1E66BE91003D09D0 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */; };
 		117017EE1E66BE91003D09D0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */; };
 		117017EF1E66BE91003D09D0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */; };
+		11B699D81F03EA5600C60748 /* EsignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699D71F03EA5600C60748 /* EsignsViewController.swift */; };
+		11B699D91F03EA5600C60748 /* EsignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699D71F03EA5600C60748 /* EsignsViewController.swift */; };
+		11B699E31F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699E11F03F31E00C60748 /* Esign+CoreDataClass.swift */; };
+		11B699E41F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699E11F03F31E00C60748 /* Esign+CoreDataClass.swift */; };
+		11B699E51F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699E11F03F31E00C60748 /* Esign+CoreDataClass.swift */; };
+		11B699E61F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699E21F03F31E00C60748 /* Esign+CoreDataProperties.swift */; };
+		11B699E71F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699E21F03F31E00C60748 /* Esign+CoreDataProperties.swift */; };
+		11B699E81F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699E21F03F31E00C60748 /* Esign+CoreDataProperties.swift */; };
 		322F59F5D856A7AC7FE75304 /* Pods_UpsalesTestAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B39B147DD1031371F2C4D4 /* Pods_UpsalesTestAppUITests.framework */; };
 		3EAD3EB25ED1DF44463CE600 /* Pods_UpsalesTestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823C3B9CF4BD92D24900C5FC /* Pods_UpsalesTestAppTests.framework */; };
 		4635B4C045040C57166F7167 /* Pods_UpsalesTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AF93EBED51B74A67FA0F23 /* Pods_UpsalesTestApp.framework */; };
@@ -97,6 +105,13 @@
 		117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		11A50E301E665CD70087A50A /* Upsales Mar-01-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Mar-01-2017.xcdatamodel"; sourceTree = "<group>"; };
+		11B699D71F03EA5600C60748 /* EsignsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsignsViewController.swift; sourceTree = "<group>"; };
+		11B699DA1F03EE2400C60748 /* Upsales Jun-28-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Jun-28-2017.xcdatamodel"; sourceTree = "<group>"; };
+		11B699E11F03F31E00C60748 /* Esign+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Esign+CoreDataClass.swift"; sourceTree = "<group>"; };
+		11B699E21F03F31E00C60748 /* Esign+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Esign+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		11B699E91F04001600C60748 /* UpsalesTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UpsalesTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		11B699EA1F04001600C60748 /* UpsalesTestAppTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UpsalesTestAppTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		11B699EB1F04001600C60748 /* UpsalesTestAppUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UpsalesTestAppUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		26AF93EBED51B74A67FA0F23 /* Pods_UpsalesTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpsalesTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DD70A3E8564D1DEE0AFA546 /* Pods-UpsalesTestAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpsalesTestAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpsalesTestAppUITests/Pods-UpsalesTestAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		39A85006BC88EE2E14571145 /* Pods-UpsalesTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpsalesTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-UpsalesTestApp/Pods-UpsalesTestApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,9 +157,11 @@
 				117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */,
 				117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */,
 				117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */,
+				11B699E11F03F31E00C60748 /* Esign+CoreDataClass.swift */,
+				11B699E21F03F31E00C60748 /* Esign+CoreDataProperties.swift */,
+				1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */,
 				117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */,
 				117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */,
-				1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -163,6 +180,7 @@
 			children = (
 				1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */,
 				1118E4B31E649E9900092828 /* AccountsViewController.swift */,
+				11B699D71F03EA5600C60748 /* EsignsViewController.swift */,
 				114282801E65A98F000A2FFF /* FilterViewController.swift */,
 			);
 			name = Controller;
@@ -209,6 +227,9 @@
 				1118E4A71E6493DC00092828 /* Model */,
 				1118E4A81E6493E300092828 /* View */,
 				1137E5121E4EEB8500DEFE4F /* ViewController.swift */,
+				11B699E91F04001600C60748 /* UpsalesTestApp-Bridging-Header.h */,
+				11B699EA1F04001600C60748 /* UpsalesTestAppTests-Bridging-Header.h */,
+				11B699EB1F04001600C60748 /* UpsalesTestAppUITests-Bridging-Header.h */,
 			);
 			path = UpsalesTestApp;
 			sourceTree = "<group>";
@@ -331,15 +352,18 @@
 				TargetAttributes = {
 					1137E50C1E4EEB8500DEFE4F = {
 						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					1137E5201E4EEB8500DEFE4F = {
 						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1137E50C1E4EEB8500DEFE4F;
 					};
 					1137E52B1E4EEB8500DEFE4F = {
 						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1137E50C1E4EEB8500DEFE4F;
 					};
@@ -545,9 +569,12 @@
 				1118E4B41E649E9900092828 /* AccountsViewController.swift in Sources */,
 				117017E11E66B60F003D09D0 /* Client+CoreDataProperties.swift in Sources */,
 				1137E5111E4EEB8500DEFE4F /* AppDelegate.swift in Sources */,
+				11B699E61F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */,
 				117017E31E66B60F003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				1118E4B01E649DE100092828 /* AccountLocationViewController.swift in Sources */,
+				11B699E31F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */,
 				117017DF1E66B60F003D09D0 /* Address+CoreDataProperties.swift in Sources */,
+				11B699D81F03EA5600C60748 /* EsignsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,10 +585,12 @@
 				117017E41E66BE8B003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				117017E51E66BE8B003D09D0 /* Address+CoreDataProperties.swift in Sources */,
 				117017E61E66BE8B003D09D0 /* Client+CoreDataClass.swift in Sources */,
+				11B699E41F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */,
 				117017E71E66BE8B003D09D0 /* Client+CoreDataProperties.swift in Sources */,
 				117017E81E66BE8B003D09D0 /* User+CoreDataClass.swift in Sources */,
 				117017E91E66BE8B003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */,
+				11B699E71F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */,
 				1118E4AD1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1137E5261E4EEB8500DEFE4F /* UpsalesTestAppTests.swift in Sources */,
 				1118E4CC1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,
@@ -574,6 +603,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B699E51F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */,
 				117017EA1E66BE91003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				117017EB1E66BE91003D09D0 /* Address+CoreDataProperties.swift in Sources */,
 				117017EC1E66BE91003D09D0 /* Client+CoreDataClass.swift in Sources */,
@@ -583,6 +613,8 @@
 				114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				1118E4AE1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */,
+				11B699E81F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */,
+				11B699D91F03EA5600C60748 /* EsignsViewController.swift in Sources */,
 				1118E4CD1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,
 				1118E4B61E649E9900092828 /* AccountsViewController.swift in Sources */,
 				1118E4B21E649DE100092828 /* AccountLocationViewController.swift in Sources */,
@@ -722,10 +754,13 @@
 			baseConfigurationReference = 0A87CF2D2605D9DB3FEA2DC4 /* Pods-UpsalesTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UpsalesTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jovitoroyeca.UpsalesTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UpsalesTestApp/UpsalesTestApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -735,10 +770,12 @@
 			baseConfigurationReference = 39A85006BC88EE2E14571145 /* Pods-UpsalesTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UpsalesTestApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jovitoroyeca.UpsalesTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UpsalesTestApp/UpsalesTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -749,10 +786,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UpsalesTestAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jovitoroyeca.UpsalesTestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UpsalesTestApp/UpsalesTestAppTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UpsalesTestApp.app/UpsalesTestApp";
 			};
@@ -764,10 +804,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UpsalesTestAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jovitoroyeca.UpsalesTestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UpsalesTestApp/UpsalesTestAppTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UpsalesTestApp.app/UpsalesTestApp";
 			};
@@ -778,10 +820,13 @@
 			baseConfigurationReference = 86CE01977A8BB493C7FE637B /* Pods-UpsalesTestAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UpsalesTestAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jovitoroyeca.UpsalesTestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UpsalesTestApp/UpsalesTestAppUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = UpsalesTestApp;
 			};
@@ -792,10 +837,12 @@
 			baseConfigurationReference = 2DD70A3E8564D1DEE0AFA546 /* Pods-UpsalesTestAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UpsalesTestAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jovitoroyeca.UpsalesTestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UpsalesTestApp/UpsalesTestAppUITests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = UpsalesTestApp;
 			};
@@ -846,11 +893,12 @@
 		1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				11B699DA1F03EE2400C60748 /* Upsales Jun-28-2017.xcdatamodel */,
 				11A50E301E665CD70087A50A /* Upsales Mar-01-2017.xcdatamodel */,
 				114282841E65BBB5000A2FFF /* Upsales Feb-28-2017.xcdatamodel */,
 				1118E4B81E64A30100092828 /* Upsales.xcdatamodel */,
 			);
-			currentVersion = 11A50E301E665CD70087A50A /* Upsales Mar-01-2017.xcdatamodel */;
+			currentVersion = 11B699DA1F03EE2400C60748 /* Upsales Jun-28-2017.xcdatamodel */;
 			path = Upsales.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

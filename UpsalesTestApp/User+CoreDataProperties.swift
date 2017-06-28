@@ -22,6 +22,7 @@ extension User {
     @NSManaged public var role: NSData?
     @NSManaged public var email: String?
     @NSManaged public var clients: NSSet?
+    @NSManaged public var esigns: NSSet?
 
 }
 
@@ -40,4 +41,21 @@ extension User {
     @objc(removeClients:)
     @NSManaged public func removeFromClients(_ values: NSSet)
 
+}
+
+// MARK: Generated accessors for esigns
+extension User {
+    
+    @objc(addEsignsObject:)
+    @NSManaged public func addToEsigns(_ value: Esign)
+    
+    @objc(removeEsignsObject:)
+    @NSManaged public func removeFromEsigns(_ value: Esign)
+    
+    @objc(addEsigns:)
+    @NSManaged public func addToEsigns(_ values: NSSet)
+    
+    @objc(removeEsigns:)
+    @NSManaged public func removeFromEsigns(_ values: NSSet)
+    
 }
