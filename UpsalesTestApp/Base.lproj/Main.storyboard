@@ -99,7 +99,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="A6C-Tz-TDN">
-                                <rect key="frame" x="0.0" y="101" width="375" height="566"/>
+                                <rect key="frame" x="0.0" y="101" width="375" height="517"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0G7-Xr-RH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2457" y="-575"/>
+            <point key="canvasLocation" x="2457" y="-988"/>
         </scene>
         <!--E-sign-->
         <scene sceneID="2TJ-0C-Xf4">
@@ -143,7 +143,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c7c-gH-47C" id="1eU-WY-CPr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPw-ix-akv">
@@ -165,6 +165,9 @@
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="95" id="7KO-Z4-yYU"/>
+                                                    </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1E-rV-Sg8">
                                                     <rect key="frame" x="104" y="8" width="219" height="21"/>
@@ -175,7 +178,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/3 Waiting for sign" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlj-px-ztI">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for sign" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlj-px-ztI">
                                                     <rect key="frame" x="104" y="32" width="219" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -222,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VSY-UR-0Sa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1397.5999999999999" y="240.62968515742131"/>
+            <point key="canvasLocation" x="1398" y="322"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EHu-As-Je8">
@@ -234,19 +237,19 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="EIw-Gf-cUt" kind="relationship" relationship="viewControllers" id="IVK-MZ-DLk"/>
-                        <segue destination="rTm-Ps-pbM" kind="relationship" relationship="viewControllers" id="8lk-aK-aq4"/>
+                        <segue destination="EIw-Gf-cUt" kind="relationship" relationship="viewControllers" id="O3O-zo-hUG"/>
+                        <segue destination="rTm-Ps-pbM" kind="relationship" relationship="viewControllers" id="b6w-nf-eCr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Suw-a0-DBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-662" y="-180"/>
+            <point key="canvasLocation" x="-748" y="-244"/>
         </scene>
         <!--Accounts-->
         <scene sceneID="Mes-Kx-T8h">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EIw-Gf-cUt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Accounts" id="qtq-hv-ewI"/>
+                    <tabBarItem key="tabBarItem" title="Accounts" image="accounts" id="qtq-hv-ewI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WOM-tb-ywx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -322,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxI-KH-HXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3382" y="-1470"/>
+            <point key="canvasLocation" x="3490" y="-244"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aJD-0V-rNr">
@@ -340,13 +343,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEo-HI-5Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2417" y="-1470"/>
+            <point key="canvasLocation" x="2457" y="-244"/>
         </scene>
         <!--E-sign-->
         <scene sceneID="KUP-2v-Bo2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rTm-Ps-pbM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="E-sign" id="XoY-6c-Xfv"/>
+                    <tabBarItem key="tabBarItem" title="E-sign" image="esigns" id="XoY-6c-Xfv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G2P-wm-IbN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -359,10 +362,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNG-KZ-vXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414" y="241"/>
+            <point key="canvasLocation" x="414" y="322"/>
         </scene>
     </scenes>
     <resources>
+        <image name="accounts" width="25" height="25"/>
+        <image name="esigns" width="25" height="25"/>
         <image name="filter" width="25" height="25"/>
     </resources>
 </document>

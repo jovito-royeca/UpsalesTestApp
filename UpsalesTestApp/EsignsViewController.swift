@@ -104,18 +104,35 @@ class EsignsViewController: UIViewController {
             }
             
             if let avatarView = cell.contentView.viewWithTag(4) as? UIImageView {
+                let width = avatarView.frame.size.width
+                avatarView.layer.cornerRadius = width / 2
+                avatarView.layer.masksToBounds = true
                 avatarView.image = nil
                 
                 if let email = user.email {
-                    let url = URL(string: "https://www.gravatar.com/avatar/\(md5(email))?s=44")
+                    let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+                    let avatarPath = "\(cachesDir)/\(user.id).jpg"
                     
-                    URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                        if let data = data {
-                            avatarView.image = UIImage(data: data)
-                        } else {
-                            
-                        }
-                    }.resume()
+                    if FileManager.default.fileExists(atPath: avatarPath) {
+                        avatarView.image = UIImage(contentsOfFile: avatarPath)
+                    } else {
+                        // download the avatar from Gravatar
+                        let url = URL(string: "https://www.gravatar.com/avatar/\(md5(email))?s=\(width)")
+                        
+                        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                            if let data = data {
+                                if !FileManager.default.fileExists(atPath: avatarPath) {
+                                    try? data.write(to: URL(fileURLWithPath: avatarPath))
+                                }
+                                
+                                DispatchQueue.main.async {
+                                    avatarView.image = UIImage(contentsOfFile: avatarPath)
+                                }
+                            } else {
+                                
+                            }
+                        }.resume()
+                    }
                 }
             }
         }
