@@ -36,5 +36,24 @@ extension Esign {
     @NSManaged public var reminderDate: NSDate?
     @NSManaged public var user: User?
     @NSManaged public var client: Client?
+    @NSManaged public var recipients: NSSet?
 
 }
+
+// MARK: Generated accessors for addresses
+extension Esign {
+    
+    @objc(addRecipientsObject:)
+    @NSManaged public func addToRecipients(_ value: EsignRecipient)
+    
+    @objc(removeRecipientsObject:)
+    @NSManaged public func removeFromRecipients(_ value: EsignRecipient)
+    
+    @objc(addRecipients:)
+    @NSManaged public func addToRecipients(_ values: NSSet)
+    
+    @objc(removeRecipients:)
+    @NSManaged public func removeFromRecipients(_ values: NSSet)
+    
+}
+

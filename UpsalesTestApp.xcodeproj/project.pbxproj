@@ -47,6 +47,14 @@
 		117017ED1E66BE91003D09D0 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */; };
 		117017EE1E66BE91003D09D0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */; };
 		117017EF1E66BE91003D09D0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */; };
+		118166961F04C36B0079E589 /* EsignDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166951F04C36B0079E589 /* EsignDetailsViewController.swift */; };
+		118166971F04C36B0079E589 /* EsignDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166951F04C36B0079E589 /* EsignDetailsViewController.swift */; };
+		1181669B1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */; };
+		1181669C1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */; };
+		1181669D1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */; };
+		1181669E1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181669A1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift */; };
+		1181669F1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181669A1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift */; };
+		118166A01F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1181669A1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift */; };
 		11B699D81F03EA5600C60748 /* EsignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699D71F03EA5600C60748 /* EsignsViewController.swift */; };
 		11B699D91F03EA5600C60748 /* EsignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699D71F03EA5600C60748 /* EsignsViewController.swift */; };
 		11B699E31F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B699E11F03F31E00C60748 /* Esign+CoreDataClass.swift */; };
@@ -104,6 +112,10 @@
 		117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		118166951F04C36B0079E589 /* EsignDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsignDetailsViewController.swift; sourceTree = "<group>"; };
+		118166981F04D2410079E589 /* Upsales Jun-29-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Jun-29-2017.xcdatamodel"; sourceTree = "<group>"; };
+		118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EsignRecipient+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1181669A1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EsignRecipient+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		11A50E301E665CD70087A50A /* Upsales Mar-01-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Mar-01-2017.xcdatamodel"; sourceTree = "<group>"; };
 		11B699D71F03EA5600C60748 /* EsignsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsignsViewController.swift; sourceTree = "<group>"; };
 		11B699DA1F03EE2400C60748 /* Upsales Jun-28-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Jun-28-2017.xcdatamodel"; sourceTree = "<group>"; };
@@ -159,6 +171,8 @@
 				117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */,
 				11B699E11F03F31E00C60748 /* Esign+CoreDataClass.swift */,
 				11B699E21F03F31E00C60748 /* Esign+CoreDataProperties.swift */,
+				118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */,
+				1181669A1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift */,
 				1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */,
 				117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */,
 				117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */,
@@ -180,6 +194,7 @@
 			children = (
 				1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */,
 				1118E4B31E649E9900092828 /* AccountsViewController.swift */,
+				118166951F04C36B0079E589 /* EsignDetailsViewController.swift */,
 				11B699D71F03EA5600C60748 /* EsignsViewController.swift */,
 				114282801E65A98F000A2FFF /* FilterViewController.swift */,
 			);
@@ -559,12 +574,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1181669E1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */,
 				117017DE1E66B60F003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				1137E5131E4EEB8500DEFE4F /* ViewController.swift in Sources */,
 				117017E21E66B60F003D09D0 /* User+CoreDataClass.swift in Sources */,
 				1118E4B91E64A30100092828 /* Upsales.xcdatamodeld in Sources */,
 				114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				117017E01E66B60F003D09D0 /* Client+CoreDataClass.swift in Sources */,
+				1181669B1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
 				1118E4AC1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1118E4B41E649E9900092828 /* AccountsViewController.swift in Sources */,
 				117017E11E66B60F003D09D0 /* Client+CoreDataProperties.swift in Sources */,
@@ -573,6 +590,7 @@
 				117017E31E66B60F003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				1118E4B01E649DE100092828 /* AccountLocationViewController.swift in Sources */,
 				11B699E31F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */,
+				118166961F04C36B0079E589 /* EsignDetailsViewController.swift in Sources */,
 				117017DF1E66B60F003D09D0 /* Address+CoreDataProperties.swift in Sources */,
 				11B699D81F03EA5600C60748 /* EsignsViewController.swift in Sources */,
 			);
@@ -582,11 +600,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1181669C1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
 				117017E41E66BE8B003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				117017E51E66BE8B003D09D0 /* Address+CoreDataProperties.swift in Sources */,
 				117017E61E66BE8B003D09D0 /* Client+CoreDataClass.swift in Sources */,
 				11B699E41F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */,
 				117017E71E66BE8B003D09D0 /* Client+CoreDataProperties.swift in Sources */,
+				1181669F1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */,
 				117017E81E66BE8B003D09D0 /* User+CoreDataClass.swift in Sources */,
 				117017E91E66BE8B003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */,
@@ -613,8 +633,11 @@
 				114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				1118E4AE1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */,
+				1181669D1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
 				11B699E81F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */,
+				118166A01F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */,
 				11B699D91F03EA5600C60748 /* EsignsViewController.swift in Sources */,
+				118166971F04C36B0079E589 /* EsignDetailsViewController.swift in Sources */,
 				1118E4CD1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,
 				1118E4B61E649E9900092828 /* AccountsViewController.swift in Sources */,
 				1118E4B21E649DE100092828 /* AccountLocationViewController.swift in Sources */,
@@ -893,12 +916,13 @@
 		1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				118166981F04D2410079E589 /* Upsales Jun-29-2017.xcdatamodel */,
 				11B699DA1F03EE2400C60748 /* Upsales Jun-28-2017.xcdatamodel */,
 				11A50E301E665CD70087A50A /* Upsales Mar-01-2017.xcdatamodel */,
 				114282841E65BBB5000A2FFF /* Upsales Feb-28-2017.xcdatamodel */,
 				1118E4B81E64A30100092828 /* Upsales.xcdatamodel */,
 			);
-			currentVersion = 11B699DA1F03EE2400C60748 /* Upsales Jun-28-2017.xcdatamodel */;
+			currentVersion = 118166981F04D2410079E589 /* Upsales Jun-29-2017.xcdatamodel */;
 			path = Upsales.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

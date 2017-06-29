@@ -42,6 +42,19 @@ class EsignsViewController: UIViewController {
         
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showEsignDetails"?:
+            if let dest = segue.destination as? EsignDetailsViewController,
+                let esigns = sender as? [Esign] {
+                
+                dest.esigns = esigns
+            }
+        default:
+            ()
+        }
+    }
+
     // MARK: CUstom methods
     func getDataSource(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>?) -> DATASource? {
         var request:NSFetchRequest<NSFetchRequestResult>?
@@ -156,3 +169,10 @@ class EsignsViewController: UIViewController {
 
 }
 
+// MARK: UITableViewDelegate
+extension EsignsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let esigns = dataSource!.all()
+        performSegue(withIdentifier: "showEsignDetails", sender: esigns)
+    }
+}

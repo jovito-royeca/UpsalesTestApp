@@ -118,9 +118,23 @@ class UpsalesAPI: NSObject {
                     if let data = json["data"] as? [[String: Any]] {
                         let notifName = NSNotification.Name.NSManagedObjectContextObjectsDidChange
                         
+                        var newData = [[String: Any]]()
+                        for d in data {
+                            var nd = [String: Any]()
+                            
+                            for (key,value) in d {
+                                if key == "involved" {
+                                    nd["recipients"] = value
+                                } else {
+                                    nd[key] = value
+                                }
+                            }
+                            newData.append(nd)
+                        }
+                        
                         self.dataStack.performInNewBackgroundContext { backgroundContext in
                             NotificationCenter.default.addObserver(self, selector: #selector(UpsalesAPI.changeNotification(_:)), name: notifName, object: backgroundContext)
-                            Sync.changes(data,
+                            Sync.changes(newData,
                                          inEntityNamed: "Esign",
                                          predicate: nil,
                                          parent: nil,
