@@ -87,21 +87,21 @@ class EsignsViewController: UIViewController {
             let user = esign.user {
             let formatter = DateFormatter()
             
-            if let timeLabel = cell.contentView.viewWithTag(0) as? UILabel {
+            if let timeLabel = cell.contentView.viewWithTag(1) as? UILabel {
                 formatter.dateFormat = "HH:mm"
                 timeLabel.text = formatter.string(from: mdate as Date)
             }
             
-            if let dateLabel = cell.contentView.viewWithTag(1) as? UILabel {
+            if let dateLabel = cell.contentView.viewWithTag(2) as? UILabel {
                 formatter.dateFormat = "dd MMM"
                 dateLabel.text = formatter.string(from: mdate as Date)
             }
             
-            if let nameLabel = cell.contentView.viewWithTag(2) as? UILabel {
+            if let nameLabel = cell.contentView.viewWithTag(3) as? UILabel {
                 nameLabel.text = client.name
             }
             
-            if let stateLabel = cell.contentView.viewWithTag(3) as? UILabel {
+            if let stateLabel = cell.contentView.viewWithTag(4) as? UILabel {
                 stateLabel.textColor = UIColor.black
                 
                 switch esign.state {
@@ -123,7 +123,7 @@ class EsignsViewController: UIViewController {
                 }
             }
             
-            if let avatarView = cell.contentView.viewWithTag(4) as? UIImageView {
+            if let avatarView = cell.contentView.viewWithTag(5) as? UIImageView {
                 let width = avatarView.frame.size.width
                 avatarView.layer.cornerRadius = width / 2
                 avatarView.layer.masksToBounds = true
