@@ -30,10 +30,12 @@ class EsignDetailsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        
         flowLayout.itemSize = collectionView.frame.size
-//        flowLayout.minimumInteritemSpacing = CGFloat(0)
-//        flowLayout.minimumLineSpacing = CGFloat(0)
-//        flowLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
+        flowLayout.minimumInteritemSpacing = CGFloat(5)
+        flowLayout.minimumLineSpacing = CGFloat(5)
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
         flowLayout.scrollDirection = .horizontal
     }
 
@@ -57,10 +59,7 @@ extension EsignDetailsViewController : UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
-        if let tableView = cell.viewWithTag(1) as? UITableView,
-            let esigns = esigns {
-//            esign = esigns[indexPath.row]
-            
+        if let tableView = cell.viewWithTag(1) as? UITableView {
             tableView.dataSource = self
             tableView.delegate = self
             tableView.reloadData()
@@ -119,11 +118,40 @@ extension EsignDetailsViewController : UITableViewDataSource {
                 
                 formatter.dateFormat = "dd MMMM YY-HH:mm"
                 
-//            if let statusIcon = cell?.contentView.viewWithTag(1) as? UIImageView {
-//                switch esign!.state {
-//                    
-//                }
-//            }
+            if let statusIcon = cell?.contentView.viewWithTag(1) as? UIImageView {
+                let width = statusIcon.frame.size.width
+                statusIcon.layer.cornerRadius = width / 2
+                statusIcon.layer.masksToBounds = true
+                
+                var iconImage:UIImage?
+                var tintColor = UIColor.darkGray
+                
+                switch esign!.state {
+                case 0:
+                    ()
+                case 10:
+                    iconImage = UIImage(named: "time")
+                    
+                case 20:
+                    iconImage = UIImage(named: "thumbs down")
+                    tintColor = UIColor.red
+                case 30:
+                    iconImage = UIImage(named: "edit")
+                    tintColor = UIColor.green
+                case 40:
+                    iconImage = UIImage(named: "thumbs down")
+                    tintColor = UIColor.red
+                default:
+                    ()
+                }
+                
+                if let image = iconImage {
+                    let tintedImage = image.withRenderingMode(.alwaysTemplate)
+                    statusIcon.image = tintedImage
+                    statusIcon.tintColor = tintColor
+                }
+                statusIcon.contentMode = .scaleAspectFit
+            }
                 if let nameLabel = cell?.contentView.viewWithTag(2) as? UILabel {
                     nameLabel.text = "\(recipient.fstname != nil ? recipient.fstname! : "") \(recipient.sndName != nil ? recipient.sndName! : "")"
                 }
@@ -177,7 +205,7 @@ extension EsignDetailsViewController : UITableViewDelegate {
         case 0:
             height = 66
         case 4:
-            height = 88
+            height = 80
         default:
             height = UITableViewAutomaticDimension
         }
@@ -188,11 +216,37 @@ extension EsignDetailsViewController : UITableViewDelegate {
 
 // MARK: UIScrollViewDelegate
 extension EsignDetailsViewController : UIScrollViewDelegate {
+    func scrollToNearestVisibleCollectionViewCell() {
+        let visibleCenterPositionOfScrollView = Float(collectionView.contentOffset.x + (self.collectionView!.bounds.size.width / 2))
+        var closestCellIndex = -1
+        var closestDistance: Float = .greatestFiniteMagnitude
+        for i in 0..<collectionView.visibleCells.count {
+            let cell = collectionView.visibleCells[i]
+            let cellWidth = cell.bounds.size.width
+            let cellCenter = Float(cell.frame.origin.x + cellWidth / 2)
+            
+            // Now calculate closest cell
+            let distance: Float = fabsf(visibleCenterPositionOfScrollView - cellCenter)
+            if distance < closestDistance {
+                closestDistance = distance
+                closestCellIndex = collectionView.indexPath(for: cell)!.row
+            }
+        }
+        if closestCellIndex != -1 {
+            // update the current esign when the user scrolls sideways
+            if let esigns = esigns {
+                esign = esigns[closestCellIndex]
+            }
+            
+            let indexPath = IndexPath(row: closestCellIndex, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            collectionView.reloadItems(at: [indexPath])
+        }
+    }
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        // update the current esign when the user scrolls sideways
-        if let path = collectionView.indexPathsForVisibleItems.first,
-            let esigns = esigns {
-            esign = esigns[path.row]
+        if let _ = scrollView as? UICollectionView {
+            scrollToNearestVisibleCollectionViewCell()
         }
     }
 }
