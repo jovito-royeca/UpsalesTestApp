@@ -45,10 +45,17 @@ class EsignsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showEsignDetails"?:
-            if let dest = segue.destination as? EsignDetailsViewController,
-                let esigns = sender as? [Esign] {
+            if let dest = segue.destination as? UINavigationController,
+                let indexPath = sender as? IndexPath,
+                let esigns = dataSource!.all() as? [Esign] {
                 
-                dest.esigns = esigns
+                if let vc = dest.childViewControllers.first as? EsignDetailsViewController {
+                    let esign = esigns[indexPath.row]
+                    
+                    vc.esigns = esigns
+                    vc.esign = esign
+                    vc.esignIndex = indexPath.row
+                }
             }
         default:
             ()
@@ -172,7 +179,6 @@ class EsignsViewController: UIViewController {
 // MARK: UITableViewDelegate
 extension EsignsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let esigns = dataSource!.all()
-        performSegue(withIdentifier: "showEsignDetails", sender: esigns)
+        performSegue(withIdentifier: "showEsignDetails", sender: indexPath)
     }
 }
