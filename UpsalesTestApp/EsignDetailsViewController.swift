@@ -69,6 +69,15 @@ extension EsignDetailsViewController : UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegate
+//extension EsignDetailsViewController : UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        if let esigns = esigns {
+//            esign = esigns[indexPath.row]
+//        }
+//    }
+//}
+
 // MARK: UITableViewDataSource
 extension EsignDetailsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -204,10 +213,10 @@ extension EsignDetailsViewController : UITableViewDelegate {
         switch indexPath.row {
         case 0:
             height = 66
-        case 4:
-            height = 80
-        default:
+        case 1,2,3:
             height = UITableViewAutomaticDimension
+        default:
+            height = 80
         }
         
         return height
@@ -244,8 +253,16 @@ extension EsignDetailsViewController : UIScrollViewDelegate {
         }
     }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == collectionView {
+            if !decelerate {
+                scrollToNearestVisibleCollectionViewCell()
+            }
+        }
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let _ = scrollView as? UICollectionView {
+        if scrollView == collectionView {
             scrollToNearestVisibleCollectionViewCell()
         }
     }
