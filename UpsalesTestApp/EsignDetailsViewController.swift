@@ -32,7 +32,7 @@ class EsignDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         
-        flowLayout.itemSize = collectionView.frame.size
+        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-10, height: collectionView.frame.size.height)
         flowLayout.minimumInteritemSpacing = CGFloat(5)
         flowLayout.minimumLineSpacing = CGFloat(5)
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
@@ -143,13 +143,13 @@ extension EsignDetailsViewController : UITableViewDataSource {
                     
                 case 20:
                     iconImage = UIImage(named: "thumbs down")
-                    tintColor = UIColor.red
+                    tintColor = kUpsalesRed
                 case 30:
                     iconImage = UIImage(named: "edit")
-                    tintColor = UIColor.green
+                    tintColor = kUpsalesGreen
                 case 40:
                     iconImage = UIImage(named: "thumbs down")
-                    tintColor = UIColor.red
+                    tintColor = kUpsalesRed
                 default:
                     ()
                 }
@@ -165,8 +165,9 @@ extension EsignDetailsViewController : UITableViewDataSource {
                     nameLabel.text = "\(recipient.fstname != nil ? recipient.fstname! : "") \(recipient.sndName != nil ? recipient.sndName! : "")"
                 }
                 if let statusLabel = cell?.contentView.viewWithTag(3) as? UILabel {
+                    var color = kUpsalesLightGray
                     var text = ""
-                    var color = UIColor.black
+                    
                     
                     formatter.dateFormat = "dd MMMM YY-HH:mm"
                     
@@ -175,16 +176,15 @@ extension EsignDetailsViewController : UITableViewDataSource {
                         text = "Draft"
                     case 10:
                         text = "Waiting for sign"
-                        color = UIColor.lightGray
                     case 20:
                         text = "Denied \(recipient.tsupdated != nil ? formatter.string(from: recipient.tsupdated! as Date) : "")"
-                        color = UIColor.red
+                        color = kUpsalesRed
                     case 30:
                         text = "Signed \(recipient.tsupdated != nil ? formatter.string(from: recipient.tsupdated! as Date) : "")"
-                        color = UIColor.green
+                        color = kUpsalesGreen
                     case 40:
                         text = "Cancelled"
-                        color = UIColor.red
+                        color = kUpsalesRed
                     default:
                         ()
                     }

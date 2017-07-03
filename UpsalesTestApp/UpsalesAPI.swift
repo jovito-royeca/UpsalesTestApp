@@ -8,14 +8,13 @@
 
 import UIKit
 import Alamofire
-import DATAStack
 import Sync
 
 // pelle
-//let kAPIToken = "64d5a1669d5e6262c46f2c83637472f4271d1f7dc4f52c2127f4a14881419515"
+let kAPIToken = "64d5a1669d5e6262c46f2c83637472f4271d1f7dc4f52c2127f4a14881419515"
 
 // gabriel
-let kAPIToken = "847e3d7834ebf0bba040265a37190ff2b1e85921b7d96c3fb3836476c3f590a1"
+//let kAPIToken = "847e3d7834ebf0bba040265a37190ff2b1e85921b7d96c3fb3836476c3f590a1"
 
 let kFetchLimit = 100
 
@@ -24,7 +23,7 @@ class UpsalesAPI: NSObject {
     static let sharedInstance = UpsalesAPI()
     
     // MARK: Variables
-    let dataStack: DATAStack = DATAStack(modelName: "Upsales")
+    let dataStack: DataStack = DataStack(modelName: "Upsales")
     
     func fetchAccounts(ofUser userId: Int?, completion: @escaping (Error?) -> Void) {
         var urlString = "https://integration.upsales.com/api/v2/accounts/?token=\(kAPIToken)&limit=\(kFetchLimit)"
@@ -98,7 +97,7 @@ class UpsalesAPI: NSObject {
                                          parent: nil,
                                          parentRelationship: nil,
                                          inContext: backgroundContext,
-                                         operations: [.Insert, .Update],
+                                         operations: [.insert, .update],
                                          completion:  { error in
                                             NotificationCenter.default.removeObserver(self, name:notifName, object: nil)
                                             completion(nil)
@@ -145,7 +144,7 @@ class UpsalesAPI: NSObject {
                                          parent: nil,
                                          parentRelationship: nil,
                                          inContext: backgroundContext,
-                                         operations: [.Insert, .Update],
+                                         operations: [.insert, .update],
                                          completion:  { error in
                                             NotificationCenter.default.removeObserver(self, name:notifName, object: nil)
                                             completion(nil)

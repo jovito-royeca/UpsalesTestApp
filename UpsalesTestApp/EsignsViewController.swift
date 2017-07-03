@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DATAStack
 import DATASource
 import MBProgressHUD
 
@@ -88,46 +87,52 @@ class EsignsViewController: UIViewController {
             let formatter = DateFormatter()
             
             if let timeLabel = cell.contentView.viewWithTag(1) as? UILabel {
+                var text = ""
                 formatter.dateFormat = "HH:mm"
-                timeLabel.text = formatter.string(from: mdate as Date)
-            }
-            
-            if let dateLabel = cell.contentView.viewWithTag(2) as? UILabel {
+                text = formatter.string(from: mdate as Date)
+                
                 formatter.dateFormat = "dd MMM"
-                dateLabel.text = formatter.string(from: mdate as Date)
+                text = "\(text)\n\(formatter.string(from: mdate as Date).uppercased())"
+                timeLabel.text = text
             }
             
-            if let nameLabel = cell.contentView.viewWithTag(3) as? UILabel {
+            if let nameLabel = cell.contentView.viewWithTag(2) as? UILabel {
                 nameLabel.text = client.name
             }
             
-            if let stateLabel = cell.contentView.viewWithTag(4) as? UILabel {
-                stateLabel.textColor = UIColor.black
+            if let stateLabel = cell.contentView.viewWithTag(3) as? UILabel {
+                var color = kUpsalesLightGray
+                var text:String? = nil
                 
                 switch esign.state {
                 case 0:
-                    stateLabel.text = "Draft"
+                    text = "Draft"
                 case 10:
-                    stateLabel.text = "Waiting for sign"
+                    text = "Waiting for sign"
                 case 20:
-                    stateLabel.text = "Rejected"
-                    stateLabel.textColor = UIColor.red
+                    text = "Rejected"
+                    color = kUpsalesRed
                 case 30:
-                    stateLabel.text = "Everyone has signed"
-                    stateLabel.textColor = UIColor.green
+                    text = "Everyone has signed"
+                    color = kUpsalesGreen
                 case 40:
-                    stateLabel.text = "Cancelled"
-                    stateLabel.textColor = UIColor.red
+                    text = "Cancelled"
+                    color = kUpsalesRed
                 default:
-                    stateLabel.text = nil
+                    ()
                 }
+                
+                stateLabel.textColor = color
+                stateLabel.text = text
             }
             
-            if let avatarView = cell.contentView.viewWithTag(5) as? UIImageView {
+            if let avatarView = cell.contentView.viewWithTag(4) as? UIImageView {
                 let width = avatarView.frame.size.width
                 avatarView.layer.cornerRadius = width / 2
                 avatarView.layer.masksToBounds = true
                 avatarView.image = nil
+                avatarView.isHidden = false
+                
                 
                 if let email = user.email {
                     let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
@@ -137,19 +142,49 @@ class EsignsViewController: UIViewController {
                         avatarView.image = UIImage(contentsOfFile: avatarPath)
                     } else {
                         // download the avatar from Gravatar
-                        let url = URL(string: "https://www.gravatar.com/avatar/\(md5(email))?s=\(width)")
+                        let url = URL(string: "https://www.gravatar.com/avatar/\(md5(email))?s=\(Int(width))&d=404")
                         
                         URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                            if let data = data {
-                                if !FileManager.default.fileExists(atPath: avatarPath) {
-                                    try? data.write(to: URL(fileURLWithPath: avatarPath))
+                            if let response = response as? HTTPURLResponse {
+                                if response.statusCode == 404 {
+                                    if let name = user.name {
+                                        var initials = ""
+                                        
+                                        for n in name.components(separatedBy: "") {
+                                            if let initial = n.characters.first {
+                                                initials.append(String(initial))
+                                            }
+                                        }
+                                        
+                                        DispatchQueue.main.async {
+                                            if let label = cell.contentView.viewWithTag(100) {
+                                                label.removeFromSuperview()
+                                            }
+                                            
+                                            let label = UILabel(frame: avatarView.frame)
+                                            label.tag = 100
+                                            label.textAlignment = NSTextAlignment.center
+                                            label.backgroundColor = kUpsalesBrightBlue
+                                            label.layer.cornerRadius = width / 2
+                                            label.layer.masksToBounds = true
+                                            label.textColor = UIColor.white
+                                            label.text = initials
+                                            avatarView.isHidden = true
+                                            cell.contentView.addSubview(label)
+                                        }
+                                    }
+                                    
+                                } else {
+                                    if let data = data {
+                                        if !FileManager.default.fileExists(atPath: avatarPath) {
+                                            try? data.write(to: URL(fileURLWithPath: avatarPath))
+                                        }
+                                        
+                                        DispatchQueue.main.async {
+                                            avatarView.image = UIImage(contentsOfFile: avatarPath)
+                                        }
+                                    }
                                 }
-                                
-                                DispatchQueue.main.async {
-                                    avatarView.image = UIImage(contentsOfFile: avatarPath)
-                                }
-                            } else {
-                                
                             }
                         }.resume()
                     }
