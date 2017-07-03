@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FontAwesome_swift
 
 class EsignDetailsViewController: UIViewController {
 
@@ -39,10 +40,10 @@ class EsignDetailsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-10, height: collectionView.frame.size.height)
-        flowLayout.minimumInteritemSpacing = CGFloat(5)
-        flowLayout.minimumLineSpacing = CGFloat(5)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
+        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-40, height: collectionView.frame.size.height)
+        flowLayout.minimumInteritemSpacing = CGFloat(10)
+        flowLayout.minimumLineSpacing = CGFloat(10)
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10)
         flowLayout.scrollDirection = .horizontal
         
         collectionView.scrollToItem(at: IndexPath(item: esignIndex, section: 0), at: .centeredHorizontally, animated: false)
@@ -225,54 +226,54 @@ extension EsignDetailsViewController : UITableViewDataSource {
         case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "SentByCell")
             if let nameLabel = cell?.contentView.viewWithTag(1) as? UILabel {
+                nameLabel.adjustsFontSizeToFitWidth = true
                 nameLabel.text = esign!.client!.name
             }
             if let dateLabel = cell?.contentView.viewWithTag(2) as? UILabel {
                 formatter.dateFormat = "dd MMMM YY-HH:mm"
+                dateLabel.adjustsFontSizeToFitWidth = true
                 dateLabel.text = formatter.string(from: esign!.mdate! as Date)
             }
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "RecipientCell")
             if let esignRecipients = esignRecipients {
                 let recipient = esignRecipients[indexPath.row-4]
+                var backgroundColor = UIColor.white
                 
                 formatter.dateFormat = "dd MMMM YY-HH:mm"
                 
-                if let statusIcon = cell?.contentView.viewWithTag(1) as? UIImageView {
+                if let statusIcon = cell?.contentView.viewWithTag(1) as? UILabel {
                     let width = statusIcon.frame.size.width
                     statusIcon.layer.cornerRadius = width / 2
                     statusIcon.layer.masksToBounds = true
                     
-                    var iconImage:UIImage?
-                    var tintColor = UIColor.darkGray
+                    var iconText:String?
+                    var iconColor = kUpsalesLightGray
                     
                     if let _ = recipient.sign {
-                        iconImage = UIImage(named: "edit")
-                        tintColor = kUpsalesGreen
+                        iconText = String.fontAwesomeIcon(code: "fa-pencil")
+                        iconColor = kUpsalesGreen
                     } else if let _ = recipient.declineDate {
-                        iconImage = UIImage(named: "thumbs down")
-                        tintColor = kUpsalesRed
+                        iconText = String.fontAwesomeIcon(code: "fa-thumbs-o-down")
+                        iconColor = kUpsalesRed
                     } else {
-                        iconImage = UIImage(named: "time")
-                        tintColor = kUpsalesLightGray
+                        iconText = String.fontAwesomeIcon(code: "fa-clock-o")
+                        backgroundColor = kUpsalesBackgroundGray
                     }
                     
-                    if let image = iconImage {
-                        let tintedImage = image.withRenderingMode(.alwaysTemplate)
-                        statusIcon.image = tintedImage
-                        statusIcon.tintColor = tintColor
-                    }
-                    statusIcon.contentMode = .scaleAspectFit
+                    statusIcon.font = UIFont.fontAwesome(ofSize: 15)
+                    statusIcon.text = iconText
+                    statusIcon.textColor = iconColor
                 }
                 
                 if let nameLabel = cell?.contentView.viewWithTag(2) as? UILabel {
+                    nameLabel.adjustsFontSizeToFitWidth = true
                     nameLabel.text = "\(recipient.fstname != nil ? recipient.fstname! : "") \(recipient.sndname != nil ? recipient.sndname! : "")"
                 }
                 
                 if let statusLabel = cell?.contentView.viewWithTag(3) as? UILabel {
                     var color = kUpsalesLightGray
                     var text = ""
-                    
                     
                     formatter.dateFormat = "dd MMMM HH:mm"
                     if let sign = recipient.sign {
@@ -286,16 +287,21 @@ extension EsignDetailsViewController : UITableViewDataSource {
                         color = kUpsalesLightGray
                     }
                     
+                    statusLabel.adjustsFontSizeToFitWidth = true
                     statusLabel.text = text
                     statusLabel.textColor = color
                 }
                 
-                if let visibleIcon = cell?.contentView.viewWithTag(4) as? UIImageView {
-                    visibleIcon.isHidden = recipient.seen
-                }
-                if let viewedLabel = cell?.contentView.viewWithTag(5) as? UILabel {
+                if let viewedLabel = cell?.contentView.viewWithTag(4) as? UILabel {
+                    let text = String.fontAwesomeIcon(code: "fa-eye")
+                    
+                    viewedLabel.font = UIFont.fontAwesome(ofSize: 15)
+                    viewedLabel.adjustsFontSizeToFitWidth = true
+                    viewedLabel.text = "\(text!)\nViewed"
                     viewedLabel.isHidden = recipient.seen
                 }
+                
+                cell!.contentView.backgroundColor = backgroundColor
             }
         }
         

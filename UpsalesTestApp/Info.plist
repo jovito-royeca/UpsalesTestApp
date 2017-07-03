@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>fonts/FontAwesome.otf</string>
 		<string>fonts/Gotham OTF/Gotham Black.otf</string>
 		<string>fonts/Gotham OTF/Gotham Bold.otf</string>
 		<string>fonts/Gotham OTF/Gotham Book.otf</string>
