@@ -1,7 +1,7 @@
 import CoreData
-import SYNCPropertyMapper
+import Sync.NSEntityDescription_PrimaryKey
 
-extension NSManagedObjectContext {
+public extension NSManagedObjectContext {
     /**
      Safely fetches a NSManagedObject in the current context. If no localPrimaryKey is provided then it will check for the parent entity and use that. Otherwise it will return nil.
      - parameter entityName: The name of the Core Data entity.
@@ -10,7 +10,7 @@ extension NSManagedObjectContext {
      - parameter parentRelationshipName: The name of the relationship with the parent.
      - returns: A NSManagedObject contained in the provided context.
      */
-    func safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
+    public func safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
         var result: NSManagedObject?
 
         if let localPrimaryKey = localPrimaryKey as? NSObject, let entity = NSEntityDescription.entity(forEntityName: entityName, in: self) {
@@ -20,7 +20,7 @@ extension NSManagedObjectContext {
                 let objects = try fetch(request)
                 result = objects.first as? NSManagedObject
             } catch {
-                fatalError("Failed to fetch request for entityName: \(entityName), predicate: \(request.predicate)")
+                fatalError("Failed to fetch request for entityName: \(entityName), predicate: \(String(describing: request.predicate))")
             }
         } else if let parentRelationshipName = parentRelationshipName {
             // More info: https://github.com/SyncDB/Sync/pull/72
@@ -30,7 +30,7 @@ extension NSManagedObjectContext {
         return result
     }
 
-    func managedObjectIDs(in entityName: String, usingAsKey attributeName: String, predicate: NSPredicate?) -> [AnyHashable: NSManagedObjectID] {
+    public func managedObjectIDs(in entityName: String, usingAsKey attributeName: String, predicate: NSPredicate?) -> [AnyHashable: NSManagedObjectID] {
         var result = [AnyHashable: NSManagedObjectID]()
 
         self.performAndWait {

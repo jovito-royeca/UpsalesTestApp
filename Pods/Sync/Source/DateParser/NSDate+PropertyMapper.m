@@ -1,6 +1,6 @@
-#import "NSDate+SYNCPropertyMapper.h"
+#import "NSDate+PropertyMapper.h"
 
-@implementation NSDate (SYNCPropertyMapper)
+@implementation NSDate (PropertyMapper)
 
 + (NSDate *)dateFromDateString:(NSString *)dateString {
     NSDate *parsedDate = nil;

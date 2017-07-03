@@ -1,6 +1,5 @@
 import CoreData
-import DATAStack
-import SYNCPropertyMapper
+
 
 extension NSManagedObject {
     /**
@@ -15,7 +14,7 @@ extension NSManagedObject {
     func sync_copyInContext(_ context: NSManagedObjectContext) -> NSManagedObject {
         guard let entityName = self.entity.name else { fatalError("Couldn't find entity name") }
         let localPrimaryKey = value(forKey: self.entity.sync_localPrimaryKey())
-        guard let copiedObject = context.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(localPrimaryKey)") }
+        guard let copiedObject = context.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(String(describing: localPrimaryKey))") }
 
         return copiedObject
     }
@@ -27,7 +26,7 @@ extension NSManagedObject {
      entire company object inside the employees dictionary.
      - parameter dictionary: The JSON with the changes to be applied to the entity.
      - parameter parent: The parent of the entity, optional since many entities are orphans.
-     - parameter dataStack: The DATAStack instance.
+     - parameter dataStack: The DataStack instance.
      */
     func sync_fill(with dictionary: [String: Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) {
         hyp_fill(with: dictionary)
@@ -35,7 +34,7 @@ extension NSManagedObject {
         for relationship in entity.sync_relationships() {
             let suffix = relationship.isToMany ? "_ids" : "_id"
             let constructedKeyName = relationship.name.hyp_snakeCase() + suffix
-            let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
+            let keyName = relationship.customKey ?? constructedKeyName
 
             if relationship.isToMany {
                 if let localPrimaryKey = dictionary[keyName], localPrimaryKey is Array < String> || localPrimaryKey is Array < Int> || localPrimaryKey is NSNull {
@@ -166,11 +165,11 @@ extension NSManagedObject {
      - parameter relationship: The relationship to be synced.
      - parameter dictionary: The JSON with the changes to be applied to the entity.
      - parameter parent: The parent of the entity, optional since many entities are orphans.
-     - parameter dataStack: The DATAStack instance.
+     - parameter dataStack: The DataStack instance.
      */
     func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) throws {
         var children: [[String: Any]]?
-        let childrenIsNull = relationship.userInfo?[SYNCCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
+        let childrenIsNull = (relationship.customKey as Any?) is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
             children = [[String: Any]]()
 
@@ -178,8 +177,18 @@ extension NSManagedObject {
                 setValue(nil, forKey: relationship.name)
             }
         } else {
-            if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
-                children = dictionary[customRelationshipName] as? [[String: Any]]
+            if let customRelationshipName = relationship.customKey {
+                if customRelationshipName.contains(".") {
+                    if let deepMapingRootKey = customRelationshipName.components(separatedBy: ".").first {
+                        if let rootObject = dictionary[deepMapingRootKey] as? [String: Any] {
+                            if let deepMapingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
+                                children = rootObject[deepMapingLeaveKey] as? [[String: Any]]
+                            }
+                        }
+                    }
+                } else {
+                    children = dictionary[customRelationshipName] as? [[String: Any]]
+                }
             } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [[String: Any]] {
                 children = result
             } else if let result = dictionary[relationship.name] as? [[String: Any]] {
@@ -314,7 +323,7 @@ extension NSManagedObject {
      entire company object inside the employees dictionary.
      - parameter relationship: The relationship to be synced.
      - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually a number or an integer.
-     - parameter dataStack: The DATAStack instance.
+     - parameter dataStack: The DataStack instance.
      */
     func sync_toOneRelationshipUsingIDInsteadOfDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: Any) {
         guard let managedObjectContext = self.managedObjectContext else { fatalError("managedObjectContext not found") }
@@ -338,12 +347,12 @@ extension NSManagedObject {
      Syncs the entity's to-one relationship, it will also sync the child of this entity.
      - parameter relationship: The relationship to be synced.
      - parameter dictionary: The JSON with the changes to be applied to the entity.
-     - parameter dataStack: The DATAStack instance.
+     - parameter dataStack: The DataStack instance.
      */
     func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) {
         var filteredObjectDictionary: [String: Any]?
 
-        if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
+        if let customRelationshipName = relationship.customKey {
             filteredObjectDictionary = dictionary[customRelationshipName] as? [String: Any]
         } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [String: Any] {
             filteredObjectDictionary = result
