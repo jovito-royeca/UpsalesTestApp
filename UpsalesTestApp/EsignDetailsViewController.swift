@@ -8,6 +8,7 @@
 
 import UIKit
 import FontAwesome_swift
+import MBProgressHUD
 
 class EsignDetailsViewController: UIViewController {
 
@@ -144,7 +145,7 @@ extension EsignDetailsViewController : UITableViewDataSource {
                accountLabel.text = esign!.client!.name
             }
             if let dateLabel = cell?.contentView.viewWithTag(2) as? UILabel {
-                formatter.dateFormat = "dd MMMM YYYY-HH:mm"
+                formatter.dateFormat = "dd MMMM YYYY - HH:mm"
                 dateLabel.text = formatter.string(from: esign!.mdate! as Date).lowercased()
             }
         case 1:
@@ -230,7 +231,7 @@ extension EsignDetailsViewController : UITableViewDataSource {
                 nameLabel.text = esign!.client!.name
             }
             if let dateLabel = cell?.contentView.viewWithTag(2) as? UILabel {
-                formatter.dateFormat = "dd MMM YYYY-HH:mm"
+                formatter.dateFormat = "dd MMM YYYY HH:mm"
                 dateLabel.adjustsFontSizeToFitWidth = true
                 dateLabel.text = formatter.string(from: esign!.mdate! as Date).lowercased()
             }
@@ -326,6 +327,41 @@ extension EsignDetailsViewController : UITableViewDelegate {
         }
         
         return height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 2:
+            if let documentId = esign!.documentId,
+                let title = esign!.title {
+                MBProgressHUD.showAdded(to: view, animated: true)
+                UpsalesAPI.sharedInstance.downloadEsignDoc(documentId: documentId, title: title, completion: { (docPath: String, error: Error?) in
+                    DispatchQueue.main.async {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        
+                        if let error = error {
+                            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
+                            let documentInteractionController = UIDocumentInteractionController(url: URL(fileURLWithPath: docPath))
+                            documentInteractionController.delegate = self
+                            documentInteractionController.presentPreview(animated: true)
+                        }
+                    }
+                })
+            }
+        default:
+            ()
+        }
+    }
+}
+
+// MARK:
+extension EsignDetailsViewController : UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
     }
 }
 

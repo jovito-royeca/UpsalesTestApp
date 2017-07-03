@@ -158,6 +158,32 @@ class UpsalesAPI: NSObject {
         }
     }
 
+    func downloadEsignDoc(documentId: String, title: String, completion: @escaping (String, Error?) -> Void) {
+        let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+        let esignDocPath = "\(cachesDir)/\(title)"
+        let urlString = "https://power.upsales.com/api/v2/7854/esigns/download/\(documentId)?inline=true&token=\(kAPIToken)".addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+        
+        if FileManager.default.fileExists(atPath: esignDocPath) {
+            completion(esignDocPath, nil)
+        } else {
+            if let url = URL(string: urlString!) {
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    if let error = error {
+                        completion(esignDocPath, error)
+                    } else {
+                        if let data = data {
+                            if !FileManager.default.fileExists(atPath: esignDocPath) {
+                                try? data.write(to: URL(fileURLWithPath: esignDocPath))
+                            }
+                            
+                            completion(esignDocPath, nil)
+                        }
+                    }
+                }.resume()
+            }
+        }
+    }
+    
     func fetchLocalManagers() -> [User] {
         var localManagers = [User]()
         
