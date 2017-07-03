@@ -230,9 +230,9 @@ extension EsignDetailsViewController : UITableViewDataSource {
                 nameLabel.text = esign!.client!.name
             }
             if let dateLabel = cell?.contentView.viewWithTag(2) as? UILabel {
-                formatter.dateFormat = "dd MMMM YY-HH:mm"
+                formatter.dateFormat = "dd MMM YYYY-HH:mm"
                 dateLabel.adjustsFontSizeToFitWidth = true
-                dateLabel.text = formatter.string(from: esign!.mdate! as Date)
+                dateLabel.text = formatter.string(from: esign!.mdate! as Date).lowercased()
             }
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "RecipientCell")
