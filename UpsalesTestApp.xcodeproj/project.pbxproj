@@ -26,6 +26,12 @@
 		1137E51B1E4EEB8500DEFE4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1137E5191E4EEB8500DEFE4F /* LaunchScreen.storyboard */; };
 		1137E5261E4EEB8500DEFE4F /* UpsalesTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137E5251E4EEB8500DEFE4F /* UpsalesTestAppTests.swift */; };
 		1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137E5301E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift */; };
+		113BC3691F0A1A9700C1D05F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BC3681F0A1A9700C1D05F /* Constants.swift */; };
+		113BC36A1F0A1A9700C1D05F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BC3681F0A1A9700C1D05F /* Constants.swift */; };
+		113BC36B1F0A1A9700C1D05F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BC3681F0A1A9700C1D05F /* Constants.swift */; };
+		113BC36D1F0A3AF600C1D05F /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 113BC36C1F0A3AF600C1D05F /* fonts */; };
+		113BC36E1F0A3AF600C1D05F /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 113BC36C1F0A3AF600C1D05F /* fonts */; };
+		113BC36F1F0A3AF600C1D05F /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 113BC36C1F0A3AF600C1D05F /* fonts */; };
 		114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
 		114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
 		114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
@@ -104,6 +110,8 @@
 		1137E52C1E4EEB8500DEFE4F /* UpsalesTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UpsalesTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137E5301E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpsalesTestAppUITests.swift; sourceTree = "<group>"; };
 		1137E5321E4EEB8500DEFE4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		113BC3681F0A1A9700C1D05F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		113BC36C1F0A3AF600C1D05F /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		114282801E65A98F000A2FFF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		114282841E65BBB5000A2FFF /* Upsales Feb-28-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Feb-28-2017.xcdatamodel"; sourceTree = "<group>"; };
 		117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -212,6 +220,7 @@
 		1137E5041E4EEB8500DEFE4F = {
 			isa = PBXGroup;
 			children = (
+				113BC36C1F0A3AF600C1D05F /* fonts */,
 				1137E50F1E4EEB8500DEFE4F /* UpsalesTestApp */,
 				1137E5241E4EEB8500DEFE4F /* UpsalesTestAppTests */,
 				1137E52F1E4EEB8500DEFE4F /* UpsalesTestAppUITests */,
@@ -237,14 +246,15 @@
 				1118E4AA1E6493FC00092828 /* API */,
 				1137E5101E4EEB8500DEFE4F /* AppDelegate.swift */,
 				1137E5171E4EEB8500DEFE4F /* Assets.xcassets */,
+				113BC3681F0A1A9700C1D05F /* Constants.swift */,
 				1118E4A91E6493E900092828 /* Controller */,
 				1137E51C1E4EEB8500DEFE4F /* Info.plist */,
 				1118E4A71E6493DC00092828 /* Model */,
-				1118E4A81E6493E300092828 /* View */,
-				1137E5121E4EEB8500DEFE4F /* ViewController.swift */,
 				11B699E91F04001600C60748 /* UpsalesTestApp-Bridging-Header.h */,
 				11B699EA1F04001600C60748 /* UpsalesTestAppTests-Bridging-Header.h */,
 				11B699EB1F04001600C60748 /* UpsalesTestAppUITests-Bridging-Header.h */,
+				1118E4A81E6493E300092828 /* View */,
+				1137E5121E4EEB8500DEFE4F /* ViewController.swift */,
 			);
 			path = UpsalesTestApp;
 			sourceTree = "<group>";
@@ -412,6 +422,7 @@
 				1137E51B1E4EEB8500DEFE4F /* LaunchScreen.storyboard in Resources */,
 				1137E5181E4EEB8500DEFE4F /* Assets.xcassets in Resources */,
 				1137E5161E4EEB8500DEFE4F /* Main.storyboard in Resources */,
+				113BC36D1F0A3AF600C1D05F /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113BC36E1F0A3AF600C1D05F /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113BC36F1F0A3AF600C1D05F /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B35005DFECFCF85E948E072B /* [CP] Check Pods Manifest.lock */ = {
@@ -504,7 +517,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E103BBC4AA068D1B6ED5379A /* [CP] Embed Pods Frameworks */ = {
@@ -549,7 +562,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		FA0BFCC25FFE97780FCA13C3 /* [CP] Embed Pods Frameworks */ = {
@@ -589,6 +602,7 @@
 				11B699E61F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */,
 				117017E31E66B60F003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				1118E4B01E649DE100092828 /* AccountLocationViewController.swift in Sources */,
+				113BC3691F0A1A9700C1D05F /* Constants.swift in Sources */,
 				11B699E31F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */,
 				118166961F04C36B0079E589 /* EsignDetailsViewController.swift in Sources */,
 				117017DF1E66B60F003D09D0 /* Address+CoreDataProperties.swift in Sources */,
@@ -601,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1181669C1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
+				113BC36A1F0A1A9700C1D05F /* Constants.swift in Sources */,
 				117017E41E66BE8B003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				117017E51E66BE8B003D09D0 /* Address+CoreDataProperties.swift in Sources */,
 				117017E61E66BE8B003D09D0 /* Client+CoreDataClass.swift in Sources */,
@@ -624,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B699E51F03F31E00C60748 /* Esign+CoreDataClass.swift in Sources */,
+				113BC36B1F0A1A9700C1D05F /* Constants.swift in Sources */,
 				117017EA1E66BE91003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				117017EB1E66BE91003D09D0 /* Address+CoreDataProperties.swift in Sources */,
 				117017EC1E66BE91003D09D0 /* Client+CoreDataClass.swift in Sources */,

@@ -2,6 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>fonts/Gotham OTF/Gotham Black.otf</string>
+		<string>fonts/Gotham OTF/Gotham Bold.otf</string>
+		<string>fonts/Gotham OTF/Gotham Book.otf</string>
+		<string>fonts/Gotham OTF/Gotham Light.otf</string>
+		<string>fonts/Gotham OTF/Gotham Medium.otf</string>
+		<string>fonts/Gotham OTF/Gotham Thin.otf</string>
+		<string>fonts/Roboto/Roboto-Black.ttf</string>
+		<string>fonts/Roboto/Roboto-BlackItalic.ttf</string>
+		<string>fonts/Roboto/Roboto-Bold.ttf</string>
+		<string>fonts/Roboto/Roboto-BoldItalic.ttf</string>
+		<string>fonts/Roboto/Roboto-Italic.ttf</string>
+		<string>fonts/Roboto/Roboto-Light.ttf</string>
+		<string>fonts/Roboto/Roboto-LightItalic.ttf</string>
+		<string>fonts/Roboto/Roboto-Medium.ttf</string>
+		<string>fonts/Roboto/Roboto-MediumItalic.ttf</string>
+		<string>fonts/Roboto/Roboto-Regular.ttf</string>
+		<string>fonts/Roboto/Roboto-Thin.ttf</string>
+		<string>fonts/Roboto/Roboto-ThinItalic.ttf</string>
+		<string>fonts/upicons-2.ttf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

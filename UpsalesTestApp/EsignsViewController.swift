@@ -150,7 +150,7 @@ class EsignsViewController: UIViewController {
                                     if let name = user.name {
                                         var initials = ""
                                         
-                                        for n in name.components(separatedBy: "") {
+                                        for n in name.components(separatedBy: " ") {
                                             if let initial = n.characters.first {
                                                 initials.append(String(initial))
                                             }
@@ -168,6 +168,8 @@ class EsignsViewController: UIViewController {
                                             label.layer.cornerRadius = width / 2
                                             label.layer.masksToBounds = true
                                             label.textColor = UIColor.white
+                                            label.font = UIFont(name: "Roboto", size: CGFloat(12))
+                                            label.adjustsFontSizeToFitWidth = true
                                             label.text = initials
                                             avatarView.isHidden = true
                                             cell.contentView.addSubview(label)

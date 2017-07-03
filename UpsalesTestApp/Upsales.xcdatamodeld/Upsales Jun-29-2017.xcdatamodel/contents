@@ -102,9 +102,9 @@
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="personalnr" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="seen" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sign" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sign" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="signLink" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sndName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sndname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tsupdated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="undelivered" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -126,7 +126,7 @@
         <element name="Address" positionX="-45" positionY="144" width="128" height="210"/>
         <element name="Client" positionX="-63" positionY="-18" width="128" height="540"/>
         <element name="Esign" positionX="-45" positionY="144" width="128" height="345"/>
-        <element name="User" positionX="-54" positionY="144" width="128" height="135"/>
         <element name="EsignRecipient" positionX="-54" positionY="135" width="128" height="375"/>
+        <element name="User" positionX="-54" positionY="144" width="128" height="135"/>
     </elements>
 </model>

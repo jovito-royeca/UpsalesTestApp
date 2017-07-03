@@ -16,11 +16,11 @@ extension EsignRecipient {
         return NSFetchRequest<EsignRecipient>(entityName: "EsignRecipient")
     }
 
-    @NSManaged public var sndName: String?
+    @NSManaged public var sndname: String?
     @NSManaged public var declineMsg: String?
     @NSManaged public var contactId: Int32
     @NSManaged public var deliveryMethod: String?
-    @NSManaged public var sign: String?
+    @NSManaged public var sign: NSDate?
     @NSManaged public var mobile: String?
     @NSManaged public var undelivered: Bool
     @NSManaged public var companynr: String?
