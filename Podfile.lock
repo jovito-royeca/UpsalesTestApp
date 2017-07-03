@@ -1,21 +1,24 @@
 PODS:
   - Alamofire (4.5.0)
   - DATASource (6.1.5)
+  - FontAwesome.swift (1.2.0)
   - MBProgressHUD (1.0.0)
   - Sync (3.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - DATASource
+  - FontAwesome.swift
   - MBProgressHUD
   - Sync
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   DATASource: 52b86cfff6c7ac3db45192c01f7839c7473576c3
+  FontAwesome.swift: 60063e3f19ba4801155d4b0f2334ab7585763ab3
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Sync: 7bf0699de46e470d68dc5f1f8408e4c19536c71f
 
-PODFILE CHECKSUM: 7e259eec48e8d804e6df0119cfc7e619bbf0d3a1
+PODFILE CHECKSUM: 316f30edde865b0082eb88c1c2bc6c2d13735ee2
 
 COCOAPODS: 1.2.1

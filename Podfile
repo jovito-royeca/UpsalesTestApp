@@ -5,6 +5,7 @@ use_frameworks!
 target 'UpsalesTestApp' do
     pod 'Alamofire', '~> 4.3'
     pod 'DATASource'
+    pod 'FontAwesome.swift'
     pod 'MBProgressHUD'
     pod 'Sync'
 end
@@ -12,6 +13,7 @@ end
 target 'UpsalesTestAppTests' do
     pod 'Alamofire', '~> 4.3'
     pod 'DATASource'
+    pod 'FontAwesome.swift'
     pod 'MBProgressHUD'
     pod 'Sync'
 end
@@ -19,6 +21,7 @@ end
 target 'UpsalesTestAppUITests' do
     pod 'Alamofire', '~> 4.3'
     pod 'DATASource'
+    pod 'FontAwesome.swift'
     pod 'MBProgressHUD'
     pod 'Sync'
 end
