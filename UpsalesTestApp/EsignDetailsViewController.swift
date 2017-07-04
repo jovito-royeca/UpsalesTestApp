@@ -41,10 +41,10 @@ class EsignDetailsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-40, height: collectionView.frame.size.height)
+        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-40, height: collectionView.frame.size.height-10)
         flowLayout.minimumInteritemSpacing = CGFloat(10)
         flowLayout.minimumLineSpacing = CGFloat(10)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10)
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 10, 10)
         flowLayout.scrollDirection = .horizontal
         
         collectionView.scrollToItem(at: IndexPath(item: esignIndex, section: 0), at: .centeredHorizontally, animated: false)
