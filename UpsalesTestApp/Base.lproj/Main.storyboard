@@ -154,7 +154,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c7c-gH-47C" id="1eU-WY-CPr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPw-ix-akv">
@@ -170,13 +170,13 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="63" id="e9q-yY-uiR"/>
+                                                        <constraint firstAttribute="width" constant="63" id="U4k-Lx-nt3"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1E-rV-Sg8">
                                                     <rect key="frame" x="77" y="12" width="250" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="250" id="DTd-80-hDr"/>
+                                                        <constraint firstAttribute="width" constant="250" id="RvP-bx-DpW"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
@@ -185,8 +185,8 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for sign" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlj-px-ztI">
                                                     <rect key="frame" x="77" y="32" width="150" height="14"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="0xm-Nb-jWP"/>
-                                                        <constraint firstAttribute="width" constant="150" id="43L-HS-5s5"/>
+                                                        <constraint firstAttribute="height" constant="14" id="7hA-YP-RFM"/>
+                                                        <constraint firstAttribute="width" constant="150" id="Wy4-Pm-GsF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
@@ -195,25 +195,23 @@
                                                 <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AZB-O1-bo3">
                                                     <rect key="frame" x="342" y="17" width="25" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="40e-kp-oFa"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="hbA-0e-JxT"/>
-                                                        <constraint firstAttribute="height" constant="25" id="j9V-IG-XKA"/>
+                                                        <constraint firstAttribute="height" constant="25" id="2BH-9g-Rzq"/>
+                                                        <constraint firstAttribute="width" constant="25" id="5PH-V8-UGz"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="AZB-O1-bo3" firstAttribute="trailing" secondItem="1eU-WY-CPr" secondAttribute="trailingMargin" id="68e-Ve-cqb"/>
-                                                <constraint firstItem="AZB-O1-bo3" firstAttribute="leading" secondItem="k1E-rV-Sg8" secondAttribute="trailing" constant="15" id="HCk-My-quG"/>
-                                                <constraint firstItem="HPw-ix-akv" firstAttribute="top" secondItem="1eU-WY-CPr" secondAttribute="topMargin" constant="-9" id="HP3-qw-EFd"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Nlj-px-ztI" secondAttribute="bottom" constant="5.5" id="L1r-Kg-Z7x"/>
-                                                <constraint firstItem="HPw-ix-akv" firstAttribute="centerY" secondItem="AZB-O1-bo3" secondAttribute="centerY" id="Pme-SF-9jF"/>
-                                                <constraint firstItem="k1E-rV-Sg8" firstAttribute="top" secondItem="1eU-WY-CPr" secondAttribute="topMargin" constant="4" id="SdW-aQ-GMC"/>
-                                                <constraint firstItem="HPw-ix-akv" firstAttribute="centerY" secondItem="1eU-WY-CPr" secondAttribute="centerY" id="aUA-D2-jTc"/>
-                                                <constraint firstItem="k1E-rV-Sg8" firstAttribute="leading" secondItem="Nlj-px-ztI" secondAttribute="leading" id="bJV-0I-qHQ"/>
-                                                <constraint firstItem="HPw-ix-akv" firstAttribute="leading" secondItem="1eU-WY-CPr" secondAttribute="leadingMargin" constant="-7" id="dJC-Pa-0io"/>
-                                                <constraint firstItem="AZB-O1-bo3" firstAttribute="top" secondItem="1eU-WY-CPr" secondAttribute="topMargin" constant="9" id="gfe-sw-7qs"/>
-                                                <constraint firstItem="Nlj-px-ztI" firstAttribute="top" secondItem="k1E-rV-Sg8" secondAttribute="bottom" constant="3" id="hg9-kc-nEn"/>
-                                                <constraint firstItem="k1E-rV-Sg8" firstAttribute="leading" secondItem="HPw-ix-akv" secondAttribute="trailing" constant="13" id="xAq-RO-R10"/>
+                                                <constraint firstItem="k1E-rV-Sg8" firstAttribute="leading" secondItem="Nlj-px-ztI" secondAttribute="leading" id="D5p-xx-hZT"/>
+                                                <constraint firstItem="AZB-O1-bo3" firstAttribute="leading" secondItem="k1E-rV-Sg8" secondAttribute="trailing" constant="15" id="PSL-yO-aGs"/>
+                                                <constraint firstItem="AZB-O1-bo3" firstAttribute="trailing" secondItem="1eU-WY-CPr" secondAttribute="trailingMargin" id="Ryl-eh-N79"/>
+                                                <constraint firstItem="HPw-ix-akv" firstAttribute="centerY" secondItem="AZB-O1-bo3" secondAttribute="centerY" id="XgX-q3-LHc"/>
+                                                <constraint firstItem="k1E-rV-Sg8" firstAttribute="leading" secondItem="HPw-ix-akv" secondAttribute="trailing" constant="13" id="gDG-St-SJ2"/>
+                                                <constraint firstItem="HPw-ix-akv" firstAttribute="centerY" secondItem="1eU-WY-CPr" secondAttribute="centerY" id="gxY-vQ-rgT"/>
+                                                <constraint firstItem="Nlj-px-ztI" firstAttribute="top" secondItem="k1E-rV-Sg8" secondAttribute="bottom" constant="3" id="nz5-IG-byN"/>
+                                                <constraint firstItem="HPw-ix-akv" firstAttribute="top" secondItem="1eU-WY-CPr" secondAttribute="topMargin" constant="-9" id="poo-nA-QKR"/>
+                                                <constraint firstItem="k1E-rV-Sg8" firstAttribute="top" secondItem="1eU-WY-CPr" secondAttribute="topMargin" constant="4" id="vh9-sM-p0v"/>
+                                                <constraint firstItem="HPw-ix-akv" firstAttribute="leading" secondItem="1eU-WY-CPr" secondAttribute="leadingMargin" constant="-7" id="wzL-uu-tbk"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Nlj-px-ztI" secondAttribute="bottom" constant="5.5" id="yjU-G5-bS1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -545,7 +543,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EIw-Gf-cUt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Accounts" image="accounts" id="qtq-hv-ewI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WOM-tb-ywx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WOM-tb-ywx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -626,7 +624,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dNu-QQ-NXo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kEz-z3-rnC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kEz-z3-rnC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -645,7 +643,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rTm-Ps-pbM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="E-sign" image="esign" id="XoY-6c-Xfv"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="G2P-wm-IbN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G2P-wm-IbN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -663,7 +661,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AMb-io-loj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SDh-ew-ihB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SDh-ew-ihB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
