@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FontAwesome_swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // print docs path
         print("docsPath = \(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])")
+        
+        // use FontAwesome in tabbar buttons
+        if let tabBar = window!.rootViewController as? UITabBarController {
+            if let items = tabBar.tabBar.items {
+                for item in items {
+                    if item.title == "E-sign" {
+                        let image = UIImage.fontAwesomeIcon(name: .edit, textColor: UIColor.black, size: CGSize(width: 30, height: 30))
+                        item.image = image
+                        item.selectedImage = image
+                    } else if item.title == "Accounts" {
+                        let image = UIImage.fontAwesomeIcon(name: .users, textColor: UIColor.black, size: CGSize(width: 30, height: 30))
+                        item.image = image
+                        item.selectedImage = image
+                    }
+                }
+            }
+        }
         
         return true
     }

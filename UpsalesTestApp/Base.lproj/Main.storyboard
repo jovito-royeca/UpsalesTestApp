@@ -154,7 +154,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c7c-gH-47C" id="1eU-WY-CPr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPw-ix-akv">
@@ -543,7 +543,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EIw-Gf-cUt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Accounts" image="accounts" id="qtq-hv-ewI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WOM-tb-ywx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WOM-tb-ywx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -624,7 +624,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dNu-QQ-NXo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kEz-z3-rnC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kEz-z3-rnC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -643,7 +643,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rTm-Ps-pbM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="E-sign" image="esign" id="XoY-6c-Xfv"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G2P-wm-IbN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="G2P-wm-IbN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -661,7 +661,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AMb-io-loj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SDh-ew-ihB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SDh-ew-ihB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

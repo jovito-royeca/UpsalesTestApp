@@ -146,6 +146,7 @@ class EsignsViewController: UIViewController {
                         URLSession.shared.dataTask(with: url!) { (data, response, error) in
                             if let response = response as? HTTPURLResponse {
                                 if response.statusCode == 404 {
+                                    // create a label with user initials
                                     DispatchQueue.main.async {
                                         if let label = cell.contentView.viewWithTag(100) {
                                             label.removeFromSuperview()
@@ -166,6 +167,7 @@ class EsignsViewController: UIViewController {
                                     }
                                     
                                 } else {
+                                    // use the gravatar image
                                     if let data = data {
                                         if !FileManager.default.fileExists(atPath: avatarPath) {
                                             try? data.write(to: URL(fileURLWithPath: avatarPath))
