@@ -334,15 +334,14 @@
                                                                     </view>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="W5G-eX-B46" firstAttribute="top" secondItem="Mdk-Ed-0d5" secondAttribute="top" id="1Hd-TP-6Jg"/>
-                                                                    <constraint firstItem="2nt-yT-6qq" firstAttribute="top" secondItem="W5G-eX-B46" secondAttribute="bottom" constant="13" id="BVk-xG-CvS"/>
-                                                                    <constraint firstItem="2nt-yT-6qq" firstAttribute="centerY" secondItem="Mdk-Ed-0d5" secondAttribute="centerY" id="JVJ-vg-h6g"/>
-                                                                    <constraint firstItem="W5G-eX-B46" firstAttribute="leading" secondItem="Mdk-Ed-0d5" secondAttribute="leading" id="NGP-y8-gaB"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="W5G-eX-B46" secondAttribute="trailing" id="V0n-BP-JLB"/>
-                                                                    <constraint firstAttribute="bottomMargin" secondItem="2nt-yT-6qq" secondAttribute="bottom" constant="5" id="XQf-DF-ltc"/>
-                                                                    <constraint firstItem="2nt-yT-6qq" firstAttribute="leading" secondItem="Mdk-Ed-0d5" secondAttribute="leadingMargin" id="pOE-Xe-0vT"/>
-                                                                    <constraint firstItem="W5G-eX-B46" firstAttribute="centerX" secondItem="2nt-yT-6qq" secondAttribute="centerX" id="q4L-Pb-V05"/>
-                                                                    <constraint firstItem="W5G-eX-B46" firstAttribute="top" secondItem="Mdk-Ed-0d5" secondAttribute="top" id="w4q-lU-d85"/>
+                                                                    <constraint firstItem="W5G-eX-B46" firstAttribute="top" secondItem="Mdk-Ed-0d5" secondAttribute="top" id="RHK-0q-X41"/>
+                                                                    <constraint firstAttribute="bottomMargin" secondItem="2nt-yT-6qq" secondAttribute="bottom" constant="5" id="WXy-oG-a2x"/>
+                                                                    <constraint firstItem="2nt-yT-6qq" firstAttribute="leading" secondItem="Mdk-Ed-0d5" secondAttribute="leadingMargin" id="aQW-SH-kwS"/>
+                                                                    <constraint firstItem="2nt-yT-6qq" firstAttribute="centerY" secondItem="Mdk-Ed-0d5" secondAttribute="centerY" id="eBx-vX-iMA"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="W5G-eX-B46" secondAttribute="trailing" id="gpf-ej-uNx"/>
+                                                                    <constraint firstItem="W5G-eX-B46" firstAttribute="centerX" secondItem="2nt-yT-6qq" secondAttribute="centerX" id="hpw-r5-jD1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="W5G-eX-B46" secondAttribute="bottom" constant="43" id="nc4-RG-PXH"/>
+                                                                    <constraint firstItem="W5G-eX-B46" firstAttribute="leading" secondItem="Mdk-Ed-0d5" secondAttribute="leading" id="uXu-N7-Ev9"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <color key="backgroundColor" red="0.0" green="0.1843137255" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
