@@ -146,33 +146,23 @@ class EsignsViewController: UIViewController {
                         URLSession.shared.dataTask(with: url!) { (data, response, error) in
                             if let response = response as? HTTPURLResponse {
                                 if response.statusCode == 404 {
-                                    if let name = user.name {
-                                        var initials = ""
-                                        
-                                        for n in name.components(separatedBy: " ") {
-                                            if let initial = n.characters.first {
-                                                initials.append(String(initial))
-                                            }
+                                    DispatchQueue.main.async {
+                                        if let label = cell.contentView.viewWithTag(100) {
+                                            label.removeFromSuperview()
                                         }
                                         
-                                        DispatchQueue.main.async {
-                                            if let label = cell.contentView.viewWithTag(100) {
-                                                label.removeFromSuperview()
-                                            }
-                                            
-                                            let label = UILabel(frame: avatarView.frame)
-                                            label.tag = 100
-                                            label.textAlignment = NSTextAlignment.center
-                                            label.backgroundColor = kUpsalesBrightBlue
-                                            label.layer.cornerRadius = width / 2
-                                            label.layer.masksToBounds = true
-                                            label.textColor = UIColor.white
-                                            label.font = UIFont(name: "Roboto", size: CGFloat(12))
-                                            label.adjustsFontSizeToFitWidth = true
-                                            label.text = initials
-                                            avatarView.isHidden = true
-                                            cell.contentView.addSubview(label)
-                                        }
+                                        let label = UILabel(frame: avatarView.frame)
+                                        label.tag = 100
+                                        label.textAlignment = NSTextAlignment.center
+                                        label.backgroundColor = kUpsalesBrightBlue
+                                        label.layer.cornerRadius = width / 2
+                                        label.layer.masksToBounds = true
+                                        label.textColor = UIColor.white
+                                        label.font = UIFont(name: "Roboto", size: CGFloat(12))
+                                        label.adjustsFontSizeToFitWidth = true
+                                        label.text = user.initials
+                                        avatarView.isHidden = true
+                                        cell.contentView.addSubview(label)
                                     }
                                     
                                 } else {

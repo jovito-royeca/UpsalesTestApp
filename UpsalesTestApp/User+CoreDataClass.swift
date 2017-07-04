@@ -13,4 +13,19 @@ import CoreData
 @objc(User)
 public class User: NSManagedObject {
 
+    var initials: String? {
+        var text:String?
+        
+        if let name = name {
+            text = ""
+            
+            for n in name.components(separatedBy: " ") {
+                if let initial = n.characters.first {
+                    text!.append(String(initial))
+                }
+            }
+        }
+        
+        return text
+    }
 }

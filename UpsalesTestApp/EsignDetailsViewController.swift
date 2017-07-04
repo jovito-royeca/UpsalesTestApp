@@ -170,20 +170,8 @@ extension EsignDetailsViewController : UITableViewDataSource {
                 var index = 0
                 
                 for recipient in esignRecipients {
-                    var initials = ""
                     var labelColor:UIColor?
                     var barColor:UIColor?
-                    
-                    if let fstname = recipient.fstname{
-                        if let initial = fstname.characters.first {
-                            initials.append(String(initial))
-                        }
-                    }
-                    if let sndname = recipient.sndname {
-                        if let initial = sndname.characters.first {
-                            initials.append(String(initial))
-                        }
-                    }
                     
                     if let _ = recipient.sign {
                         labelColor = kUpsalesGreen
@@ -205,7 +193,7 @@ extension EsignDetailsViewController : UITableViewDataSource {
                         label.textColor = UIColor.white
                         label.font = UIFont(name: "Roboto", size: CGFloat(12))
                         label.adjustsFontSizeToFitWidth = true
-                        label.text = initials
+                        label.text = recipient.initials
                         
                         cell!.contentView.addSubview(label)
                         x += width
