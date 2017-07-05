@@ -10,6 +10,8 @@ import UIKit
 import DATASource
 import MBProgressHUD
 
+let kNotificationEsignsFiltered = "kNotificationEsignsFiltered"
+
 class EsignsViewController: UIViewController {
 
     // MARK: Outlets
@@ -22,13 +24,15 @@ class EsignsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object:nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EsignsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object: nil)
+        
         // Do any additional setup after loading the view.
         MBProgressHUD.showAdded(to: view, animated: true)
         UpsalesAPI.sharedInstance.fetchEsigns(completion: { error in
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.dataSource = self.getDataSource(nil)
-                self.tableView.reloadData()
+                self.updateData(Notification(name: NSNotification.Name(rawValue: kNotificationEsignsFiltered)))
                 
                 if let error = error {
                     let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -79,6 +83,21 @@ class EsignsViewController: UIViewController {
         return dataSource
     }
     
+    func updateData(_ notification: Notification) {
+        let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Esign")
+        var predicate:NSPredicate?
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "mdate", ascending: false)]
+        
+        if let statusId = UserDefaults.standard.object(forKey: kEsignFilterStatusID) as? Int {
+            predicate = NSPredicate(format: "state == \(statusId)")
+        }
+        
+        request.predicate = predicate
+        dataSource = getDataSource(request)
+        tableView.reloadData()
+    }
+
     func configureCell(_ cell: UITableViewCell, withEsign esign: Esign) {
         if let mdate = esign.mdate,
             let client = esign.client,
