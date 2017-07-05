@@ -23,7 +23,7 @@ class EsignDetailsViewController: UIViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     // MARK: Actions
-    @IBAction func closeAction(_ sender: UIBarButtonItem) {
+    @IBAction func closeAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
@@ -41,10 +41,10 @@ class EsignDetailsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-40, height: collectionView.frame.size.height-10)
+        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-40, height: collectionView.frame.size.height)
         flowLayout.minimumInteritemSpacing = CGFloat(10)
         flowLayout.minimumLineSpacing = CGFloat(10)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 10, 10)
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10)
         flowLayout.scrollDirection = .horizontal
         
         collectionView.scrollToItem(at: IndexPath(item: esignIndex, section: 0), at: .centeredHorizontally, animated: false)
@@ -113,7 +113,7 @@ extension EsignDetailsViewController : UICollectionViewDataSource {
 // MARK: UITableViewDataSource
 extension EsignDetailsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rows = 4
+        var rows = 5
         
         if let esign = esign {
             if let recipients = esign.recipients {
@@ -131,6 +131,8 @@ extension EsignDetailsViewController : UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "NavBarCell")
+        case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
             if let accountLabel = cell?.contentView.viewWithTag(1) as? UILabel {
                accountLabel.text = esign!.client!.name
@@ -139,7 +141,7 @@ extension EsignDetailsViewController : UITableViewDataSource {
                 formatter.dateFormat = "dd MMMM YYYY - HH:mm"
                 dateLabel.text = formatter.string(from: esign!.mdate! as Date).lowercased()
             }
-        case 1:
+        case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "SequenceCell")
             // remove existing views in cell
             for label in cell!.contentView.subviews {
@@ -201,9 +203,9 @@ extension EsignDetailsViewController : UITableViewDataSource {
                 }
             }
         
-        case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: "ViewDocumentCell")
         case 3:
+            cell = tableView.dequeueReusableCell(withIdentifier: "ViewDocumentCell")
+        case 4:
             cell = tableView.dequeueReusableCell(withIdentifier: "SentByCell")
             if let nameLabel = cell?.contentView.viewWithTag(1) as? UILabel {
                 nameLabel.adjustsFontSizeToFitWidth = true
@@ -217,7 +219,7 @@ extension EsignDetailsViewController : UITableViewDataSource {
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "RecipientCell")
             if let esignRecipients = esignRecipients {
-                let recipient = esignRecipients[indexPath.row-4]
+                let recipient = esignRecipients[indexPath.row-5]
                 var backgroundColor = UIColor.white
                 
                 formatter.dateFormat = "dd MMMM YY-HH:mm"
@@ -295,11 +297,11 @@ extension EsignDetailsViewController : UITableViewDelegate {
         var height = CGFloat(0)
         
         switch indexPath.row {
-        case 0:
+        case 1:
             height = 66
-        case 1,2:
+        case 0,2,3:
             height = UITableViewAutomaticDimension
-        case 3:
+        case 4:
             height = 60
         default:
             height = 80
@@ -310,7 +312,7 @@ extension EsignDetailsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 2:
+        case 3:
             if let documentId = esign!.documentId,
                 let title = esign!.title {
                 MBProgressHUD.showAdded(to: view, animated: true)
@@ -388,6 +390,9 @@ extension EsignDetailsViewController : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == collectionView {
             scrollToNearestVisibleCollectionViewCell()
+            print("collection scroll....")
+        } else {
+            print("table scroll....")
         }
     }
 }
