@@ -111,8 +111,41 @@ class UpsalesAPI: NSObject {
         }
     }
     
-    func fetchEsigns(completion: @escaping (Error?) -> Void) {
-        let urlString = "https://integration.upsales.com/api/v2/esigns?limit=50&q={\"a\":\"user.id\",\"c\":\"eq\",\"v\":1}&sort={\"a\":\"mdate\",\"s\":\"Z\"}&token=\(kAPIToken)".addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+    func fetchUsers(completion: @escaping (Error?) -> Void) {
+        let urlString = "https://integration.upsales.com/api/v2/users/?&token=\(kAPIToken)".addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+        
+        Alamofire.request(urlString!).responseJSON { response in
+            if let error = response.error {
+                completion(error)
+            } else {
+                if let json = response.result.value as? [String: Any] {
+                    if let data = json["data"] as? [[String: Any]] {
+                        let notifName = NSNotification.Name.NSManagedObjectContextObjectsDidChange
+                        
+                        self.dataStack.performInNewBackgroundContext { backgroundContext in
+                            NotificationCenter.default.addObserver(self, selector: #selector(UpsalesAPI.changeNotification(_:)), name: notifName, object: backgroundContext)
+                            Sync.changes(data,
+                                         inEntityNamed: "User",
+                                         predicate: nil,
+                                         parent: nil,
+                                         parentRelationship: nil,
+                                         inContext: backgroundContext,
+                                         operations: [.insert, .update],
+                                         completion:  { error in
+                                            NotificationCenter.default.removeObserver(self, name:notifName, object: nil)
+                                            completion(nil)
+                            })
+                        }
+                    }
+                } else {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func fetchEsigns(userId: Int32, completion: @escaping (Error?) -> Void) {
+        let urlString = "https://integration.upsales.com/api/v2/esigns?limit=\(kFetchLimit)&q={\"a\":\"user.id\",\"c\":\"eq\",\"v\":\(userId)}&&sort={\"a\":\"mdate\",\"s\":\"Z\"}&token=\(kAPIToken)".addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
         
         Alamofire.request(urlString!).responseJSON { response in
             if let error = response.error {

@@ -19,6 +19,8 @@
 		1118E4B91E64A30100092828 /* Upsales.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */; };
 		1118E4CC1E64F32800092828 /* Upsales.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */; };
 		1118E4CD1E64F32800092828 /* Upsales.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1118E4B71E64A30100092828 /* Upsales.xcdatamodeld */; };
+		113493BD1F0CC364000D3149 /* EsignFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113493BC1F0CC364000D3149 /* EsignFilterViewController.swift */; };
+		113493BE1F0CC364000D3149 /* EsignFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113493BC1F0CC364000D3149 /* EsignFilterViewController.swift */; };
 		1137E5111E4EEB8500DEFE4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137E5101E4EEB8500DEFE4F /* AppDelegate.swift */; };
 		1137E5131E4EEB8500DEFE4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137E5121E4EEB8500DEFE4F /* ViewController.swift */; };
 		1137E5161E4EEB8500DEFE4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1137E5141E4EEB8500DEFE4F /* Main.storyboard */; };
@@ -97,6 +99,7 @@
 		1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLocationViewController.swift; sourceTree = "<group>"; };
 		1118E4B31E649E9900092828 /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		1118E4B81E64A30100092828 /* Upsales.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Upsales.xcdatamodel; sourceTree = "<group>"; };
+		113493BC1F0CC364000D3149 /* EsignFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EsignFilterViewController.swift; sourceTree = "<group>"; };
 		1137E50D1E4EEB8500DEFE4F /* UpsalesTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpsalesTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137E5101E4EEB8500DEFE4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1137E5121E4EEB8500DEFE4F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 				1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */,
 				1118E4B31E649E9900092828 /* AccountsViewController.swift */,
 				118166951F04C36B0079E589 /* EsignDetailsViewController.swift */,
+				113493BC1F0CC364000D3149 /* EsignFilterViewController.swift */,
 				11B699D71F03EA5600C60748 /* EsignsViewController.swift */,
 				114282801E65A98F000A2FFF /* FilterViewController.swift */,
 			);
@@ -595,6 +599,7 @@
 				114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				117017E01E66B60F003D09D0 /* Client+CoreDataClass.swift in Sources */,
 				1181669B1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
+				113493BD1F0CC364000D3149 /* EsignFilterViewController.swift in Sources */,
 				1118E4AC1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1118E4B41E649E9900092828 /* AccountsViewController.swift in Sources */,
 				117017E11E66B60F003D09D0 /* Client+CoreDataProperties.swift in Sources */,
@@ -651,6 +656,7 @@
 				1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */,
 				1181669D1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
 				11B699E81F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */,
+				113493BE1F0CC364000D3149 /* EsignFilterViewController.swift in Sources */,
 				118166A01F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */,
 				11B699D91F03EA5600C60748 /* EsignsViewController.swift in Sources */,
 				118166971F04C36B0079E589 /* EsignDetailsViewController.swift in Sources */,

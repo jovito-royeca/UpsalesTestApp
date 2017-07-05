@@ -110,15 +110,6 @@ extension EsignDetailsViewController : UICollectionViewDataSource {
     }
 }
 
-// MARK: UICollectionViewDelegate
-//extension EsignDetailsViewController : UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if let esigns = esigns {
-//            esign = esigns[indexPath.row]
-//        }
-//    }
-//}
-
 // MARK: UITableViewDataSource
 extension EsignDetailsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

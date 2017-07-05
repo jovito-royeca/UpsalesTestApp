@@ -28,8 +28,13 @@ class EsignsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(EsignsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object: nil)
         
         // Do any additional setup after loading the view.
+        var userId = Int32(1)
+        if let sid = UserDefaults.standard.object(forKey: kEsignFilterSenderID) as? Int32 {
+            userId = sid
+        }
+        
         MBProgressHUD.showAdded(to: view, animated: true)
-        UpsalesAPI.sharedInstance.fetchEsigns(completion: { error in
+        UpsalesAPI.sharedInstance.fetchEsigns(userId: userId, completion: { error in
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.updateData(Notification(name: NSNotification.Name(rawValue: kNotificationEsignsFiltered)))
@@ -89,8 +94,18 @@ class EsignsViewController: UIViewController {
         
         request.sortDescriptors = [NSSortDescriptor(key: "mdate", ascending: false)]
         
-        if let statusId = UserDefaults.standard.object(forKey: kEsignFilterStatusID) as? Int {
-            predicate = NSPredicate(format: "state == \(statusId)")
+        if let senderId = UserDefaults.standard.object(forKey: kEsignFilterSenderID) as? Int32 {
+            predicate = NSPredicate(format: "user.id == \(senderId)")
+        }
+        
+        if let statusId = UserDefaults.standard.object(forKey: kEsignFilterStatusID) as? Int32 {
+            let newPredicate = NSPredicate(format: "state == \(statusId)")
+            
+            if predicate != nil {
+                predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate!, newPredicate])
+            } else {
+                predicate = newPredicate
+            }
         }
         
         request.predicate = predicate

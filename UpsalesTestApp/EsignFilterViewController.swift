@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+import MBProgressHUD
 
 let kEsignFilterSenderID = "esignFilterSenderID"
 let kEsignFilterStatusID = "esignFilterStatusID"
@@ -14,8 +16,10 @@ let kEsignFilterStatusID = "esignFilterStatusID"
 class EsignFilterViewController: UIViewController {
 
     // MARK: Variables
-    var selectedSenderIndex = 0
-    var selectedStatusIndex = 0
+    var senderId = Int32(-1)
+    var statusId = Int32(-1)
+    let statuses = [Int32(0), Int32(10), Int32(20), Int32(30), Int32(40)]
+    var users:[User]?
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -27,30 +31,16 @@ class EsignFilterViewController: UIViewController {
     }
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
-        var esignFilterSenderId = 0
-        var esignFilterStatusId = 0
-        
-        switch selectedStatusIndex {
-            case 0:
-                esignFilterStatusId =  -1
-            case 1:
-                esignFilterStatusId =  0
-            case 2:
-                esignFilterStatusId =  10
-            case 3:
-                esignFilterStatusId =  20
-            case 4:
-                esignFilterStatusId =  30
-            case 5:
-                esignFilterStatusId =  40
-            default:
-            ()
+        if senderId == -1 {
+            UserDefaults.standard.removeObject(forKey: kEsignFilterSenderID)
+        } else {
+            UserDefaults.standard.set(senderId, forKey: kEsignFilterSenderID)
         }
         
-        if esignFilterStatusId == -1 {
+        if statusId == -1 {
             UserDefaults.standard.removeObject(forKey: kEsignFilterStatusID)
         } else {
-            UserDefaults.standard.set(esignFilterStatusId, forKey: kEsignFilterStatusID)
+            UserDefaults.standard.set(statusId, forKey: kEsignFilterStatusID)
         }
         
         UserDefaults.standard.synchronize()
@@ -68,22 +58,38 @@ class EsignFilterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let statusId = UserDefaults.standard.object(forKey: kEsignFilterStatusID) as? Int {
-            switch statusId {
-            case 0:
-                selectedStatusIndex = 1
-            case 10:
-                selectedStatusIndex = 2
-            case 20:
-                selectedStatusIndex = 3
-            case 30:
-                selectedStatusIndex = 4
-            case 40:
-                selectedStatusIndex = 5
-            default:
-                ()
-            }
+        if let sid = UserDefaults.standard.object(forKey: kEsignFilterSenderID) as? Int32 {
+            senderId = sid
         }
+        
+        if let sid = UserDefaults.standard.object(forKey: kEsignFilterStatusID) as? Int32 {
+            statusId = sid
+        }
+        
+        MBProgressHUD.showAdded(to: view, animated: true)
+        UpsalesAPI.sharedInstance.fetchUsers(completion: { error in
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.updateData()
+                
+                if let error = error {
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        })
+    }
+    
+    // MARK: Custom methods
+    func updateData() {
+        let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        users = try! UpsalesAPI.sharedInstance.dataStack.mainContext.fetch(request) as! [User]
+        tableView.reloadData()
     }
 }
 
@@ -94,12 +100,15 @@ extension EsignFilterViewController : UITableViewDataSource {
         
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            rows = 1
+            if let users = users {
+                rows = users.count
+            }
         case 1:
-            rows = 7
+            rows = 6
         default:
             rows = 0
         }
+        
         return rows
     }
     
@@ -110,25 +119,37 @@ extension EsignFilterViewController : UITableViewDataSource {
         
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            ()
+            if let users = users {
+                let user = users[indexPath.row]
+                text = user.name
+                selected = senderId == user.id
+            }
         case 1:
+            var status = Int32(-1)
+            
             switch indexPath.row {
             case 0:
                 text = "All"
+                status = -1
             case 1:
                 text = "Draft"
+                status = 0
             case 2:
                 text = "Waiting for sign"
+                status = 10
             case 3:
                 text = "Rejected"
+                status = 20
             case 4:
                 text = "Everyone has signed"
+                status = 30
             case 5:
                 text = "Cancelled"
+                status = 40
             default:
                 ()
             }
-            selected = selectedStatusIndex == indexPath.row
+            selected = statusId == status
         default:
             ()
         }
@@ -145,9 +166,27 @@ extension EsignFilterViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            selectedSenderIndex = indexPath.row
+            if let users = users {
+                let user = users[indexPath.row]
+                senderId = user.id
+            }
         case 1:
-            selectedStatusIndex = indexPath.row
+            switch indexPath.row {
+            case 0:
+                statusId = -1
+            case 1:
+                statusId = statuses[0]
+            case 2:
+                statusId = statuses[1]
+            case 3:
+                statusId = statuses[2]
+            case 4:
+                statusId = statuses[3]
+            case 5:
+                statusId = statuses[4]
+            default:
+                ()
+            }
         default:
             ()
         }
