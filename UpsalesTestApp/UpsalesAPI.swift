@@ -144,10 +144,16 @@ class UpsalesAPI: NSObject {
         }
     }
     
-    func fetchEsigns(userId: Int32, completion: @escaping (Error?) -> Void) {
-        let urlString = "https://integration.upsales.com/api/v2/esigns?limit=\(kFetchLimit)&q={\"a\":\"user.id\",\"c\":\"eq\",\"v\":\(userId)}&&sort={\"a\":\"mdate\",\"s\":\"Z\"}&token=\(kAPIToken)".addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+    func fetchEsigns(userId: Int32?, completion: @escaping (Error?) -> Void) {
+        var urlString = "https://integration.upsales.com/api/v2/esigns?limit=\(kFetchLimit)&sort={\"a\":\"mdate\",\"s\":\"Z\"}&token=\(kAPIToken)"
         
-        Alamofire.request(urlString!).responseJSON { response in
+        if let userId = userId {
+            urlString.append("&q={\"a\":\"user.id\",\"c\":\"eq\",\"v\":\(userId)}")
+        }
+
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
+        
+        Alamofire.request(urlString).responseJSON { response in
             if let error = response.error {
                 completion(error)
             } else {

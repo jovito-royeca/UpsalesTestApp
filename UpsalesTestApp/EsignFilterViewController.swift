@@ -101,7 +101,7 @@ extension EsignFilterViewController : UITableViewDataSource {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             if let users = users {
-                rows = users.count
+                rows = users.count + 1
             }
         case 1:
             rows = 6
@@ -119,11 +119,20 @@ extension EsignFilterViewController : UITableViewDataSource {
         
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            if let users = users {
-                let user = users[indexPath.row]
-                text = user.name
-                selected = senderId == user.id
+            var sender = Int32(-1)
+            
+            switch indexPath.row {
+            case 0:
+                text = "All"
+                sender = -1
+            default:
+                if let users = users {
+                    let user = users[indexPath.row - 1]
+                    text = user.name
+                    sender = user.id
+                }
             }
+            selected = senderId == sender
         case 1:
             var status = Int32(-1)
             
@@ -166,9 +175,14 @@ extension EsignFilterViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            if let users = users {
-                let user = users[indexPath.row]
-                senderId = user.id
+            switch indexPath.row {
+            case 0:
+                senderId = -1
+            default:
+                if let users = users {
+                    let user = users[indexPath.row - 1]
+                    senderId = user.id
+                }
             }
         case 1:
             switch indexPath.row {

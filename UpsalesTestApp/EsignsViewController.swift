@@ -28,7 +28,7 @@ class EsignsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(EsignsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object: nil)
         
         // Do any additional setup after loading the view.
-        var userId = Int32(1)
+        var userId:Int32?
         if let sid = UserDefaults.standard.object(forKey: kEsignFilterSenderID) as? Int32 {
             userId = sid
         }
