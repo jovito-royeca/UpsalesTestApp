@@ -648,6 +648,36 @@
             </objects>
             <point key="canvasLocation" x="3396" y="-2431.0344827586209"/>
         </scene>
+        <!--Common Filter View Controller-->
+        <scene sceneID="EPZ-VE-TJg">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ago-us-T6Q" customClass="CommonFilterViewController" customModule="UpsalesTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5gO-ee-Wcw"/>
+                        <viewControllerLayoutGuide type="bottom" id="2kw-1C-87o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wuf-AE-25i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNz-86-CNO">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SNz-86-CNO" firstAttribute="top" secondItem="5gO-ee-Wcw" secondAttribute="bottom" constant="8" symbolic="YES" id="NKI-TS-3dH"/>
+                            <constraint firstAttribute="trailing" secondItem="SNz-86-CNO" secondAttribute="trailing" id="a7W-oM-ELC"/>
+                            <constraint firstItem="SNz-86-CNO" firstAttribute="bottom" secondItem="2kw-1C-87o" secondAttribute="top" id="gDu-pG-Hsl"/>
+                            <constraint firstItem="SNz-86-CNO" firstAttribute="leading" secondItem="Wuf-AE-25i" secondAttribute="leading" id="zks-hM-7Mn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ivp-aU-8hP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4111.1999999999998" y="-1964.1679160419792"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EHu-As-Je8">
             <objects>

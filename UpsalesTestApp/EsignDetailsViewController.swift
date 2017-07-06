@@ -106,11 +106,6 @@ extension EsignDetailsViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         if let tableView = cell.viewWithTag(1) as? UITableView {
-            let blurEffect = UIBlurEffect(style: .extraLight)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = cell.contentView.frame
-            tableView.backgroundView = blurEffectView
-            
             tableView.dataSource = self
             tableView.delegate = self
             tableView.reloadData()

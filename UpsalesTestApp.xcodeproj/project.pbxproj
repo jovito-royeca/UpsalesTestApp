@@ -37,6 +37,8 @@
 		114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
 		114282821E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
 		114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114282801E65A98F000A2FFF /* FilterViewController.swift */; };
+		116CD2B51F0E0883002BD648 /* CommonFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116CD2B41F0E0883002BD648 /* CommonFilterViewController.swift */; };
+		116CD2B61F0E0883002BD648 /* CommonFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116CD2B41F0E0883002BD648 /* CommonFilterViewController.swift */; };
 		117017DE1E66B60F003D09D0 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */; };
 		117017DF1E66B60F003D09D0 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */; };
 		117017E01E66B60F003D09D0 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */; };
@@ -117,6 +119,7 @@
 		113BC36C1F0A3AF600C1D05F /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		114282801E65A98F000A2FFF /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		114282841E65BBB5000A2FFF /* Upsales Feb-28-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Feb-28-2017.xcdatamodel"; sourceTree = "<group>"; };
+		116CD2B41F0E0883002BD648 /* CommonFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFilterViewController.swift; sourceTree = "<group>"; };
 		117017D81E66B60F003D09D0 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
 		117017D91E66B60F003D09D0 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		117017DA1E66B60F003D09D0 /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 			children = (
 				1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */,
 				1118E4B31E649E9900092828 /* AccountsViewController.swift */,
+				116CD2B41F0E0883002BD648 /* CommonFilterViewController.swift */,
 				118166951F04C36B0079E589 /* EsignDetailsViewController.swift */,
 				113493BC1F0CC364000D3149 /* EsignFilterViewController.swift */,
 				11B699D71F03EA5600C60748 /* EsignsViewController.swift */,
@@ -595,6 +599,7 @@
 				117017DE1E66B60F003D09D0 /* Address+CoreDataClass.swift in Sources */,
 				1137E5131E4EEB8500DEFE4F /* ViewController.swift in Sources */,
 				117017E21E66B60F003D09D0 /* User+CoreDataClass.swift in Sources */,
+				116CD2B51F0E0883002BD648 /* CommonFilterViewController.swift in Sources */,
 				1118E4B91E64A30100092828 /* Upsales.xcdatamodeld in Sources */,
 				114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */,
 				117017E01E66B60F003D09D0 /* Client+CoreDataClass.swift in Sources */,
@@ -656,6 +661,7 @@
 				1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */,
 				1181669D1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
 				11B699E81F03F31E00C60748 /* Esign+CoreDataProperties.swift in Sources */,
+				116CD2B61F0E0883002BD648 /* CommonFilterViewController.swift in Sources */,
 				113493BE1F0CC364000D3149 /* EsignFilterViewController.swift in Sources */,
 				118166A01F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift in Sources */,
 				11B699D91F03EA5600C60748 /* EsignsViewController.swift in Sources */,
