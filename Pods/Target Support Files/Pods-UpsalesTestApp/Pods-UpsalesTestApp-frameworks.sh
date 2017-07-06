@@ -93,6 +93,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/DATASource/DATASource.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MMDrawerController/MMDrawerController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MMDrawerController+Storyboard/MMDrawerController_Storyboard.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Sync/Sync.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -100,6 +102,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/DATASource/DATASource.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MMDrawerController/MMDrawerController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MMDrawerController+Storyboard/MMDrawerController_Storyboard.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Sync/Sync.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
