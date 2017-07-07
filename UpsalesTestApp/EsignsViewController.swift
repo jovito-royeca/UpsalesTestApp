@@ -48,7 +48,7 @@ class EsignsViewController: UIViewController {
             }
         })
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showEsignDetails"?:
@@ -175,8 +175,7 @@ class EsignsViewController: UIViewController {
                 avatarView.layer.masksToBounds = true
                 avatarView.image = nil
                 avatarView.isHidden = false
-                
-                
+
                 if let email = user.email {
                     let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
                     let avatarPath = "\(cachesDir)/\(user.id).jpg"
