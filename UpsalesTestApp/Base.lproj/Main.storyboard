@@ -252,7 +252,7 @@
                         <viewControllerLayoutGuide type="top" id="sYl-CK-0dh"/>
                         <viewControllerLayoutGuide type="bottom" id="EF0-0F-oGe"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Vhb-93-AbB">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="Vhb-93-AbB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -539,7 +539,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.1843137255" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4u6-Xu-LsG" firstAttribute="leading" secondItem="Vhb-93-AbB" secondAttribute="leading" id="KcD-Y3-TMb"/>
                             <constraint firstItem="4u6-Xu-LsG" firstAttribute="centerY" secondItem="Vhb-93-AbB" secondAttribute="centerY" id="QHw-ch-oOG"/>
@@ -676,7 +676,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ivp-aU-8hP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4111.1999999999998" y="-1964.1679160419792"/>
+            <point key="canvasLocation" x="4337" y="-2431"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EHu-As-Je8">

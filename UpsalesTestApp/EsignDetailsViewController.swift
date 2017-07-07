@@ -35,9 +35,9 @@ class EsignDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         
-        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.frame
+        blurEffectView.frame = view.bounds
         view.insertSubview(blurEffectView, at: 0)
         
         fetchEsignRecipients()
@@ -106,6 +106,11 @@ extension EsignDetailsViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         if let tableView = cell.viewWithTag(1) as? UITableView {
+//            let blurEffect = UIBlurEffect(style: .extraLight)
+//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//            blurEffectView.frame = cell.contentView.frame
+//            tableView.backgroundView = blurEffectView
+            
             tableView.dataSource = self
             tableView.delegate = self
             tableView.reloadData()
@@ -395,9 +400,6 @@ extension EsignDetailsViewController : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == collectionView {
             scrollToNearestVisibleCollectionViewCell()
-            print("collection scroll....")
-        } else {
-            print("table scroll....")
         }
     }
 }
