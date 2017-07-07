@@ -253,20 +253,3 @@ extension EsignsViewController: UITableViewDelegate {
         performSegue(withIdentifier: "showEsignDetails", sender: indexPath)
     }
 }
-
-// MARK: UIImage
-extension UIImage {
-    class func takeScreenshot(view: UIView) -> UIImage? {
-        // Create screenshot
-        UIGraphicsBeginImageContext(view.bounds.size)
-        
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let screenshot:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        print("Taking Screenshot")
-        
-        UIGraphicsEndImageContext()
-        return screenshot
-    }
-}
-
