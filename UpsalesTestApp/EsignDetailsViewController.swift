@@ -17,8 +17,10 @@ class EsignDetailsViewController: UIViewController {
     var esigns:[Esign]?
     var esignRecipients:[EsignRecipient]?
     var esignIndex = 0
+    var backgroundImage:UIImage?
     
     // MARK: Outlets
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
@@ -35,10 +37,10 @@ class EsignDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         
-//        let blurEffect = UIBlurEffect(style: .dark)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        view.insertSubview(blurEffectView, at: 0)
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        view.insertSubview(blurEffectView, at: 0)
         
         fetchEsignRecipients()
     }
