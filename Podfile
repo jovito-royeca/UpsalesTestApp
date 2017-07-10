@@ -7,8 +7,7 @@ target 'UpsalesTestApp' do
     pod 'DATASource'
     pod 'FontAwesome.swift'
     pod 'MBProgressHUD'
-    pod 'MMDrawerController'
-    pod 'MMDrawerController+Storyboard'
+    pod 'SWRevealViewController'
     pod 'Sync'
 end
 
@@ -17,8 +16,7 @@ target 'UpsalesTestAppTests' do
     pod 'DATASource'
     pod 'FontAwesome.swift'
     pod 'MBProgressHUD'
-    pod 'MMDrawerController'
-    pod 'MMDrawerController+Storyboard'
+    pod 'SWRevealViewController'
     pod 'Sync'
 end
 
@@ -27,8 +25,7 @@ target 'UpsalesTestAppUITests' do
     pod 'DATASource'
     pod 'FontAwesome.swift'
     pod 'MBProgressHUD'
-    pod 'MMDrawerController'
-    pod 'MMDrawerController+Storyboard'
+    pod 'SWRevealViewController'
     pod 'Sync'
 end
 
