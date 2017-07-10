@@ -8,13 +8,16 @@
 
 import UIKit
 import DATASource
+import FontAwesome_swift
 import MBProgressHUD
+import SWRevealViewController
 
 let kNotificationEsignsFiltered = "kNotificationEsignsFiltered"
 
 class EsignsViewController: UIViewController {
 
     // MARK: Outlets
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
 
     // MARK: Variables
@@ -28,6 +31,12 @@ class EsignsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(EsignsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object: nil)
         
         // Do any additional setup after loading the view.
+        filterButton.image = UIImage.fontAwesomeIcon(name: .filter, textColor: UIColor.black, size: CGSize(width: 30, height: 30))
+        if let revealVC = revealViewController() {
+            filterButton.target = revealVC
+            filterButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+        }
+        
         var userId:Int32?
         if let sid = UserDefaults.standard.object(forKey: kEsignFilterSenderID) as? Int32 {
             userId = sid
@@ -245,6 +254,17 @@ class EsignsViewController: UIViewController {
         return hexString
     }
 
+    func snapshotImage() -> UIImage? {
+        UIGraphicsBeginImageContext(view.frame.size)
+        if let context = UIGraphicsGetCurrentContext() {
+            view.layer.render(in: context)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
+        }
+        
+        return nil
+    }
 }
 
 // MARK: UITableViewDelegate
