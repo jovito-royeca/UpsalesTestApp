@@ -22,6 +22,7 @@ class EsignsViewController: UIViewController {
 
     // MARK: Variables
     var dataSource: DATASource?
+    var selectedRow = 0
     
     // MARK: Overrides
     override func viewDidLoad() {
@@ -73,15 +74,23 @@ class EsignsViewController: UIViewController {
 //                    vc.esignIndex = indexPath.row
 //                }
 //            }
-            if let dest = segue.destination as? EsignDetailsViewController,
-                let indexPath = sender as? IndexPath,
-                let esigns = dataSource!.all() as? [Esign] {
+//            if let dest = segue.destination as? EsignDetailsViewController,
+//                let indexPath = sender as? IndexPath,
+//                let esigns = dataSource!.all() as? [Esign] {
+//                
+//                let esign = esigns[indexPath.row]
+//                
+//                dest.esigns = esigns
+//                dest.esign = esign
+//                dest.esignIndex = indexPath.row
+//            }
+            if let dest = segue.destination as? UIPageViewController {
+                dest.dataSource = self
                 
-                let esign = esigns[indexPath.row]
-                
-                dest.esigns = esigns
-                dest.esign = esign
-                dest.esignIndex = indexPath.row
+                if let startingViewController = page(atIndex: selectedRow) {
+                    let viewControllers = [startingViewController]
+                    dest.setViewControllers(viewControllers, direction: .forward, animated: false, completion: nil)
+                }
             }
         default:
             ()
@@ -267,9 +276,72 @@ class EsignsViewController: UIViewController {
     }
 }
 
-// MARK: UITableViewDelegate
+// MARK: UITableViewDataSource
 extension EsignsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showEsignDetails", sender: indexPath)
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "showEsignDetails", sender: nil)
+    }
+}
+
+// MARK: UIPageViewControllerDataSource
+extension EsignsViewController: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if let pageContent = viewController as? EsignDetails2ViewController  {
+            var index = pageContent.esignIndex
+            
+            if index == 0 || index == NSNotFound {
+                return nil
+            }
+            
+            index -= 1
+            return page(atIndex: index)
+            
+        } else {
+            return nil
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if  let pageContent = viewController as? EsignDetails2ViewController,
+            let esigns = dataSource!.all() as? [Esign] {
+            
+            var index = pageContent.esignIndex
+            
+            if index == NSNotFound {
+                return nil
+            }
+            
+            index += 1
+            if index == esigns.count {
+                return nil;
+            }
+            
+            return page(atIndex: index)
+        } else {
+            return nil
+        }
+    }
+
+    func page(atIndex index: Int) -> EsignDetails2ViewController? {
+        if let esigns = dataSource!.all() as? [Esign],
+            let storyboard = storyboard {
+            
+            if let pageContent = storyboard.instantiateViewController(withIdentifier: "EsignDetails2ViewController") as? EsignDetails2ViewController {
+                pageContent.esign = esigns[index]
+                pageContent.esignIndex = index
+                return pageContent
+            }
+        }
+            
+        return nil
+    }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return dataSource!.all().count
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return selectedRow
     }
 }

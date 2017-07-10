@@ -206,5 +206,6 @@ extension EsignFilterViewController : UITableViewDelegate {
         }
         
         tableView.reloadData()
+        saveAction(UIBarButtonItem(title: "", style: .plain, target: nil, action: nil))
     }
 }

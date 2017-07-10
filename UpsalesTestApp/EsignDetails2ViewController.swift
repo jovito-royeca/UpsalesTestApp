@@ -1,68 +1,47 @@
 //
-//  EsignDetailsViewController.swift
+//  EsignDetails2ViewController.swift
 //  UpsalesTestApp
 //
-//  Created by Jovito Royeca on 29/06/2017.
+//  Created by Jovito Royeca on 10/07/2017.
 //  Copyright © 2017 Jovito Royeca. All rights reserved.
 //
 
 import UIKit
-import FontAwesome_swift
 import MBProgressHUD
 
-class EsignDetailsViewController: UIViewController {
+class EsignDetails2ViewController: UIViewController {
 
     // MARK: Variables
     var esign:Esign?
-    var esigns:[Esign]?
     var esignRecipients:[EsignRecipient]?
     var esignIndex = 0
-    var backgroundImage:UIImage?
-    
+
     // MARK: Outlets
-    @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: Actions
     @IBAction func closeAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-    // MARK: Overrides
+
+    // Mark: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        collectionView.dataSource = self
-        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-
         view.backgroundColor = kUpsalesBlue
-        
-//        let blurEffect = UIBlurEffect(style: .light)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.insertSubview(blurEffectView, at: 0)
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, at: 0)
+
         
         fetchEsignRecipients()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        flowLayout.itemSize = CGSize(width: collectionView.frame.size.width-40, height: collectionView.frame.size.height)
-        flowLayout.minimumInteritemSpacing = CGFloat(10)
-        flowLayout.minimumLineSpacing = CGFloat(10)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10)
-        flowLayout.scrollDirection = .horizontal
-        
-        collectionView.scrollToItem(at: IndexPath(item: esignIndex, section: 0), at: .centeredHorizontally, animated: false)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.reloadData()
-        scrollToNearestVisibleCollectionViewCell()
+        tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
     }
     
     // MARK: Custom methods
@@ -95,33 +74,74 @@ class EsignDetailsViewController: UIViewController {
             }
         }
     }
-}
 
-// MARK: UICollectionViewDataSource
-extension EsignDetailsViewController : UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let esigns = esigns {
-            return esigns.count
+    /*
+     * Draw initials of esign recipients in color-coded circles
+     *
+     */
+    func drawSalesSequence(inView targetView: UIView) {
+        // remove existing views in cell
+        for label in targetView.subviews {
+            label.removeFromSuperview()
         }
         
-        return 0
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        
-        if let tableView = cell.viewWithTag(1) as? UITableView {
-            tableView.dataSource = self
-            tableView.delegate = self
-            tableView.reloadData()
+        if let esignRecipients = esignRecipients {
+            let count = esignRecipients.count
+            let width = CGFloat(26)
+            let barWidth = width / 2
+            
+            let totalWidth = width * CGFloat(count)
+            let totalBarWidth = barWidth * CGFloat(count - 1)
+            let groupWidth = totalWidth + totalBarWidth
+            
+            var x = (targetView.frame.size.width - groupWidth) / 2
+            let y = (targetView.frame.size.height - width) / 2
+            let barY = (targetView.frame.size.height - 2) / 2
+            var index = 0
+            
+            for recipient in esignRecipients {
+                var labelColor:UIColor?
+                var barColor:UIColor?
+                
+                if let _ = recipient.sign {
+                    labelColor = kUpsalesGreen
+                    barColor = kUpsalesGreen
+                } else if let _ = recipient.declineDate {
+                    labelColor = kUpsalesRed
+                    barColor = kUpsalesLightGray
+                } else {
+                    labelColor = kUpsalesLightGray
+                    barColor = kUpsalesLightGray
+                }
+                
+                DispatchQueue.main.async {
+                    let label = UILabel(frame: CGRect(x: x, y: y, width: width, height: width))
+                    label.textAlignment = NSTextAlignment.center
+                    label.backgroundColor = labelColor
+                    label.layer.cornerRadius = width / 2
+                    label.layer.masksToBounds = true
+                    label.textColor = UIColor.white
+                    label.font = UIFont(name: "Roboto", size: CGFloat(12))
+                    label.adjustsFontSizeToFitWidth = true
+                    label.text = recipient.initials
+                    
+                    targetView.addSubview(label)
+                    x += width
+                    index += 1
+                    
+                    if count > 1 && index < count {
+                        let bar = UIView(frame: CGRect(x: x, y: barY, width: barWidth, height: 2))
+                        bar.backgroundColor = barColor
+                        targetView.addSubview(bar)
+                        x += barWidth
+                    }
+                }
+            }
         }
-        
-        return cell
     }
 }
 
-// MARK: UITableViewDataSource
-extension EsignDetailsViewController : UITableViewDataSource {
+extension EsignDetails2ViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 5
         
@@ -145,7 +165,7 @@ extension EsignDetailsViewController : UITableViewDataSource {
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell")
             if let accountLabel = cell?.contentView.viewWithTag(1) as? UILabel {
-               accountLabel.text = esign!.client!.name
+                accountLabel.text = esign!.client!.name
             }
             if let dateLabel = cell?.contentView.viewWithTag(2) as? UILabel {
                 formatter.dateFormat = "dd MMMM YYYY - HH:mm"
@@ -153,66 +173,8 @@ extension EsignDetailsViewController : UITableViewDataSource {
             }
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "SequenceCell")
-            // remove existing views in cell
-            for label in cell!.contentView.subviews {
-                label.removeFromSuperview()
-            }
+            drawSalesSequence(inView: cell!.contentView)
             
-            if let esignRecipients = esignRecipients {
-                let count = esignRecipients.count
-                let width = CGFloat(26)
-                let barWidth = width / 2
-                
-                let totalWidth = width * CGFloat(count)
-                let totalBarWidth = barWidth * CGFloat(count - 1)
-                let groupWidth = totalWidth + totalBarWidth
-                
-                var x = (cell!.contentView.frame.size.width - groupWidth) / 2
-                let y = (cell!.contentView.frame.size.height - width) / 2
-                let barY = (cell!.contentView.frame.size.height - 2) / 2
-                var index = 0
-                
-                for recipient in esignRecipients {
-                    var labelColor:UIColor?
-                    var barColor:UIColor?
-                    
-                    if let _ = recipient.sign {
-                        labelColor = kUpsalesGreen
-                        barColor = kUpsalesGreen
-                    } else if let _ = recipient.declineDate {
-                        labelColor = kUpsalesRed
-                        barColor = kUpsalesLightGray
-                    } else {
-                        labelColor = kUpsalesLightGray
-                        barColor = kUpsalesLightGray
-                    }
-                    
-                    DispatchQueue.main.async {
-                        let label = UILabel(frame: CGRect(x: x, y: y, width: width, height: width))
-                        label.textAlignment = NSTextAlignment.center
-                        label.backgroundColor = labelColor
-                        label.layer.cornerRadius = width / 2
-                        label.layer.masksToBounds = true
-                        label.textColor = UIColor.white
-                        label.font = UIFont(name: "Roboto", size: CGFloat(12))
-                        label.adjustsFontSizeToFitWidth = true
-                        label.text = recipient.initials
-                        
-                        cell!.contentView.addSubview(label)
-                        x += width
-                        index += 1
-                        
-                        if count > 1 && index < count {
-                            let bar = UIView(frame: CGRect(x: x, y: barY, width: barWidth, height: 2))
-                            bar.backgroundColor = barColor
-                            cell!.contentView.addSubview(bar)
-                            x += barWidth
-                        }
-                    }
-                    
-                }
-            }
-        
         case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "ViewDocumentCell")
         case 4:
@@ -287,10 +249,14 @@ extension EsignDetailsViewController : UITableViewDataSource {
                 if let viewedLabel = cell?.contentView.viewWithTag(4) as? UILabel {
                     let text = String.fontAwesomeIcon(code: "fa-eye")
                     
-                    viewedLabel.font = UIFont.fontAwesome(ofSize: 15)
+                    viewedLabel.font = UIFont.fontAwesome(ofSize: 9)
                     viewedLabel.adjustsFontSizeToFitWidth = true
                     viewedLabel.text = "\(text!)\nViewed"
                     viewedLabel.isHidden = recipient.seen
+                }
+                
+                if let innerView = cell!.contentView.viewWithTag(100) {
+                    innerView.backgroundColor = backgroundColor
                 }
             }
         }
@@ -300,7 +266,7 @@ extension EsignDetailsViewController : UITableViewDataSource {
 }
 
 // MARK: UITableViewDelegate
-extension EsignDetailsViewController : UITableViewDelegate {
+extension EsignDetails2ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = CGFloat(0)
         
@@ -348,57 +314,9 @@ extension EsignDetailsViewController : UITableViewDelegate {
 }
 
 // MARK: UIDocumentInteractionControllerDelegate
-extension EsignDetailsViewController : UIDocumentInteractionControllerDelegate {
+extension EsignDetails2ViewController : UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
-    }
-}
-
-// MARK: UIScrollViewDelegate
-extension EsignDetailsViewController : UIScrollViewDelegate {
-    func scrollToNearestVisibleCollectionViewCell() {
-        let visibleCenterPositionOfScrollView = Float(collectionView.contentOffset.x + (self.collectionView!.bounds.size.width / 2))
-        var closestCellIndex = -1
-        var closestDistance: Float = .greatestFiniteMagnitude
-        
-        for i in 0..<collectionView.visibleCells.count {
-            let cell = collectionView.visibleCells[i]
-            let cellWidth = cell.bounds.size.width
-            let cellCenter = Float(cell.frame.origin.x + cellWidth / 2)
-            
-            // Now calculate closest cell
-            let distance: Float = fabsf(visibleCenterPositionOfScrollView - cellCenter)
-            if distance < closestDistance {
-                closestDistance = distance
-                closestCellIndex = collectionView.indexPath(for: cell)!.row
-            }
-        }
-
-        if closestCellIndex != -1 {
-            // update the current esign when the user scrolls sideways
-            if let esigns = esigns {
-                esign = esigns[closestCellIndex]
-                fetchEsignRecipients()
-            }
-            
-            let indexPath = IndexPath(row: closestCellIndex, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            collectionView.reloadItems(at: [indexPath])
-        }
-    }
-
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if scrollView == collectionView {
-//            if !decelerate {
-//                scrollToNearestVisibleCollectionViewCell()
-//            }
-//        }
-//    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView == collectionView {
-            scrollToNearestVisibleCollectionViewCell()
-        }
     }
 }
 
