@@ -41,7 +41,11 @@ class EsignDetails2ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+        tableView.reloadData()
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        tableView.reloadData()
     }
     
     // MARK: Custom methods

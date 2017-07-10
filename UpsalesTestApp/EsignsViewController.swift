@@ -62,28 +62,6 @@ class EsignsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showEsignDetails"?:
-//            if let dest = segue.destination as? UINavigationController,
-//                let indexPath = sender as? IndexPath,
-//                let esigns = dataSource!.all() as? [Esign] {
-//                
-//                if let vc = dest.childViewControllers.first as? EsignDetailsViewController {
-//                    let esign = esigns[indexPath.row]
-//                    
-//                    vc.esigns = esigns
-//                    vc.esign = esign
-//                    vc.esignIndex = indexPath.row
-//                }
-//            }
-//            if let dest = segue.destination as? EsignDetailsViewController,
-//                let indexPath = sender as? IndexPath,
-//                let esigns = dataSource!.all() as? [Esign] {
-//                
-//                let esign = esigns[indexPath.row]
-//                
-//                dest.esigns = esigns
-//                dest.esign = esign
-//                dest.esignIndex = indexPath.row
-//            }
             if let dest = segue.destination as? UIPageViewController {
                 dest.dataSource = self
                 
