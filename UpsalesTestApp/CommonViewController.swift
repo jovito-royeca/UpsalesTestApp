@@ -55,5 +55,4 @@ class CommonViewController: UIViewController {
         }
         mm_drawerController.toggle(.right, animated:true, completion:nil)
     }
-
 }

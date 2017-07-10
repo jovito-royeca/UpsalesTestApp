@@ -32,23 +32,19 @@ class EsignsViewController: CommonViewController {
 
     
     @IBAction func showFilterAction(_ sender: UIBarButtonItem) {
-//        showFilter()
-        if let navigationVC = mm_drawerController.rightDrawerViewController as? UINavigationController {
-            var filterView:EsignFilterViewController?
+        
+        showFilter()
+        UpsalesAPI.sharedInstance.fetchUsers(completion: { error in
+            let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
             
-            for drawer in navigationVC.viewControllers {
-                if drawer is EsignFilterViewController {
-                    filterView = drawer as? EsignFilterViewController
-                }
-            }
-            if filterView == nil {
-                filterView = EsignFilterViewController()
-                navigationVC.addChildViewController(filterView!)
-            }
+            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
             
-            navigationVC.popToViewController(filterView!, animated: true)
-        }
-        mm_drawerController.toggle(.right, animated:true, completion:nil)
+            let users = try! UpsalesAPI.sharedInstance.dataStack.mainContext.fetch(request) as! [User]
+            let statusArray = ["All", "Draft", "Waiting for sign", "Rejected", "Everyone has signed", "Cancelled"]
+            let filters = [["Sender": users],
+                           ["Status": statusArray]]
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationFilterLoaded), object: nil, userInfo: [kNotificationFilterKey: filters])
+        })        
     }
     
     // MARK: Overrides
