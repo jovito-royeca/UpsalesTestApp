@@ -10,26 +10,50 @@ import UIKit
 
 class CommonViewController: UIViewController {
 
+    // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: Custom methods
+    func showMenu() {
+        if let navigationVC = mm_drawerController.leftDrawerViewController as? UINavigationController {
+            var menuView:MenuViewController?
+            
+            for drawer in navigationVC.viewControllers {
+                if drawer is MenuViewController {
+                    menuView = drawer as? MenuViewController
+                }
+            }
+            if menuView == nil {
+                menuView = MenuViewController()
+                navigationVC.addChildViewController(menuView!)
+            }
+            
+            navigationVC.popToViewController(menuView!, animated: true)
+        }
+        mm_drawerController.toggle(.left, animated:true, completion:nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func showFilter() {
+        if let navigationVC = mm_drawerController.rightDrawerViewController as? UINavigationController {
+            var filterView:CommonFilterViewController?
+            
+            for drawer in navigationVC.viewControllers {
+                if drawer is CommonFilterViewController {
+                    filterView = drawer as? CommonFilterViewController
+                }
+            }
+            if filterView == nil {
+                filterView = CommonFilterViewController()
+                navigationVC.addChildViewController(filterView!)
+            }
+            
+            navigationVC.popToViewController(filterView!, animated: true)
+        }
+        mm_drawerController.toggle(.right, animated:true, completion:nil)
     }
-    */
 
 }

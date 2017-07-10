@@ -60,6 +60,10 @@
 		117017ED1E66BE91003D09D0 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */; };
 		117017EE1E66BE91003D09D0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */; };
 		117017EF1E66BE91003D09D0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */; };
+		11734A191F13F3A70003625F /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11734A181F13F3A70003625F /* CommonViewController.swift */; };
+		11734A1A1F13F3A70003625F /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11734A181F13F3A70003625F /* CommonViewController.swift */; };
+		11734A1C1F13F3FC0003625F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11734A1B1F13F3FC0003625F /* MenuViewController.swift */; };
+		11734A1D1F13F3FC0003625F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11734A1B1F13F3FC0003625F /* MenuViewController.swift */; };
 		1181669B1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */; };
 		1181669C1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */; };
 		1181669D1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */; };
@@ -128,6 +132,8 @@
 		117017DB1E66B60F003D09D0 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		117017DC1E66B60F003D09D0 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		117017DD1E66B60F003D09D0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		11734A181F13F3A70003625F /* CommonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
+		11734A1B1F13F3FC0003625F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		118166981F04D2410079E589 /* Upsales Jun-29-2017.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Upsales Jun-29-2017.xcdatamodel"; sourceTree = "<group>"; };
 		118166991F04D4250079E589 /* EsignRecipient+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EsignRecipient+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1181669A1F04D4250079E589 /* EsignRecipient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EsignRecipient+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -210,10 +216,12 @@
 				1118E4AF1E649DE100092828 /* AccountLocationViewController.swift */,
 				1118E4B31E649E9900092828 /* AccountsViewController.swift */,
 				116CD2B41F0E0883002BD648 /* CommonFilterViewController.swift */,
+				11734A181F13F3A70003625F /* CommonViewController.swift */,
 				1115BC381F1378000087CFDC /* EsignDetails2ViewController.swift */,
 				113493BC1F0CC364000D3149 /* EsignFilterViewController.swift */,
 				11B699D71F03EA5600C60748 /* EsignsViewController.swift */,
 				114282801E65A98F000A2FFF /* FilterViewController.swift */,
+				11734A1B1F13F3FC0003625F /* MenuViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -603,10 +611,12 @@
 				116CD2B51F0E0883002BD648 /* CommonFilterViewController.swift in Sources */,
 				1118E4B91E64A30100092828 /* Upsales.xcdatamodeld in Sources */,
 				114282811E65A98F000A2FFF /* FilterViewController.swift in Sources */,
+				11734A1C1F13F3FC0003625F /* MenuViewController.swift in Sources */,
 				117017E01E66B60F003D09D0 /* Client+CoreDataClass.swift in Sources */,
 				1181669B1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
 				113493BD1F0CC364000D3149 /* EsignFilterViewController.swift in Sources */,
 				1118E4AC1E64941E00092828 /* UpsalesAPI.swift in Sources */,
+				11734A191F13F3A70003625F /* CommonViewController.swift in Sources */,
 				1118E4B41E649E9900092828 /* AccountsViewController.swift in Sources */,
 				117017E11E66B60F003D09D0 /* Client+CoreDataProperties.swift in Sources */,
 				1137E5111E4EEB8500DEFE4F /* AppDelegate.swift in Sources */,
@@ -659,6 +669,7 @@
 				117017EE1E66BE91003D09D0 /* User+CoreDataClass.swift in Sources */,
 				117017EF1E66BE91003D09D0 /* User+CoreDataProperties.swift in Sources */,
 				114282831E65A98F000A2FFF /* FilterViewController.swift in Sources */,
+				11734A1A1F13F3A70003625F /* CommonViewController.swift in Sources */,
 				1118E4AE1E64941E00092828 /* UpsalesAPI.swift in Sources */,
 				1137E5311E4EEB8500DEFE4F /* UpsalesTestAppUITests.swift in Sources */,
 				1181669D1F04D4250079E589 /* EsignRecipient+CoreDataClass.swift in Sources */,
@@ -671,6 +682,7 @@
 				1118E4CD1E64F32800092828 /* Upsales.xcdatamodeld in Sources */,
 				1118E4B61E649E9900092828 /* AccountsViewController.swift in Sources */,
 				1118E4B21E649DE100092828 /* AccountLocationViewController.swift in Sources */,
+				11734A1D1F13F3FC0003625F /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

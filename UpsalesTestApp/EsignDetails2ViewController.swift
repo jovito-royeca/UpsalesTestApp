@@ -37,6 +37,7 @@ class EsignDetails2ViewController: UIViewController {
         view.insertSubview(blurEffectView, at: 0)
 
         fetchEsignRecipients()
+        tableView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -142,6 +143,17 @@ class EsignDetails2ViewController: UIViewController {
             }
         }
     }
+    
+    func drawRound(corners: UIRectCorner, toView targetView: UIView) {
+        let path = UIBezierPath(roundedRect:targetView.bounds,
+                                byRoundingCorners:corners,
+                                cornerRadii: CGSize(width: 2, height:  2))
+        
+        let maskLayer = CAShapeLayer()
+        
+        maskLayer.path = path.cgPath
+        targetView.layer.mask = maskLayer
+    }
 }
 
 extension EsignDetails2ViewController : UITableViewDataSource {
@@ -193,6 +205,18 @@ extension EsignDetails2ViewController : UITableViewDataSource {
                 dateLabel.adjustsFontSizeToFitWidth = true
                 dateLabel.text = formatter.string(from: esign!.mdate! as Date).lowercased()
             }
+            
+            // add rounded corners
+            if let previousCard = cell?.contentView.viewWithTag(200) {
+                drawRound(corners: [.topRight], toView: previousCard)
+            }
+            if let currentCard = cell?.contentView.viewWithTag(100) {
+                drawRound(corners: [.topLeft, .topRight], toView: currentCard)
+            }
+            if let nextCard = cell?.contentView.viewWithTag(300) {
+                drawRound(corners: [.topLeft], toView: nextCard)
+            }
+            
         case 5...esignRecipients!.count + 4:
             cell = tableView.dequeueReusableCell(withIdentifier: "RecipientCell")
             

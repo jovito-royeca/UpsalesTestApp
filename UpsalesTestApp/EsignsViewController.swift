@@ -10,19 +10,46 @@ import UIKit
 import DATASource
 import FontAwesome_swift
 import MBProgressHUD
-import SWRevealViewController
+import MMDrawerController
 
 let kNotificationEsignsFiltered = "kNotificationEsignsFiltered"
 
-class EsignsViewController: UIViewController {
-
-    // MARK: Outlets
-    @IBOutlet weak var filterButton: UIBarButtonItem!
-    @IBOutlet weak var tableView: UITableView!
+class EsignsViewController: CommonViewController {
 
     // MARK: Variables
     var dataSource: DATASource?
     var selectedRow = 0
+    
+    // MARK: Outlets
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var tableView: UITableView!
+
+    // MARK: Actions
+    @IBAction func showMenuAction(_ sender: UIBarButtonItem) {
+        showMenu()
+    }
+
+    
+    @IBAction func showFilterAction(_ sender: UIBarButtonItem) {
+//        showFilter()
+        if let navigationVC = mm_drawerController.rightDrawerViewController as? UINavigationController {
+            var filterView:EsignFilterViewController?
+            
+            for drawer in navigationVC.viewControllers {
+                if drawer is EsignFilterViewController {
+                    filterView = drawer as? EsignFilterViewController
+                }
+            }
+            if filterView == nil {
+                filterView = EsignFilterViewController()
+                navigationVC.addChildViewController(filterView!)
+            }
+            
+            navigationVC.popToViewController(filterView!, animated: true)
+        }
+        mm_drawerController.toggle(.right, animated:true, completion:nil)
+    }
     
     // MARK: Overrides
     override func viewDidLoad() {
@@ -32,11 +59,11 @@ class EsignsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(EsignsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object: nil)
         
         // Do any additional setup after loading the view.
-        filterButton.image = UIImage.fontAwesomeIcon(name: .filter, textColor: UIColor.black, size: CGSize(width: 30, height: 30))
-        if let revealVC = revealViewController() {
-            filterButton.target = revealVC
-            filterButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-        }
+        menuButton.image = UIImage.fontAwesomeIcon(name: .navicon, textColor: UIColor.white, size: CGSize(width: 30, height: 30))
+        menuButton.title = nil
+        
+        filterButton.image = UIImage.fontAwesomeIcon(name: .filter, textColor: UIColor.white, size: CGSize(width: 30, height: 30))
+        filterButton.title = nil
         
         var userId:Int32?
         if let sid = UserDefaults.standard.object(forKey: kEsignFilterSenderID) as? Int32 {
@@ -274,10 +301,9 @@ extension EsignsViewController: UIPageViewControllerDataSource {
             
             index -= 1
             return page(atIndex: index)
-            
-        } else {
-            return nil
         }
+        
+        return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -296,9 +322,9 @@ extension EsignsViewController: UIPageViewControllerDataSource {
             }
             
             return page(atIndex: index)
-        } else {
-            return nil
         }
+        
+        return nil
     }
 
     func page(atIndex index: Int) -> EsignDetails2ViewController? {
