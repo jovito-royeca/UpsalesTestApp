@@ -36,7 +36,6 @@ class EsignDetails2ViewController: UIViewController {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(blurEffectView, at: 0)
 
-        
         fetchEsignRecipients()
     }
 
@@ -147,7 +146,7 @@ class EsignDetails2ViewController: UIViewController {
 
 extension EsignDetails2ViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rows = 5
+        var rows = 15
         
         if let esign = esign {
             if let recipients = esign.recipients {
@@ -162,6 +161,7 @@ extension EsignDetails2ViewController : UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:UITableViewCell?
         let formatter = DateFormatter()
+        var selectionStyle = UITableViewCellSelectionStyle.none
         
         switch indexPath.row {
         case 0:
@@ -181,6 +181,7 @@ extension EsignDetails2ViewController : UITableViewDataSource {
             
         case 3:
             cell = tableView.dequeueReusableCell(withIdentifier: "ViewDocumentCell")
+            selectionStyle = .default
         case 4:
             cell = tableView.dequeueReusableCell(withIdentifier: "SentByCell")
             if let nameLabel = cell?.contentView.viewWithTag(1) as? UILabel {
@@ -192,8 +193,9 @@ extension EsignDetails2ViewController : UITableViewDataSource {
                 dateLabel.adjustsFontSizeToFitWidth = true
                 dateLabel.text = formatter.string(from: esign!.mdate! as Date).lowercased()
             }
-        default:
+        case 5...esignRecipients!.count + 4:
             cell = tableView.dequeueReusableCell(withIdentifier: "RecipientCell")
+            
             if let esignRecipients = esignRecipients {
                 let recipient = esignRecipients[indexPath.row-5]
                 var backgroundColor = UIColor.white
@@ -204,6 +206,7 @@ extension EsignDetails2ViewController : UITableViewDataSource {
                     let width = statusIcon.frame.size.width
                     statusIcon.layer.cornerRadius = width / 2
                     statusIcon.layer.masksToBounds = true
+                    statusIcon.isHidden = false
                     
                     var iconText:String?
                     var iconColor = kUpsalesLightGray
@@ -227,6 +230,7 @@ extension EsignDetails2ViewController : UITableViewDataSource {
                 if let nameLabel = cell?.contentView.viewWithTag(2) as? UILabel {
                     nameLabel.adjustsFontSizeToFitWidth = true
                     nameLabel.text = "\(recipient.fstname != nil ? recipient.fstname! : "") \(recipient.sndname != nil ? recipient.sndname! : "")"
+                    nameLabel.isHidden = false
                 }
                 
                 if let statusLabel = cell?.contentView.viewWithTag(3) as? UILabel {
@@ -248,6 +252,7 @@ extension EsignDetails2ViewController : UITableViewDataSource {
                     statusLabel.adjustsFontSizeToFitWidth = true
                     statusLabel.text = text
                     statusLabel.textColor = color
+                    statusLabel.isHidden = false
                 }
                 
                 if let viewedLabel = cell?.contentView.viewWithTag(4) as? UILabel {
@@ -257,14 +262,57 @@ extension EsignDetails2ViewController : UITableViewDataSource {
                     viewedLabel.adjustsFontSizeToFitWidth = true
                     viewedLabel.text = "\(text!)\nViewed"
                     viewedLabel.isHidden = recipient.seen
+                    viewedLabel.isHidden = false
                 }
                 
-                if let innerView = cell!.contentView.viewWithTag(100) {
+                if let innerView = cell?.contentView.viewWithTag(100) {
                     innerView.backgroundColor = backgroundColor
                 }
+                
+                if let barView = cell?.contentView.viewWithTag(200) {
+                    barView.isHidden = false
+                }
+                
+                if let barView = cell?.contentView.viewWithTag(300) {
+                    barView.isHidden = false
+                }
+            }
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "RecipientCell")
+            selectionStyle = .none
+
+            let backgroundColor = kUpsalesGray
+            
+            if let statusIcon = cell?.contentView.viewWithTag(1) as? UILabel {
+                statusIcon.isHidden = true
+            }
+            
+            if let nameLabel = cell?.contentView.viewWithTag(2) as? UILabel {
+                nameLabel.isHidden = true
+            }
+            
+            if let statusLabel = cell?.contentView.viewWithTag(3) as? UILabel {
+                statusLabel.isHidden = true
+            }
+            
+            if let viewedLabel = cell?.contentView.viewWithTag(4) as? UILabel {
+                viewedLabel.isHidden = true
+            }
+            
+            if let innerView = cell?.contentView.viewWithTag(100) {
+                innerView.backgroundColor = backgroundColor
+            }
+            
+            if let barView = cell?.contentView.viewWithTag(200) {
+                barView.isHidden = true
+            }
+            
+            if let barView = cell?.contentView.viewWithTag(300) {
+                barView.isHidden = true
             }
         }
         
+        cell!.selectionStyle = selectionStyle
         return cell!
     }
 }
@@ -281,8 +329,10 @@ extension EsignDetails2ViewController : UITableViewDelegate {
             height = UITableViewAutomaticDimension
         case 4:
             height = 60
-        default:
+        case 5...esignRecipients!.count + 4:
             height = 80
+        default:
+            height = UITableViewAutomaticDimension
         }
         
         return height
