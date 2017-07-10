@@ -93,8 +93,7 @@ class EsignsViewController: CommonViewController {
                 dest.dataSource = self
                 
                 if let startingViewController = page(atIndex: selectedRow) {
-                    let viewControllers = [startingViewController]
-                    dest.setViewControllers(viewControllers, direction: .forward, animated: false, completion: nil)
+                    dest.setViewControllers([startingViewController], direction: .forward, animated: false, completion:  nil)
                 }
             }
         default:
@@ -349,3 +348,4 @@ extension EsignsViewController: UIPageViewControllerDataSource {
         return selectedRow
     }
 }
+

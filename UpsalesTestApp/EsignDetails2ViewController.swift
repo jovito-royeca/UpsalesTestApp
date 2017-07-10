@@ -37,7 +37,6 @@ class EsignDetails2ViewController: UIViewController {
         view.insertSubview(blurEffectView, at: 0)
 
         fetchEsignRecipients()
-        tableView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -210,9 +209,9 @@ extension EsignDetails2ViewController : UITableViewDataSource {
             if let previousCard = cell?.contentView.viewWithTag(200) {
                 drawRound(corners: [.topRight], toView: previousCard)
             }
-            if let currentCard = cell?.contentView.viewWithTag(100) {
-                drawRound(corners: [.topLeft, .topRight], toView: currentCard)
-            }
+//            if let currentCard = cell?.contentView.viewWithTag(100) {
+//                drawRound(corners: [.topLeft, .topRight], toView: currentCard)
+//            }
             if let nextCard = cell?.contentView.viewWithTag(300) {
                 drawRound(corners: [.topLeft], toView: nextCard)
             }
@@ -336,7 +335,8 @@ extension EsignDetails2ViewController : UITableViewDataSource {
             }
         }
         
-        cell!.selectionStyle = selectionStyle
+        cell?.selectionStyle = selectionStyle
+        cell?.layoutSubviews()
         return cell!
     }
 }
