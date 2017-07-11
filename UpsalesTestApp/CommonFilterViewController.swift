@@ -132,7 +132,8 @@ extension CommonFilterViewController: UITableViewDataSource {
         
         cell?.textLabel?.textColor = UIColor.white
         cell?.detailTextLabel?.textColor = UIColor.white
-        
+        cell?.selectionStyle = .none
+
         return cell!
     }
 }
