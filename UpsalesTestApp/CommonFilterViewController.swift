@@ -55,7 +55,7 @@ class CommonFilterViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItems = nil
         
-        view.backgroundColor = kUpsalesBlue
+        view.backgroundColor = kUpsalesBlurredBlue
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds

@@ -29,7 +29,7 @@ class EsignDetails2ViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = kUpsalesBlue
+        view.backgroundColor = kUpsalesBlurredBlue
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
