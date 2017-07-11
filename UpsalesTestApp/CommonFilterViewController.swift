@@ -56,11 +56,6 @@ class CommonFilterViewController: UIViewController {
         navigationItem.leftBarButtonItems = nil
         
         view.backgroundColor = kUpsalesBlurredBlue
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.insertSubview(blurEffectView, at: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {

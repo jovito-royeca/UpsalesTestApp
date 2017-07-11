@@ -422,7 +422,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dd MMM YYYY HH:mm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNT-Kw-Ahy">
-                                                            <rect key="frame" x="168" y="21" width="160" height="18"/>
+                                                            <rect key="frame" x="172.5" y="21" width="155.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                             <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -676,7 +676,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EIw-Gf-cUt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Accounts" id="qtq-hv-ewI"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WOM-tb-ywx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WOM-tb-ywx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -757,7 +757,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dNu-QQ-NXo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kEz-z3-rnC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kEz-z3-rnC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -778,7 +778,7 @@
                         <viewControllerLayoutGuide type="top" id="vfR-uZ-Gzg"/>
                         <viewControllerLayoutGuide type="bottom" id="Vnn-xD-Pqr"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ofp-wZ-KvF">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="Ofp-wZ-KvF">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -853,7 +853,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.1843137255" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JLU-sU-NkL" firstAttribute="bottom" secondItem="Vnn-xD-Pqr" secondAttribute="top" id="04i-Ga-wrE"/>
                             <constraint firstAttribute="trailing" secondItem="JLU-sU-NkL" secondAttribute="trailing" id="TX8-Dv-kHB"/>
@@ -890,7 +890,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NkW-nh-7O1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pOL-D0-9YE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="pOL-D0-9YE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.1843137255" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -913,7 +913,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6yb-B1-r6C" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="E-sign" id="iTG-lX-lpa"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="bQx-0a-UEV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="bQx-0a-UEV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.1843137255" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -935,7 +935,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XX0-F9-KXX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wj5-ks-csJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wj5-ks-csJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
