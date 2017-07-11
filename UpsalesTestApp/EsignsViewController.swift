@@ -13,12 +13,14 @@ import MBProgressHUD
 import MMDrawerController
 
 let kNotificationEsignsFiltered = "kNotificationEsignsFiltered"
+let kNotificationEsignDetailsClosed = "kNotificationEsignDetailsClosed"
 let kEsignFilterSenderID = "esignFilterSenderID"
 let kEsignFilterStatusID = "esignFilterStatusID"
 
 class EsignsViewController: CommonViewController {
 
     let statusArray = ["All", "Draft", "Waiting for sign", "Rejected", "Everyone has signed", "Cancelled"]
+    let blueCoverTag = 199
     
     // MARK: Variables
     var dataSource: DATASource?
@@ -46,6 +48,8 @@ class EsignsViewController: CommonViewController {
 
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object:nil)
         NotificationCenter.default.addObserver(self, selector: #selector(EsignsViewController.updateData(_:)), name: NSNotification.Name(rawValue: kNotificationEsignsFiltered), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kNotificationEsignDetailsClosed), object:nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EsignsViewController.removeBlueCover(_:)), name: NSNotification.Name(rawValue: kNotificationEsignDetailsClosed), object: nil)
         
         // Do any additional setup after loading the view.
         menuButton.image = UIImage.fontAwesomeIcon(name: .navicon, textColor: UIColor.white, size: CGSize(width: 30, height: 30))
@@ -84,6 +88,12 @@ class EsignsViewController: CommonViewController {
                 if let startingViewController = page(atIndex: selectedRow) {
                     dest.setViewControllers([startingViewController], direction: .forward, animated: false, completion:  nil)
                 }
+                
+                // add a blue cover
+                let v = UIView(frame: view.frame)
+                v.backgroundColor = kUpsalesBlue
+                v.tag = blueCoverTag
+                view.addSubview(v)
             }
         default:
             ()
@@ -134,6 +144,14 @@ class EsignsViewController: CommonViewController {
         tableView.reloadData()
     }
 
+    func removeBlueCover(_ notification: Notification) {
+        if let v = view.viewWithTag(blueCoverTag) {
+            DispatchQueue.main.async {
+                v.removeFromSuperview()
+            }
+        }
+    }
+    
     func configureCell(_ cell: UITableViewCell, withEsign esign: Esign) {
         if let mdate = esign.mdate,
             let client = esign.client,

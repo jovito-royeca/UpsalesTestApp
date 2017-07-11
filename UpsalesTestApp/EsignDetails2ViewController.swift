@@ -23,6 +23,7 @@ class EsignDetails2ViewController: UIViewController {
     // MARK: Actions
     @IBAction func closeAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationEsignDetailsClosed), object: nil, userInfo: nil)
     }
 
     // Mark: Overrides
@@ -30,7 +31,6 @@ class EsignDetails2ViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = kUpsalesBlurredBlue
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
