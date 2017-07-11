@@ -322,6 +322,7 @@ extension EsignsViewController: UIPageViewControllerDataSource {
             if let pageContent = storyboard.instantiateViewController(withIdentifier: "EsignDetails2ViewController") as? EsignDetails2ViewController {
                 pageContent.esign = esigns[index]
                 pageContent.esignIndex = index
+                pageContent.esignCount = esigns.count
                 return pageContent
             }
         }

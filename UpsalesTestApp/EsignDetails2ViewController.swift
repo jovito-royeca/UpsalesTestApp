@@ -15,6 +15,7 @@ class EsignDetails2ViewController: UIViewController {
     var esign:Esign?
     var esignRecipients:[EsignRecipient]?
     var esignIndex = 0
+    var esignCount = 0
 
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -207,13 +208,23 @@ extension EsignDetails2ViewController : UITableViewDataSource {
             
             // add rounded corners
             if let previousCard = cell?.contentView.viewWithTag(200) {
-                drawRound(corners: [.topRight], toView: previousCard)
+                if esignIndex == 0 {
+                    previousCard.isHidden = true
+                } else {
+                    previousCard.isHidden = false
+                    drawRound(corners: [.topRight], toView: previousCard)
+                }
             }
 //            if let currentCard = cell?.contentView.viewWithTag(100) {
 //                drawRound(corners: [.topLeft, .topRight], toView: currentCard)
 //            }
             if let nextCard = cell?.contentView.viewWithTag(300) {
-                drawRound(corners: [.topLeft], toView: nextCard)
+                if esignIndex == esignCount - 1 {
+                    nextCard.isHidden = true
+                } else {
+                    nextCard.isHidden = false
+                    drawRound(corners: [.topLeft], toView: nextCard)
+                }
             }
             
         case 5...esignRecipients!.count + 4:
@@ -291,13 +302,27 @@ extension EsignDetails2ViewController : UITableViewDataSource {
                 if let innerView = cell?.contentView.viewWithTag(100) {
                     innerView.backgroundColor = backgroundColor
                 }
-                
-                if let barView = cell?.contentView.viewWithTag(200) {
-                    barView.isHidden = false
+                if let topBar = cell?.contentView.viewWithTag(101) {
+                    topBar.isHidden = false
+                }
+                if let topBar = cell?.contentView.viewWithTag(102) {
+                    topBar.isHidden = false
                 }
                 
-                if let barView = cell?.contentView.viewWithTag(300) {
-                    barView.isHidden = false
+                if let previousCard = cell?.contentView.viewWithTag(200) {
+                    if esignIndex == 0 {
+                        previousCard.isHidden = true
+                    } else {
+                        previousCard.isHidden = false
+                    }
+                }
+                
+                if let nextCard = cell?.contentView.viewWithTag(300) {
+                    if esignIndex == esignCount - 1 {
+                        nextCard.isHidden = true
+                    } else {
+                        nextCard.isHidden = false
+                    }
                 }
             }
         default:
@@ -325,13 +350,27 @@ extension EsignDetails2ViewController : UITableViewDataSource {
             if let innerView = cell?.contentView.viewWithTag(100) {
                 innerView.backgroundColor = backgroundColor
             }
-            
-            if let barView = cell?.contentView.viewWithTag(200) {
-                barView.isHidden = true
+            if let topBar = cell?.contentView.viewWithTag(101) {
+                topBar.isHidden = true
+            }
+            if let topBar = cell?.contentView.viewWithTag(102) {
+                topBar.isHidden = true
             }
             
-            if let barView = cell?.contentView.viewWithTag(300) {
-                barView.isHidden = true
+            if let previousCard = cell?.contentView.viewWithTag(200) {
+                if esignIndex == 0 {
+                    previousCard.isHidden = true
+                } else {
+                    previousCard.isHidden = false
+                }
+            }
+            
+            if let nextCard = cell?.contentView.viewWithTag(300) {
+                if esignIndex == esignCount - 1 {
+                    nextCard.isHidden = true
+                } else {
+                    nextCard.isHidden = false
+                }
             }
         }
         
