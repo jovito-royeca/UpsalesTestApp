@@ -13,9 +13,13 @@ import MBProgressHUD
 import MMDrawerController
 
 let kNotificationEsignsFiltered = "kNotificationEsignsFiltered"
+let kEsignFilterSenderID = "esignFilterSenderID"
+let kEsignFilterStatusID = "esignFilterStatusID"
 
 class EsignsViewController: CommonViewController {
 
+    let statusArray = ["All", "Draft", "Waiting for sign", "Rejected", "Everyone has signed", "Cancelled"]
+    
     // MARK: Variables
     var dataSource: DATASource?
     var selectedRow = 0
@@ -33,18 +37,7 @@ class EsignsViewController: CommonViewController {
     
     @IBAction func showFilterAction(_ sender: UIBarButtonItem) {
         
-        showFilter()
-        UpsalesAPI.sharedInstance.fetchUsers(completion: { error in
-            let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
-            
-            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-            
-            let users = try! UpsalesAPI.sharedInstance.dataStack.mainContext.fetch(request) as! [User]
-            let statusArray = ["All", "Draft", "Waiting for sign", "Rejected", "Everyone has signed", "Cancelled"]
-            let filters = [["Sender": users],
-                           ["Status": statusArray]]
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationFilterLoaded), object: nil, userInfo: [kNotificationFilterKey: filters])
-        })        
+        showFilter(withDelegate: self, andFilters: ["Sender", "Status"])
     }
     
     // MARK: Overrides
@@ -342,6 +335,107 @@ extension EsignsViewController: UIPageViewControllerDataSource {
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return selectedRow
+    }
+}
+
+// MARK: CommonFilterViewControllerDelegate
+extension EsignsViewController : CommonFilterViewControllerDelegate {
+    func filterValue(filter: String) -> AnyObject? {
+        var value = "All" as AnyObject
+        
+        switch filter {
+        case "Sender":
+            if let sid = UserDefaults.standard.object(forKey: kEsignFilterSenderID) as? Int32 {
+                let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+                request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+                request.predicate = NSPredicate(format: "id == \(sid)")
+    
+                let users = try! UpsalesAPI.sharedInstance.dataStack.mainContext.fetch(request)
+                if let user = users.first as? User {
+                    value = user.name as AnyObject
+                }
+            }
+        case "Status":
+            if let sid = UserDefaults.standard.object(forKey: kEsignFilterStatusID) as? Int32 {
+                switch sid {
+                case 0:
+                    value = "Draft" as AnyObject
+                case 10:
+                    value = "Waiting for sign" as AnyObject
+                case 20:
+                    value = "Rejected" as AnyObject
+                case 30:
+                    value = "Everyone has signed" as AnyObject
+                case 40:
+                    value = "Cancelled" as AnyObject
+                default:
+                    ()
+                }
+            }
+        default:
+            ()
+        }
+        
+        return value
+    }
+    
+    func loadFilterOptions(filter: String, completion: @escaping ([AnyObject]) -> Void) {
+        switch filter {
+        case "Sender":
+            UpsalesAPI.sharedInstance.fetchUsers(completion: { error in
+                let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+                request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+                
+                var array = [AnyObject]()
+                array.append("All" as AnyObject)
+                for user in try! UpsalesAPI.sharedInstance.dataStack.mainContext.fetch(request) as! [User] {
+                    array.append(user.name as AnyObject)
+                }
+                completion(array)
+                
+            })
+        case "Status":
+            completion(statusArray as [AnyObject])
+        default:
+            ()
+        }
+    }
+    
+    func saveFilter(filter: String, filterValue: AnyObject) {
+        switch filter {
+        case "Sender":
+            let request:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")
+            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            request.predicate = NSPredicate(format: "name == %@", filterValue as! String)
+            
+            let users = try! UpsalesAPI.sharedInstance.dataStack.mainContext.fetch(request) as! [User]
+            if let user = users.first {
+                UserDefaults.standard.set(user.id, forKey: kEsignFilterSenderID)
+            } else {
+                UserDefaults.standard.removeObject(forKey: kEsignFilterSenderID)
+            }
+            
+        case "Status":
+            switch filterValue as! String {
+            case "Draft":
+                UserDefaults.standard.set(0, forKey: kEsignFilterStatusID)
+            case "Waiting for sign":
+                UserDefaults.standard.set(10, forKey: kEsignFilterStatusID)
+            case "Rejected":
+                UserDefaults.standard.set(20, forKey: kEsignFilterStatusID)
+            case "Everyone has signed":
+                UserDefaults.standard.set(30, forKey: kEsignFilterStatusID)
+            case "Cancelled":
+                UserDefaults.standard.set(40, forKey: kEsignFilterStatusID)
+            default:
+                UserDefaults.standard.removeObject(forKey: kEsignFilterStatusID)
+            }
+        default:
+            ()
+        }
+        
+        UserDefaults.standard.synchronize()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kNotificationEsignsFiltered), object: nil, userInfo: nil)
     }
 }
 

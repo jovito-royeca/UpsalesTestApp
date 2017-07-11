@@ -8,26 +8,43 @@
 
 import UIKit
 import MBProgressHUD
+import FontAwesome_swift
 
-let kNotificationFilterLoaded = "kNotificationFilterLoaded"
 let kNotificationFilterKey = "kNotificationFilterKey"
 
 @objc protocol CommonFilterViewControllerDelegate : NSObjectProtocol {
-    func x()
+    func filterValue(filter: String) -> AnyObject?
+    func loadFilterOptions(filter: String, completion: @escaping ([AnyObject]) -> Void)
+    func saveFilter(filter: String, filterValue: AnyObject)
 }
 
 class CommonFilterViewController: UIViewController {
 
-    var filters:[[String:[AnyObject]]]?
-    var filter:[String:[AnyObject]]?
-    var delegate:CommonFilterViewControllerDelegate?
+    var filters:[String]?
+    var filterOptions: [AnyObject]?
+    var selectedFilter: String?
+    var selectedFilterOption: AnyObject?
+    var delegate: CommonFilterViewControllerDelegate?
+    var backButton: UIBarButtonItem?
     
     // MARK: Outlets
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Actions
+    @IBAction func backAction(_ sender: UIBarButtonItem) {
+        navigationItem.leftBarButtonItems = nil
+        title = "Filter"
+        filterOptions = nil
+        selectedFilterOption = nil
+        tableView.reloadData()
+    }
+    
     @IBAction func closeAction(_ sender: UIBarButtonItem) {
+        navigationItem.leftBarButtonItems = nil
+        title = "Filter"
+        filterOptions = nil
+        selectedFilterOption = nil
         mm_drawerController.toggle(.right, animated:true, completion:nil)
     }
     
@@ -36,50 +53,30 @@ class CommonFilterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kNotificationFilterLoaded), object:nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CommonFilterViewController.filterLoaded(_:)), name: NSNotification.Name(rawValue: kNotificationFilterLoaded), object: nil)
+        navigationItem.leftBarButtonItems = nil
+        
+        view.backgroundColor = kUpsalesBlue
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, at: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        MBProgressHUD.showAdded(to: view, animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CommonFilterViewController.filterLoaded(_:)), name: NSNotification.Name(rawValue: kNotificationFilterLoaded), object: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "showFilterDetails"?:
-            if let dest = segue.destination as? CommonFilterViewController {
-                print("segueing...")
-            }
-        default:
-            ()
-        }
-    }
-    
-    // MARK: Custom methods
-    func filterLoaded(_ notification: Notification) {
-        if let fs = notification.userInfo?[kNotificationFilterKey] as? [[String:[AnyObject]]] {
-            filters = fs
-            tableView.reloadData()
-            MBProgressHUD.hide(for: self.view, animated: true)
-        }
+        tableView.reloadData()
     }
 }
 
+// MARK: UITableViewDataSource
 extension CommonFilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 0
         
-        if let filter = filter {
-            for (_,value) in filter {
-                rows += value.count
-            }
+        if let filterOptions = filterOptions {
+            rows += filterOptions.count
         } else {
             if let filters = filters {
                 rows = filters.count
@@ -92,23 +89,78 @@ extension CommonFilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:UITableViewCell?
         
-        if let filter = filter {
+        if let filterOptions = filterOptions {
             cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell")
+            let filterOption = filterOptions[indexPath.row]
+            var selected = false
             
-            for (_,value) in filter {
-                let v = value[indexPath.row]
-                cell?.textLabel?.text = v.description
+            if let selectedFilter = selectedFilter,
+                let delegate = delegate {
+                
+                selected = filterOption.isEqual(delegate.filterValue(filter: selectedFilter))
+            }
+
+            
+            if let imageView = cell?.contentView.viewWithTag(1) as? UIImageView {
+                let width = imageView.frame.size.width
+                imageView.layer.cornerRadius = width / 2
+                imageView.layer.masksToBounds = true
+                
+                imageView.image = selected ? UIImage.fontAwesomeIcon(name: .checkCircle, textColor: UIColor.white, size: CGSize(width: width, height: width)) : nil
+                imageView.backgroundColor = kUpsalesBrightBlue
+            }
+            
+            if let label = cell?.contentView.viewWithTag(2) as? UILabel {
+                label.text = filterOption.description
             }
             
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "MasterCell")
             
-            if let filters = filters {
+            if let filters = filters,
+                let delegate = delegate {
+                
                 let filter = filters[indexPath.row]
-                cell?.textLabel?.text = filter.keys.first
+                cell?.textLabel?.text = filter
+                if let value = delegate.filterValue(filter: filter) {
+                    cell?.detailTextLabel?.text = value.description
+                } else {
+                    cell?.detailTextLabel?.text = nil
+                }
             }
         }
+        
+        cell?.textLabel?.textColor = UIColor.white
+        cell?.detailTextLabel?.textColor = UIColor.white
         
         return cell!
     }
 }
+
+// MARK: UITableViewDelegate
+extension CommonFilterViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let delegate = delegate {
+            
+            if let filterOptions = filterOptions{
+                selectedFilterOption = filterOptions[indexPath.row]
+                delegate.saveFilter(filter: selectedFilter!, filterValue: selectedFilterOption!)
+                tableView.reloadData()
+                
+            } else {
+                if let filters = filters {
+                    MBProgressHUD.showAdded(to: view, animated: true)
+                    selectedFilter = filters[indexPath.row]
+                    delegate.loadFilterOptions(filter: selectedFilter!, completion: {(filterOptions: [AnyObject]) ->Void in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        self.navigationItem.leftBarButtonItems = [self.backButton!]
+                        self.title = self.selectedFilter
+                        self.filterOptions = filterOptions
+                        tableView.reloadData()
+                    })
+                }
+            }
+        }
+    }
+}
+

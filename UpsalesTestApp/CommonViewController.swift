@@ -37,7 +37,7 @@ class CommonViewController: UIViewController {
         mm_drawerController.toggle(.left, animated:true, completion:nil)
     }
     
-    func showFilter() {
+    func showFilter(withDelegate delegate: CommonFilterViewControllerDelegate, andFilters filters: [String]) {
         if let navigationVC = mm_drawerController.rightDrawerViewController as? UINavigationController {
             var filterView:CommonFilterViewController?
             
@@ -51,6 +51,8 @@ class CommonViewController: UIViewController {
                 navigationVC.addChildViewController(filterView!)
             }
             
+            filterView!.filters = filters
+            filterView!.delegate = delegate
             navigationVC.popToViewController(filterView!, animated: true)
         }
         mm_drawerController.toggle(.right, animated:true, completion:nil)
